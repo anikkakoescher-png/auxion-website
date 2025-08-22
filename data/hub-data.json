@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Post 1",
+    "description": "Short snippet or summary here.",
+    "link": "https://www.linkedin.com/posts/...", 
+    "iframe": "https://www.linkedin.com/embed/feed/update/urn:li:share:7364273918095822850?collapsed=1",
+    "image": "https://via.placeholder.com/100" 
+  },
+  {
+    "title": "Post 2",
+    "description": "Another summary for this post.",
+    "link": "https://www.linkedin.com/posts/...", 
+    "iframe": "https://www.linkedin.com/embed/feed/update/urn:li:share:7363237494491885569?collapsed=1",
+    "image": "https://via.placeholder.com/100"
+  },
+  {
+    "title": "Post 3",
+    "description": "Third snippet or highlight.",
+    "link": "https://www.linkedin.com/posts/...", 
+    "iframe": "https://www.linkedin.com/embed/feed/update/urn:li:share:7363195333549395971?collapsed=1",
+    "image": "https://via.placeholder.com/100"
+  }
+]
