@@ -210,23 +210,40 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('hub-cards-container');
 
-  fetch('https://raw.githubusercontent.com/anikkakoescher-png/auxion-website/main/data/hub-data.json')
-    .then(res => res.json())
-    .then(data => {
-      container.innerHTML = '';
-      data.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'hub-card block bg-gray-100 p-4 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in';
-        card.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" class="w-full h-32 object-cover rounded-xl mb-4">
-          <h3 class="text-xl font-semibold text-brand-blue mb-2">${item.title}</h3>
-          <p class="text-gray-600 mb-4">${item.description}</p>
-          <a href="${item.link}" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
-        `;
-        container.appendChild(card);
-      });
-    })
-    .catch(err => console.error(err));
+  // Hardcoded data (replace your GitHub fetch)
+  const data = [
+    {
+      "title": "Post 1",
+      "description": "Short snippet or summary here.",
+      "link": "https://www.linkedin.com/posts/...1",
+      "image": "https://via.placeholder.com/100"
+    },
+    {
+      "title": "Post 2",
+      "description": "Another summary for this post.",
+      "link": "https://www.linkedin.com/posts/...2",
+      "image": "https://via.placeholder.com/100"
+    },
+    {
+      "title": "Post 3",
+      "description": "Third snippet or highlight.",
+      "link": "https://www.linkedin.com/posts/...3",
+      "image": "https://via.placeholder.com/100"
+    }
+  ];
+
+  container.innerHTML = '';
+  data.forEach(item => {
+    const card = document.createElement('div');
+    card.className = 'hub-card block bg-gray-100 p-4 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in';
+    card.innerHTML = `
+      <img src="${item.image}" alt="${item.title}" class="w-full h-32 object-cover rounded-xl mb-4">
+      <h3 class="text-xl font-semibold text-brand-blue mb-2">${item.title}</h3>
+      <p class="text-gray-600 mb-4">${item.description}</p>
+      <a href="${item.link}" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
+    `;
+    container.appendChild(card);
+  });
 });
 </script>
 
@@ -536,6 +553,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
