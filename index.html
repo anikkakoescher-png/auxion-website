@@ -103,17 +103,18 @@
 <section id="about" class="py-12 md:py-16 bg-white">
   <div class="container mx-auto px-4 max-w-5xl fade-in">
 
+<!-- Our Mission & Manifesto Section -->
+<section id="about" class="py-12 md:py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-5xl fade-in">
+    
     <!-- Our Mission Section -->
-    <h2 class="text-3xl md:text-4xl font-orbitron font-bold text-center text-brand-blue mb-8">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-8 font-orbitron">
       Our Mission
     </h2>
-    <p class="text-gray-700 max-w-3xl mx-auto mb-12 font-outfit text-base leading-relaxed">
-      <b class="text-brand-red-orange font-bold">Auxion</b> is a knowledge hub connecting 
-      <b class="text-brand-red-orange font-bold">technology</b> and 
-      <b class="text-brand-red-orange font-bold">humanity</b>. We bring together discussions, 
-      practical insights, and forward-looking ideas about AI, technology, and digital change 
-      with a clear focus on ethical human-first innovation. Together we learn, experiment, and 
-      drive innovation. Join and mkae a contibution with us.
+    <p class="mission-text mb-12">
+      <b class="text-brand-red-orange font-bold">Auxion</b> is a knowledge hub connecting <b class="text-brand-red-orange font-bold">technology</b> and <b class="text-brand-red-orange font-bold">humanity</b>. 
+      We bring together discussions, practical insights and forward-looking ideas about AI, technology and digital change with a clear focus on ethical human-first innovation. 
+      Together we learn, experiment and drive innovation. Join and make your contribution.
     </p>
 
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-12">
@@ -122,40 +123,59 @@
         <svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 4C14.757 4 17 6.243 17 9C17 11.757 14.757 14 12 14C9.243 14 7 11.757 7 9C7 6.243 9.243 4 12 4ZM12 16C8.019 16 4.673 18.006 4 20.916C5.129 21.656 6.505 22 8 22H16C17.495 22 18.871 21.656 20 20.916C19.327 18.006 15.981 16 12 16Z"/>
         </svg>
-        <h3 class="text-xl font-semibold text-brand-blue font-orbitron">People</h3>
+        <h3 class="text-xl font-semibold text-brand-blue">People</h3>
       </div>
       <div class="fade-in cursor-pointer transform hover:scale-110 transition-transform duration-300">
         <!-- Change Icon -->
         <svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M12 5L12 19M12 5L7 10M12 5L17 10" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        <h3 class="text-xl font-semibold text-brand-blue font-orbitron">Change</h3>
+        <h3 class="text-xl font-semibold text-brand-blue">Change</h3>
       </div>
       <div class="fade-in cursor-pointer transform hover:scale-110 transition-transform duration-300">
         <!-- Technology Icon -->
         <svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="currentColor">
           <path d="M10 2H14V22H10V2ZM17 2H21V6H17V2ZM17 18H21V22H17V18ZM3 2H7V6H3V2ZM3 18H7V22H3V18ZM15 7H19V11H15V7ZM5 7H9V11H5V7ZM15 13H19V17H15V13ZM5 13H9V17H5V13Z"/>
         </svg>
-        <h3 class="text-xl font-semibold text-brand-blue font-orbitron">Technology</h3>
+        <h3 class="text-xl font-semibold text-brand-blue">Technology</h3>
       </div>
     </div>
 
     <!-- Our Manifesto Section -->
-    <h2 class="text-3xl md:text-4xl font-orbitron font-bold text-center text-brand-blue mt-16 mb-8">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mt-16 mb-8 font-orbitron">
       Our Manifesto
     </h2>
-    <p class="text-gray-700 max-w-3xl mx-auto mb-12 font-outfit text-base leading-relaxed">
+    <p class="manifesto-text mb-12">
       <span class="text-brand-red-orange font-bold">People</span> drive progress. 
       <span class="text-brand-red-orange font-bold">Technology</span> accelerates it. 
-      <span class="text-brand-red-orange font-bold">Auxion</span> exists to connect the two, 
-      enabling meaningful collaboration and informed action. 
+      <span class="text-brand-red-orange font-bold">Auxion</span> exists to connect the two, enabling meaningful collaboration and informed action. 
       <b class="font-semibold">Austrian rooted. Globally minded. Forward focused.</b> 
       We <span class="text-brand-red-orange font-bold">spark</span> conversation. 
       We <span class="text-brand-red-orange font-bold">shape</span> action. 
       We <span class="text-brand-red-orange font-bold">lead</span> the conversation. Responsible AI for better future.
     </p>
   </div>
-</section>>
+</section>
+
+<style>
+/* Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap');
+
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-outfit { font-family: 'Outfit', sans-serif; }
+
+/* Mission & Manifesto Text */
+.mission-text, .manifesto-text {
+  font-family: 'Outfit', sans-serif;
+  text-align: justify;
+  max-width: 700px; /* narrower column for "book-like" feel */
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.8; /* more airy */
+  font-size: 1.1rem;
+}
+</style>
 
   <!-- Knowledge Hub Section -->
   <section id="hub" class="py-12 md:py-16 bg-white">
@@ -544,6 +564,7 @@ document.getElementById('early-access-form').addEventListener('submit', function
     </script>
 </body>
 </html>
+
 
 
 
