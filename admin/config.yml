@@ -1,5 +1,5 @@
 backend:
-  name: github
+  name: git-gateway
   repo: auxionio/auxion-website
   branch: main
   squash_merges: true
@@ -26,3 +26,4 @@ collections:
       - label: "Read More URL"
         name: "url"
         widget: "string"
+
