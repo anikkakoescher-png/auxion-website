@@ -200,8 +200,8 @@
 <section id="hub" class="py-12 md:py-16 bg-white">
   <div class="container mx-auto px-4 max-w-5xl fade-in">
     <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
-    <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Cards will load here -->
+    <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
+      <!-- Embedded LinkedIn posts will load here -->
     </div>
   </div>
 </section>
@@ -210,40 +210,20 @@
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.getElementById('hub-cards-container');
 
-  // Hardcoded data (replace your GitHub fetch)
-  const data = [
-    {
-      "title": "Post 1",
-      "description": "Short snippet or summary here.",
-      "link": "https://www.linkedin.com/posts/...1",
-      "image": "https://via.placeholder.com/100"
-    },
-    {
-      "title": "Post 2",
-      "description": "Another summary for this post.",
-      "link": "https://www.linkedin.com/posts/...2",
-      "image": "https://via.placeholder.com/100"
-    },
-    {
-      "title": "Post 3",
-      "description": "Third snippet or highlight.",
-      "link": "https://www.linkedin.com/posts/...3",
-      "image": "https://via.placeholder.com/100"
-    }
-  ];
-
-  container.innerHTML = '';
-  data.forEach(item => {
-    const card = document.createElement('div');
-    card.className = 'hub-card block bg-gray-100 p-4 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in';
-    card.innerHTML = `
-      <img src="${item.image}" alt="${item.title}" class="w-full h-32 object-cover rounded-xl mb-4">
-      <h3 class="text-xl font-semibold text-brand-blue mb-2">${item.title}</h3>
-      <p class="text-gray-600 mb-4">${item.description}</p>
-      <a href="${item.link}" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
-    `;
-    container.appendChild(card);
-  });
+  fetch('https://raw.githubusercontent.com/anikkakoescher-png/auxion-website/main/data/hub-data.json')
+    .then(res => res.json())
+    .then(data => {
+      container.innerHTML = '';
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'hub-card fade-in';
+        card.innerHTML = `
+          <iframe src="${item.iframe}" height="531" width="504" frameborder="0" allowfullscreen="" title="${item.title}"></iframe>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error(err));
 });
 </script>
 
@@ -553,6 +533,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
