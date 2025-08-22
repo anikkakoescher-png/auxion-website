@@ -6,26 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
   </head>
   <body>
-    <!-- Load Netlify Identity Widget -->
-    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <!-- Load Netlify Identity Widget -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
-    <!-- Load Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+<!-- Load Netlify CMS -->
+<script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
 
-    <script>
-      // Initialize Identity
-      if (window.netlifyIdentity) {
-        window.netlifyIdentity.on("init", user => {
-          if (!user) {
-            // Show registration automatically
-            window.netlifyIdentity.open('signup');
-          }
-        });
-        window.netlifyIdentity.init();
+<script>
+  // Initialize Identity
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.init();
+
+    // Make the widget clickable on top of everything
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .netlify-identity-widget {
+        z-index: 9999 !important;
       }
+    `;
+    document.head.appendChild(style);
+  }
 
-      // Initialize Netlify CMS
-      NetlifyCmsApp.init();
-    </script>
-  </body>
-</html>
+  // Initialize Netlify CMS
+  NetlifyCmsApp.init();
+</script>
