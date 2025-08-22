@@ -196,6 +196,39 @@
             </div>
         </section>
 
+<!-- Knowledge Hub Section -->
+<section id="hub" class="py-12 md:py-16 bg-white">
+  <div class="container mx-auto px-4 max-w-5xl fade-in">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
+    <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Cards will load here -->
+    </div>
+  </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.getElementById('hub-cards-container');
+
+  fetch('https://raw.githubusercontent.com/yourusername/yourrepo/main/hub-data.json')
+    .then(res => res.json())
+    .then(data => {
+      container.innerHTML = '';
+      data.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'hub-card block bg-gray-100 p-4 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in';
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" class="w-full h-32 object-cover rounded-xl mb-4">
+          <h3 class="text-xl font-semibold text-brand-blue mb-2">${item.title}</h3>
+          <p class="text-gray-600 mb-4">${item.description}</p>
+          <a href="${item.link}" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
+        `;
+        container.appendChild(card);
+      });
+    })
+    .catch(err => console.error(err));
+});
+</script>
 
         <!-- Test Your AI Knowledge Section -->
         <section id="quiz" class="py-12 md:py-16 bg-gray-100">
@@ -213,14 +246,6 @@
                 </div>
             </div>
         </section>
-
-        <!-- Knowledge Hub Section -->
-        <section id="hub" class="py-12 md:py-16 bg-white">
-            <div class="container mx-auto px-4 max-w-5xl fade-in">
-                <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
-                <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <!-- Knowledge Hub cards will be dynamically loaded here -->
-</div>
 
         <!-- Gamification Section -->
         <section id="gamification" class="py-12 md:py-16 bg-white">
@@ -511,4 +536,5 @@
     </script>
 </body>
 </html>
+
 
