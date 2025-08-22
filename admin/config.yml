@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: auxionio/auxion-website
+  repo: anikkakoescher-png/auxion-website
   branch: main
   squash_merges: true
 
@@ -26,5 +26,6 @@ collections:
       - label: "Read More URL"
         name: "url"
         widget: "string"
+
 
 
