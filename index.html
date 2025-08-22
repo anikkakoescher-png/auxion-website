@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auxion.io - People. Change. Technology. Together.</title>
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/111d40/ff5722?text=A" type="image/x-icon">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter for clean typography, Playfair Display for emphasis -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            background-color: #f8fafc;
+            /* Custom cursor for an 'AI-mode' feel */
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ff5722" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-zap"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>') 12 12, auto;
+        }
+
+        /* Hover states for interactive elements to provide good UX */
+        a:hover, button:hover {
+            cursor: pointer;
+        }
+
+        /* Custom brand colors for easier use */
+        .bg-brand-blue { background-color: #111d40; }
+        .text-brand-blue { color: #111d40; }
+        .bg-brand-orange { background-color: #ff5722; }
+        .text-brand-orange { color: #ff5722; }
+        .hover\:bg-brand-orange-dark:hover { background-color: #e64a19; }
+        /* New custom color for the mission text */
+        .text-brand-red-orange { color: #cc4d00; }
+        /* New custom font for the mission/manifesto sections */
+        .font-playfair { font-family: 'Playfair Display', serif; }
+
+        /* Subtle fade-in animation for sections */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .fade-in.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive menu animation */
+        .mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+        .mobile-menu-hide {
+            transform: translateY(-100%);
+        }
+
+        /* Gamification elements */
+        .progress-bar {
+            transition: width 0.5s ease-in-out;
+        }
+
+        /* Call-to-action button pulse animation */
+        .cta-pulse-animation {
+            animation: pulse-ring 1.5s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.33); }
+            80%, 100% { opacity: 0; }
+        }
+
+        /* Knowledge Hub card hover effect */
+        .hub-card:hover .arrow-icon {
+            transform: translateX(5px);
+        }
+
+        /* Quiz UI styles */
+        .quiz-option {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .quiz-option.selected {
+            background-color: #f3f4f6;
+            border-color: #ff5722;
+        }
+        .quiz-option.correct {
+            background-color: #d1fae5;
+            border-color: #34d399;
+        }
+        .quiz-option.incorrect {
+            background-color: #fee2e2;
+            border-color: #f87171;
+        }
+
+        /* Hero section gradient for more color */
+        .hero-gradient {
+            background: linear-gradient(135deg, #f8fafc 0%, #ffebdb 100%);
+        }
+    </style>
+</head>
+<body class="bg-brand-white">
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-white shadow-sm transition-all duration-300">
+        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-brand-blue">auxion.io</a>
+            <div class="hidden md:flex space-x-8 text-sm font-medium">
+                <a href="#about" class="text-gray-600 hover:text-brand-blue transition-colors duration-300">About</a>
+                <a href="#hub" class="text-gray-600 hover:text-brand-blue transition-colors duration-300">Knowledge Hub</a>
+                <a href="#quiz" class="text-gray-600 hover:text-brand-blue transition-colors duration-300">AI Quiz</a>
+                <a href="#signup" class="text-gray-600 hover:text-brand-blue transition-colors duration-300">Sign-Up</a>
+                <a href="#contact" class="text-gray-600 hover:text-brand-blue transition-colors duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-brand-blue transition-colors duration-300">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu mobile-menu-hide fixed top-0 left-0 w-full h-screen bg-white shadow-lg p-6 flex flex-col items-center justify-center space-y-8 text-lg font-medium md:hidden z-40">
+            <button id="close-menu-button" class="absolute top-6 right-6 text-gray-600 hover:text-brand-blue">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <a href="#about" class="block text-gray-700 hover:bg-gray-100 p-2 rounded-xl w-full text-center transition-colors duration-300">About</a>
+            <a href="#hub" class="block text-gray-700 hover:bg-gray-100 p-2 rounded-xl w-full text-center transition-colors duration-300">Knowledge Hub</a>
+            <a href="#quiz" class="block text-gray-700 hover:bg-gray-100 p-2 rounded-xl w-full text-center transition-colors duration-300">AI Quiz</a>
+            <a href="#signup" class="block text-gray-700 hover:bg-gray-100 p-2 rounded-xl w-full text-center transition-colors duration-300">Sign-Up</a>
+            <a href="#contact" class="block text-gray-700 hover:bg-gray-100 p-2 rounded-xl w-full text-center transition-colors duration-300">Contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center p-6 hero-gradient">
+            <div class="max-w-4xl mx-auto fade-in">
+                <h1 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-brand-blue tracking-tight leading-tight mb-4">
+                    People. Change. Technology. Together.
+                </h1>
+                <p class="text-base sm:text-lg md:text-xl text-gray-600 mb-8">
+                    Shaping a people-centric digital future
+                </p>
+                <a href="#signup" class="relative inline-block bg-brand-orange text-white px-8 py-4 rounded-full font-semibold text-base sm:text-lg shadow-lg hover:bg-brand-orange-dark transition-colors duration-300 transform hover:-translate-y-1">
+                    <span class="relative z-10">Join the Motion</span>
+                    <span class="absolute top-0 left-0 w-full h-full rounded-full bg-brand-orange opacity-75 cta-pulse-animation"></span>
+                </a>
+            </div>
+        </section>
+
+<!-- Our Mission & Manifesto Section -->
+        <section id="about" class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-5xl fade-in">
+                <!-- Our Mission Section -->
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-8">Our Mission</h2>
+                <p class="text-lg text-center text-gray-700 max-w-3xl mx-auto mb-12">
+                    <b class="text-brand-red-orange font-bold">Auxion</b> is a knowledge hub connecting <b class="text-brand-red-orange font-bold">technology</b> and <b class="text-brand-red-orange font-bold">humanity</b>. We bring together discussions, practical insights and forward-looking ideas about AI, technology and digital change with a clear focus on ethical human-first innovation.
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-12">
+                    <div class="fade-in cursor-pointer transform hover:scale-110 transition-transform duration-300">
+                    <!-- People Icon -->
+<svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C6.486 2 2 6.486 2 12C2 17.514 6.486 22 12 22C17.514 22 22 17.514 22 12C22 6.486 17.514 2 12 2ZM12 4C14.757 4 17 6.243 17 9C17 11.757 14.757 14 12 14C9.243 14 7 11.757 7 9C7 6.243 9.243 4 12 4ZM12 16C8.019 16 4.673 18.006 4 20.916C5.129 21.656 6.505 22 8 22H16C17.495 22 18.871 21.656 20 20.916C19.327 18.006 15.981 16 12 16Z"/>
+</svg>
+<h3 class="text-xl font-semibold text-brand-blue">People</h3>
+</div>
+<div class="fade-in cursor-pointer transform hover:scale-110 transition-transform duration-300">
+                        
+<!-- Change Icon (Upward arrow) -->
+                        <svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 5L12 19M12 5L7 10M12 5L17 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <h3 class="text-xl font-semibold text-brand-blue">Change</h3>
+                    </div>
+                    <div class="fade-in cursor-pointer transform hover:scale-110 transition-transform duration-300">
+
+                    <!-- Technology Icon (Circuit board) -->
+<svg class="w-12 h-12 mx-auto mb-4 text-brand-red-orange" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+<path d="M10 2H14V22H10V2ZM17 2H21V6H17V2ZM17 18H21V22H17V18ZM3 2H7V6H3V2ZM3 18H7V22H3V18ZM15 7H19V11H15V7ZM5 7H9V11H5V7ZM15 13H19V17H15V13ZM5 13H9V17H5V13Z"/>
+</svg>
+<h3 class="text-xl font-semibold text-brand-blue">Technology</h3>
+                    </div>
+                </div>
+
+                <!-- Our Manifesto Section -->
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mt-16 mb-8">Our Manifesto</h2>
+                <p class="text-lg text-center text-gray-700 max-w-3xl mx-auto mb-12">
+                    <span class="text-brand-red-orange font-bold">People</span> drive progress. <span class="text-brand-red-orange font-bold">Technology</span> accelerates it. <span class="text-brand-red-orange font-bold">Auxion</span> exists to connect the two, enabling meaningful collaboration and informed action.<br>
+                    <b class="font-semibold">Austrian rooted. Globally minded. Forward focused.</b><br><br>
+                    We <span class="text-brand-red-orange font-bold">spark</span> conversation. We <span class="text-brand-red-orange font-bold">shape</span> action. We <span class="text-brand-red-orange font-bold">lead</span> the conversation.
+                </p>
+            </div>
+        </section>
+
+
+        <!-- Test Your AI Knowledge Section -->
+        <section id="quiz" class="py-12 md:py-16 bg-gray-100">
+            <div class="container mx-auto px-4 max-w-3xl fade-in text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-8">How AI Native Are You?</h2>
+                <div class="bg-white p-6 md:p-10 rounded-3xl shadow-lg">
+                    <p id="quiz-progress" class="text-sm text-gray-500 font-medium mb-4"></p>
+                    <div id="quiz-content">
+                        <!-- Quiz content will be dynamically loaded here -->
+                    </div>
+                    <button id="next-question-button" class="mt-6 w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-colors duration-300 hidden">
+                        Next Question
+                    </button>
+                    <div id="quiz-feedback" class="mt-6 text-center text-lg font-semibold hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Knowledge Hub Section -->
+        <section id="hub" class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-5xl fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
+                <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Static HTML for Knowledge Hub articles -->
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">The EU AI Act: Strategic Blueprint</h3>
+                        <p class="text-gray-600 mb-4">A deep dive into how new regulations can drive innovation and build a foundation of trust for businesses.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">Human-Centered AI in the Workplace</h3>
+                        <p class="text-gray-600 mb-4">Exploring how responsible AI implementation can augment human potential and lead to a more effective workforce.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">The Future of Content Creation with AI</h3>
+                        <p class="text-gray-600 mb-4">An analysis of emerging trends and ethical considerations for creators and businesses leveraging generative AI tools.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">AI and Sustainability: A New Partnership</h3>
+                        <p class="text-gray-600 mb-4">Discover how artificial intelligence is being used to tackle climate change and promote a greener future.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">Navigating the Data Deluge with Machine Learning</h3>
+                        <p class="text-gray-600 mb-4">A guide to using machine learning to find meaningful patterns and insights in vast datasets.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                    <a href="#" class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                        <h3 class="text-xl font-semibold text-brand-blue mb-2">Ethics in Generative AI: Beyond the Algorithm</h3>
+                        <p class="text-gray-600 mb-4">An exploration of the social and ethical responsibilities of building and deploying generative AI systems.</p>
+                        <span class="inline-flex items-center text-sm font-medium text-brand-orange transition-transform duration-300 transform arrow-icon">
+                            Read more
+                            <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gamification Section -->
+        <section id="gamification" class="py-12 md:py-16 bg-white">
+            <div class="container mx-auto px-4 max-w-5xl fade-in text-center">
+                <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-8">Your Innovation Score</h2>
+                <p class="text-lg text-gray-700 max-w-3xl mx-auto mb-6">
+                    Read articles in our Knowledge Hub and complete our quizzes to increase your score and unlock exclusive content!
+                </p>
+                <div class="bg-gray-100 p-6 rounded-3xl shadow-inner max-w-md mx-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-semibold text-gray-600">Progress</span>
+                        <span id="score-display" class="text-2xl font-bold text-brand-orange">0</span>
+                    </div>
+                    <div class="w-full h-4 bg-gray-300 rounded-full overflow-hidden">
+                        <div id="progress-bar" class="progress-bar h-full bg-brand-orange rounded-full" style="width: 0%;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sign-Up / Early Access Section -->
+        <section id="signup" class="py-16 md:py-24 bg-brand-blue text-white">
+            <div class="container mx-auto px-4 max-w-3xl fade-in text-center">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Be the change. Join Auxion today.</h2>
+                <p class="text-lg text-gray-200 mb-8">Get early updates, invitations to exclusive events and private insights into our community.</p>
+                <form action="#" method="POST" class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <input type="email" placeholder="Your email address" class="w-full sm:w-2/3 px-6 py-4 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-colors duration-300" required>
+                    <button type="submit" class="w-full sm:w-1/3 bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-colors duration-300">
+                        Sign Up
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer / Contact -->
+    <footer id="contact" class="py-12 bg-white text-gray-600">
+        <div class="container mx-auto px-4 text-center fade-in">
+            <p class="mb-2 text-sm">Email: <a href="mailto:info@auxion.io" class="hover:text-brand-blue transition-colors duration-300">info@auxion.io</a></p>
+            <div class="flex justify-center space-x-4 mb-4">
+                <!-- Official LinkedIn Icon -->
+                <a href="https://www.linkedin.com/company/auxion.io" target="_blank" aria-label="LinkedIn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M4.98 3.5C4.98 5 3.9 6.1 2.5 6.1S0 5 0 3.5 1.1 1 2.5 1s2.48 1.1 2.48 2.5zM.5 8h4V24h-4V8zm7.5 0h3.8v2.2h.1c.5-.9 1.7-2.2 3.7-2.2 4 0 4.7 2.6 4.7 6V24h-4v-8.5c0-2 0-4.5-2.7-4.5s-3.1 2.1-3.1 4.3V24h-4V8z"/>
+  </svg>
+</a>
+                <!-- Official Twitter/X Icon -->
+                <a href="https://twitter.com/auxion" target="_blank" aria-label="Twitter">
+  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M18.9 1H22l-7.6 8.7L23.5 23H16l-5.7-7.4L4 23H1l8.1-9.4L0 1h7l5.1 6.8L18.9 1z"/>
+  </svg>
+</a>
+            </div>
+            <p class="text-xs">&copy; 2025 Auxion. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function for subtle fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            document.querySelectorAll('.fade-in').forEach(element => {
+                observer.observe(element);
+            });
+
+            // Mobile menu functionality
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const closeMenuButton = document.getElementById('close-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.remove('mobile-menu-hide');
+            });
+
+            closeMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.add('mobile-menu-hide');
+            });
+            
+            // Close mobile menu when a link is clicked
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('mobile-menu-hide');
+                });
+            });
+
+            // Data for the AI Quiz
+            const quizQuestions = [
+                {
+                    question: "When implementing an AI solution, what is the most important human-centric consideration?",
+                    options: [
+                        "Choosing the most powerful algorithm available.",
+                        "Ensuring data privacy and transparency for users.",
+                        "Minimizing the time to market.",
+                        "Maximizing the number of features in the application."
+                    ],
+                    correctAnswer: 1, // Index of the correct option
+                    points: 50
+                },
+                {
+                    question: "What does 'explainable AI' (XAI) primarily aim to achieve?",
+                    options: [
+                        "To make AI models run faster.",
+                        "To allow humans to understand and trust AI decisions.",
+                        "To reduce the cost of AI development.",
+                        "To automate more complex tasks."
+                    ],
+                    correctAnswer: 1,
+                    points: 50
+                },
+                {
+                    question: "Your toaster is now AI-enabled. It offers to 'optimize' your toast based on your daily mood data. What's your first thought?",
+                    options: [
+                        "Finally, a truly personalized breakfast!",
+                        "How can a toaster even know my mood?",
+                        "Wait, my toast preferences are now a data point?",
+                        "Does this mean I can't just have normal, un-optimized toast anymore?"
+                    ],
+                    correctAnswer: 2,
+                    points: 50
+                },
+                {
+                    question: "An AI writes a poem about a squirrel. The poem is grammatically perfect but emotionally flat. What's missing?",
+                    options: [
+                        "A more advanced language model.",
+                        "A larger training dataset of squirrel poems.",
+                        "The raw, messy, and irrational experience of being human.",
+                        "More rhyming words."
+                    ],
+                    correctAnswer: 2,
+                    points: 50
+                },
+                {
+                    question: "AI is often called a tool, not a replacement. Which of the following best describes this principle?",
+                    options: [
+                        "AI works best when it automates everything.",
+                        "AI is just for crunching numbers and nothing else.",
+                        "AI augments human creativity and problem-solving, like a powerful calculator for the mind.",
+                        "AI is only useful if it can pass the Turing Test."
+                    ],
+                    correctAnswer: 2,
+                    points: 50
+                }
+            ];
+
+            // Quiz state variables
+            let currentQuestionIndex = 0;
+            let quizAnswered = false;
+
+            // DOM elements
+            const quizContent = document.getElementById('quiz-content');
+            const quizProgress = document.getElementById('quiz-progress');
+            const nextQuestionButton = document.getElementById('next-question-button');
+            const scoreDisplay = document.getElementById('score-display');
+            const progressBar = document.getElementById('progress-bar');
+            const maxScore = quizQuestions.length * quizQuestions[0].points; // Assuming all questions have the same points
+
+            // --- Gamification Logic ---
+            // These functions handle the persistence of the user's score.
+            // Using localStorage allows the score to be saved between page reloads.
+            function getScore() {
+                return parseInt(localStorage.getItem('innovationScore') || '0', 10);
+            }
+
+            function setScore(newScore) {
+                localStorage.setItem('innovationScore', newScore.toString());
+                updateScoreDisplay();
+            }
+
+            function updateScoreDisplay() {
+                const currentScore = getScore();
+                scoreDisplay.textContent = currentScore;
+                const progressPercentage = (currentScore / maxScore) * 100;
+                progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
+            }
+
+            // --- Quiz Logic ---
+            function renderQuizQuestion() {
+                const q = quizQuestions[currentQuestionIndex];
+                quizContent.innerHTML = `
+                    <p class="text-lg text-gray-700 font-semibold mb-6">
+                        ${q.question}
+                    </p>
+                    <div id="quiz-options-container" class="flex flex-col space-y-4 text-left mb-6">
+                        ${q.options.map((option, index) => `
+                            <div class="quiz-option p-4 rounded-xl border border-gray-300 hover:bg-gray-100" data-index="${index}">
+                                <p>${String.fromCharCode(65 + index)}. ${option}</p>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+                
+                document.querySelectorAll('.quiz-option').forEach(optionElement => {
+                    optionElement.addEventListener('click', () => handleOptionClick(optionElement));
+                });
+                
+                nextQuestionButton.classList.add('hidden');
+            }
+
+            function handleOptionClick(selectedElement) {
+                if (quizAnswered) return;
+                
+                quizAnswered = true;
+                const selectedIndex = parseInt(selectedElement.dataset.index, 10);
+                const q = quizQuestions[currentQuestionIndex];
+                
+                document.querySelectorAll('.quiz-option').forEach(option => {
+                    option.style.pointerEvents = 'none'; // Disable further clicks
+                    const index = parseInt(option.dataset.index, 10);
+                    if (index === q.correctAnswer) {
+                        option.classList.add('correct');
+                        option.innerHTML += '<p class="text-sm font-bold text-green-700 mt-2">Correct!</p>';
+                    } else if (index === selectedIndex) {
+                        option.classList.add('incorrect');
+                        option.innerHTML += '<p class="text-sm font-bold text-red-700 mt-2">Incorrect.</p>';
+                    }
+                });
+
+                if (selectedIndex === q.correctAnswer) {
+                    let currentScore = getScore();
+                    currentScore += q.points;
+                    setScore(currentScore);
+                }
+
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    nextQuestionButton.textContent = "Next Question";
+                } else {
+                    nextQuestionButton.textContent = "See Results";
+                }
+                nextQuestionButton.classList.remove('hidden');
+            }
+            
+            function showResults() {
+                const finalScore = getScore();
+                let message = "";
+                if (finalScore >= 200) {
+                    message = "Congratulations! You're an AI innovator. Your human intelligence is a formidable match for any algorithm.";
+                } else if (finalScore >= 100) {
+                    message = "Solid score! You're on your way to becoming a true AI native. Keep exploring!";
+                } else {
+                    message = "Don't worry, even AI models have to start somewhere. The future of technology needs human champions like you!";
+                }
+
+                quizContent.innerHTML = `
+                    <p class="text-3xl font-bold text-brand-blue mb-4">Quiz Complete!</p>
+                    <p class="text-lg text-gray-700 mb-2">Your final quiz score is: <span class="text-brand-orange text-2xl font-bold">${finalScore}</span></p>
+                    <p class="text-lg text-gray-700 font-semibold max-w-sm mx-auto">${message}</p>
+                    <button id="restart-quiz-button" class="mt-6 w-full bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-gray-700 transition-colors duration-300">
+                        Try Again
+                    </button>
+                `;
+                nextQuestionButton.classList.add('hidden');
+                
+                document.getElementById('restart-quiz-button').addEventListener('click', resetQuiz);
+            }
+
+            function resetQuiz() {
+                currentQuestionIndex = 0;
+                quizAnswered = false;
+                // Optional: setScore(0) to reset the score completely, or keep it.
+                // localStorage.setItem('innovationScore', '0');
+                // updateScoreDisplay();
+                renderQuizQuestion();
+            }
+
+            // Event listener for the "Next" button
+            nextQuestionButton.addEventListener('click', () => {
+                if (currentQuestionIndex < quizQuestions.length - 1) {
+                    currentQuestionIndex++;
+                    quizAnswered = false;
+                    renderQuizQuestion();
+                } else {
+                    showResults();
+                }
+            });
+
+            // Initial calls to set up the page
+            updateScoreDisplay();
+            renderQuizQuestion();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+backend:
+  name: git-gateway
+  branch: main   # or "master", depending on your repo branch
+
+media_folder: "public/images/uploads"   # where images are stored
+public_folder: "/images/uploads"        # how images are referenced
+
+publish_mode: editorial_workflow
+
+collections:
+  - name: "knowledge-hub"
+    label: "Knowledge Hub"
+    folder: "content/hub"     # folder where posts are saved
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Preview Image", name: "image", widget: "image" }
+      - { label: "LinkedIn URL", name: "url", widget: "string" }
+      - { label: "Date", name: "date", widget: "datetime", required: false }
