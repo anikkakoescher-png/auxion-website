@@ -198,34 +198,37 @@
 
 <!-- Knowledge Hub Section -->
 <section id="hub" class="py-12 md:py-16 bg-white">
-  <div class="container mx-auto px-4 max-w-5xl fade-in">
-    <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
-    <div id="hub-cards-container" class="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-1 gap-8">
-      <!-- Embedded LinkedIn posts will load here -->
+    <div class="container mx-auto px-4 max-w-5xl fade-in">
+        <h2 class="text-3xl md:text-4xl font-bold text-center text-brand-blue mb-12">Knowledge Hub</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <!-- Post 1 -->
+            <div class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                <img src="https://via.placeholder.com/100" alt="Post 1" class="w-full h-32 object-cover rounded-xl mb-4">
+                <h3 class="text-xl font-semibold text-brand-blue mb-2">LinkedIn Post 1</h3>
+                <p class="text-gray-600 mb-4">Short snippet or summary from Post 1.</p>
+                <a href="https://www.linkedin.com/posts/7364273918095822850" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
+            </div>
+
+            <!-- Post 2 -->
+            <div class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                <img src="https://via.placeholder.com/100" alt="Post 2" class="w-full h-32 object-cover rounded-xl mb-4">
+                <h3 class="text-xl font-semibold text-brand-blue mb-2">LinkedIn Post 2</h3>
+                <p class="text-gray-600 mb-4">Short snippet or summary from Post 2.</p>
+                <a href="https://www.linkedin.com/posts/7363237494491885569" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
+            </div>
+
+            <!-- Post 3 -->
+            <div class="hub-card block bg-gray-100 p-6 rounded-3xl shadow-lg hover:shadow-xl transition-shadow duration-300 transform hover:-translate-y-1 fade-in">
+                <img src="https://via.placeholder.com/100" alt="Post 3" class="w-full h-32 object-cover rounded-xl mb-4">
+                <h3 class="text-xl font-semibold text-brand-blue mb-2">LinkedIn Post 3</h3>
+                <p class="text-gray-600 mb-4">Short snippet or summary from Post 3.</p>
+                <a href="https://www.linkedin.com/posts/7363195333549395971" target="_blank" class="text-sm font-medium text-brand-orange hover:underline">Read More</a>
+            </div>
+
+        </div>
     </div>
-  </div>
 </section>
-
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const container = document.getElementById('hub-cards-container');
-
-  fetch('https://raw.githubusercontent.com/anikkakoescher-png/auxion-website/main/data/hub-data.json')
-    .then(res => res.json())
-    .then(data => {
-      container.innerHTML = '';
-      data.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'hub-card fade-in';
-        card.innerHTML = `
-          <iframe src="${item.iframe}" height="531" width="504" frameborder="0" allowfullscreen="" title="${item.title}"></iframe>
-        `;
-        container.appendChild(card);
-      });
-    })
-    .catch(err => console.error(err));
-});
-</script>
 
         <!-- Test Your AI Knowledge Section -->
         <section id="quiz" class="py-12 md:py-16 bg-gray-100">
@@ -533,6 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
     </script>
 </body>
 </html>
+
 
 
 
