@@ -4,20 +4,14 @@
     <meta charset="utf-8" />
     <title>Auxion CMS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   </head>
   <body>
-    <!-- Netlify CMS -->
-    <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
     <script>
-      // Initialize CMS
-      NetlifyCmsApp.init();
-
-      // Auto-open login modal
-      window.addEventListener('load', function() {
-        if (!NetlifyCmsApp.user()) {
-          NetlifyCmsApp.openLogin();
-        }
-      });
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.init();
+      }
     </script>
   </body>
 </html>
