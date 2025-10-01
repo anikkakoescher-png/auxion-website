@@ -205,6 +205,28 @@
       line-height: 1.8;
       font-size: 1.1rem;
     }
+    
+    /* Fixed spacing issues */
+    .section-spacing {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    @media (min-width: 768px) {
+      .section-spacing {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+      }
+    }
+    
+    /* Fixed header display */
+    .section-header {
+      margin-bottom: 3rem;
+    }
+    @media (min-width: 768px) {
+      .section-header {
+        margin-bottom: 4rem;
+      }
+    }
   </style>
 </head>
 <body class="bg-brand-white">
@@ -261,9 +283,9 @@
 
 <main class="relative z-10">
 <!-- Mission Section with Neural Network Effect -->
-<section id="about" class="py-16 md:py-24 bg-white neural-network">
+<section id="about" class="section-spacing bg-white neural-network">
   <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron">
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue section-header font-orbitron">
       Our Mission
     </h2>
     <div class="glass-effect p-8 md:p-12 rounded-3xl">
@@ -295,9 +317,9 @@
 </section>
 
 <!-- Manifesto Section -->
-<section class="py-16 md:py-24 bg-gray-50">
+<section class="section-spacing bg-gray-50">
   <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron">
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue section-header font-orbitron">
       Our Manifesto
     </h2>
     <div class="glass-effect p-8 md:p-12 rounded-3xl">
@@ -316,9 +338,9 @@
 </section>
 
 <!-- Knowledge Hub Section with Enhanced Cards -->
-<section id="hub" class="py-16 md:py-24 bg-white">
+<section id="hub" class="section-spacing bg-white">
   <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-16 font-orbitron">Knowledge Hub</h2>
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue section-header font-orbitron">Knowledge Hub</h2>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
       <!-- Post 1 -->
@@ -404,9 +426,9 @@
 </section>
 
 <!-- AI Quiz Section with Enhanced UI -->
-<section id="quiz" class="py-16 md:py-24 bg-gray-50">
+<section id="quiz" class="section-spacing bg-gray-50">
   <div class="container mx-auto px-4 max-w-4xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron">How AI Native Are You?</h2>
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue section-header font-orbitron">How AI Native Are You?</h2>
     <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl card-3d">
       <div class="flex justify-between items-center mb-8">
         <p id="quiz-progress" class="text-sm text-gray-500 font-medium"></p>
@@ -430,9 +452,9 @@
 </section>
 
 <!-- Gamification Section with Enhanced Progress -->
-<section id="gamification" class="py-16 md:py-24 bg-white">
+<section id="gamification" class="section-spacing bg-white">
   <div class="container mx-auto px-4 max-w-4xl fade-in text-center">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron">Your Innovation Score</h2>
+    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue section-header font-orbitron">Your Innovation Score</h2>
     <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
       Read articles in our Knowledge Hub and complete our quizzes to increase your score and unlock exclusive content!
     </p>
@@ -450,7 +472,7 @@
 </section>
 
 <!-- Sign-Up Section with Enhanced Form -->
-<section id="signup" class="py-20 md:py-32 bg-brand-blue text-white">
+<section id="signup" class="section-spacing bg-brand-blue text-white">
   <div class="container mx-auto px-4 max-w-4xl fade-in text-center">
     <h2 class="text-4xl md:text-5xl font-bold mb-6 font-orbitron">Be the change. Join Auxion today.</h2>
     <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
@@ -576,262 +598,4 @@ document.addEventListener('DOMContentLoaded', () => {
         "To allow humans to understand and trust AI decisions.",
         "To reduce the cost of AI development.",
         "To automate more complex tasks."
-      ],
-      correctAnswer: 1,
-      points: 50
-    },
-    {
-      question: "Your toaster is now AI-enabled. It offers to 'optimize' your toast based on your daily mood data. What's your first thought?",
-      options: [
-        "Finally, a truly personalized breakfast!",
-        "How can a toaster even know my mood?",
-        "Wait, my toast preferences are now a data point?",
-        "Does this mean I can't just have normal, un-optimized toast anymore?"
-      ],
-      correctAnswer: 2,
-      points: 50
-    },
-    {
-      question: "An AI writes a poem about a squirrel. The poem is grammatically perfect but emotionally flat. What's missing?",
-      options: [
-        "A more advanced language model.",
-        "A larger training dataset of squirrel poems.",
-        "The raw, messy, and irrational experience of being human.",
-        "More rhyming words."
-      ],
-      correctAnswer: 2,
-      points: 50
-    },
-    {
-      question: "AI is often called a tool, not a replacement. Which of the following best describes this principle?",
-      options: [
-        "AI works best when it automates everything.",
-        "AI is just for crunching numbers and nothing else.",
-        "AI augments human creativity and problem-solving, like a powerful calculator for the mind.",
-        "AI is only useful if it can pass the Turing Test."
-      ],
-      correctAnswer: 2,
-      points: 50
-    }
-  ];
-
-  let currentQuestionIndex = 0;
-  let quizAnswered = false;
-  const quizContent = document.getElementById('quiz-content');
-  const quizProgress = document.getElementById('quiz-progress');
-  const nextQuestionButton = document.getElementById('next-question-button');
-  const scoreDisplay = document.getElementById('score-display');
-  const currentScoreDisplay = document.getElementById('current-score');
-  const progressBar = document.getElementById('progress-bar');
-  const maxScore = quizQuestions.length * quizQuestions[0].points;
-
-  // Enhanced gamification functions
-  function getScore() {
-    return parseInt(localStorage.getItem('innovationScore') || '0', 10);
-  }
-
-  function setScore(newScore) {
-    localStorage.setItem('innovationScore', newScore.toString());
-    updateScoreDisplay();
-  }
-
-  function updateScoreDisplay() {
-    const currentScore = getScore();
-    scoreDisplay.textContent = currentScore;
-    currentScoreDisplay.textContent = currentScore;
-    const progressPercentage = (currentScore / maxScore) * 100;
-    progressBar.style.width = `${Math.min(progressPercentage, 100)}%`;
-    
-    // Add celebration animation when score increases
-    if (currentScore > 0) {
-      anime({
-        targets: [scoreDisplay, currentScoreDisplay],
-        scale: [1, 1.2, 1],
-        duration: 600,
-        easing: 'easeInOutQuad'
-      });
-    }
-  }
-
-  // Enhanced quiz rendering with animations
-  function renderQuizQuestion() {
-    const q = quizQuestions[currentQuestionIndex];
-    quizContent.innerHTML = `
-      <p class="text-xl text-gray-700 font-semibold mb-8 text-center">
-        ${q.question}
-      </p>
-      <div id="quiz-options-container" class="grid gap-4 mb-8">
-        ${q.options.map((option, index) => `
-          <div class="quiz-option p-6 rounded-2xl border-2 border-gray-200 hover:border-brand-orange bg-white shadow-md hover:shadow-xl card-3d" data-index="${index}">
-            <p class="font-medium">${String.fromCharCode(65 + index)}. ${option}</p>
-          </div>
-        `).join('')}
-      </div>
-    `;
-    quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
-    
-    document.querySelectorAll('.quiz-option').forEach(optionElement => {
-      optionElement.addEventListener('click', () => handleOptionClick(optionElement));
-    });
-    
-    nextQuestionButton.classList.add('hidden');
-  }
-
-  function handleOptionClick(selectedElement) {
-    if (quizAnswered) return;
-    
-    quizAnswered = true;
-    const selectedIndex = parseInt(selectedElement.dataset.index, 10);
-    const q = quizQuestions[currentQuestionIndex];
-    
-    // Animate selection
-    anime({
-      targets: selectedElement,
-      scale: 1.05,
-      duration: 300,
-      easing: 'easeInOutQuad'
-    });
-
-    document.querySelectorAll('.quiz-option').forEach(option => {
-      option.style.pointerEvents = 'none';
-      const index = parseInt(option.dataset.index, 10);
-      
-      if (index === q.correctAnswer) {
-        option.classList.add('correct');
-        option.innerHTML += '<p class="text-sm font-bold text-green-700 mt-3"><i data-feather="check" class="inline-block w-4 h-4 mr-1"></i> Correct!</p>';
-      } else if (index === selectedIndex) {
-        option.classList.add('incorrect');
-        option.innerHTML += '<p class="text-sm font-bold text-red-700 mt-3"><i data-feather="x" class="inline-block w-4 h-4 mr-1"></i> Incorrect</p>';
-      }
-    });
-
-    feather.replace();
-
-    if (selectedIndex === q.correctAnswer) {
-      let currentScore = getScore();
-      currentScore += q.points;
-      setScore(currentScore);
-      
-      // Success animation
-      anime({
-        targets: '#quiz-content',
-        translateX: [0, 10, -10, 0],
-        duration: 600,
-        easing: 'easeInOutQuad'
-      });
-    }
-
-    if (currentQuestionIndex < quizQuestions.length - 1) {
-      nextQuestionButton.textContent = "Next Question";
-    } else {
-      nextQuestionButton.textContent = "See Results";
-    }
-    nextQuestionButton.classList.remove('hidden');
-  }
-  
-  function showResults() {
-    const finalScore = getScore();
-    let message = "";
-    let icon = "";
-    
-    if (finalScore >= 200) {
-      message = "Congratulations! You're an AI innovator. Your human intelligence is a formidable match for any algorithm.";
-      icon = "award";
-    } else if (finalScore >= 100) {
-      message = "Solid score! You're on your way to becoming a true AI native. Keep exploring!";
-      icon = "trending-up";
-    } else {
-      message = "Don't worry, even AI models have to start somewhere. The future of technology needs human champions like you!";
-      icon = "star";
-    }
-
-    quizContent.innerHTML = `
-      <div class="text-center">
-        <i data-feather="${icon}" class="w-16 h-16 text-brand-orange mx-auto mb-6"></i>
-        <p class="text-3xl font-bold text-brand-blue mb-4">Quiz Complete!</p>
-        <p class="text-xl text-gray-700 mb-2">Your final quiz score is: <span class="text-brand-orange text-4xl font-bold">${finalScore}</span></p>
-        <p class="text-lg text-gray-700 font-medium max-w-md mx-auto mb-8">${message}</p>
-        <button id="restart-quiz-button" class="bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-gray-700 transition-all duration-300 transform hover:scale-105">
-          Try Again <i data-feather="refresh-cw" class="ml-2 inline-block"></i>
-        </button>
-      </div>
-    `;
-    nextQuestionButton.classList.add('hidden');
-    feather.replace();
-    
-    document.getElementById('restart-quiz-button').addEventListener('click', resetQuiz);
-  }
-
-  function resetQuiz() {
-    currentQuestionIndex = 0;
-    quizAnswered = false;
-    renderQuizQuestion();
-  }
-
-  nextQuestionButton.addEventListener('click', () => {
-    if (currentQuestionIndex < quizQuestions.length - 1) {
-      currentQuestionIndex++;
-      quizAnswered = false;
-      renderQuizQuestion();
-    } else {
-      showResults();
-    }
-  });
-
-  // Form submission with enhanced feedback
-  document.getElementById('early-access-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        document.getElementById('form-success').classList.remove('hidden');
-        document.getElementById('form-error').classList.add('hidden');
-        form.reset();
-        
-        // Success animation
-        anime({
-          targets: '#form-success',
-          scale: [0.8, 1],
-          opacity: [0, 1],
-          duration: 600,
-          easing: 'easeOutElastic(1, .8)'
-        });
-      } else {
-        response.json().then(data => {
-          document.getElementById('form-error').textContent = data?.errors?.[0]?.message || 'Oops! Something went wrong. Please try again.';
-          document.getElementById('form-error').classList.remove('hidden');
-        });
-      }
-    }).catch(() => {
-      document.getElementById('form-error').classList.remove('hidden');
-      document.getElementById('form-success').classList.add('hidden');
-    });
-  });
-
-  // Initial setup
-  updateScoreDisplay();
-  renderQuizQuestion();
-
-  // Parallax effect on scroll
-  window.addEventListener('scroll', () => {
-    const scrolled = window.pageYOffset;
-    const parallaxElements = document.querySelectorAll('.card-3d');
-    
-    parallaxElements.forEach(element => {
-      const speed = 0.05;
-      const yPos = -(scrolled * speed);
-      element.style.transform = `translateY(${yPos}px) translateZ(0)`;
-    });
-  });
-});
-</script>
-</body>
-</html>
+     
