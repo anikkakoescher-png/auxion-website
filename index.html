@@ -206,91 +206,60 @@
       font-size: 1.1rem;
     }
     
-    /* FIXED: Ensure headers are always on top */
+    /* FIXED: Section headers with proper z-index and positioning */
+    .section-header-container {
+      position: relative;
+      z-index: 100;
+      margin-bottom: 3rem;
+    }
+    
     .section-header {
       position: relative;
-      z-index: 50;
+      z-index: 101;
+      text-align: center;
+      padding: 2rem 0;
     }
     
-    /* FIXED: Ensure quiz content is properly layered */
+    .section-header-line {
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(90deg, #ff5722, #111d40);
+      margin: 1rem auto;
+      border-radius: 2px;
+    }
+    
+    /* FIXED: Content containers with lower z-index */
+    .section-content {
+      position: relative;
+      z-index: 1;
+    }
+    
+    /* FIXED: Quiz specific fixes */
     .quiz-container {
       position: relative;
-      z-index: 5;
+      z-index: 1;
     }
     
-    .quiz-question {
-      position: relative;
-      z-index: 10;
-      margin-bottom: 2rem;
-    }
-    
-    .quiz-options-container {
-      position: relative;
-      z-index: 5;
-    }
-    
-    /* NEW: Interactive manifesto elements */
-    .manifesto-highlight {
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-    }
-    
-    .manifesto-highlight:hover {
-      transform: scale(1.05);
-      color: #ff5722;
-    }
-    
-    .manifesto-highlight::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: #ff5722;
-      transition: width 0.3s ease;
-    }
-    
-    .manifesto-highlight:hover::after {
-      width: 100%;
-    }
-    
-    /* NEW: Section transition elements */
-    .section-transition {
-      height: 120px;
-      background: linear-gradient(135deg, #f8fafc 0%, #ffebdb 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .floating-icons {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-    }
-    
-    .floating-icon {
-      position: absolute;
-      opacity: 0.7;
-      animation: float 6s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(5deg); }
-    }
-    
-    /* NEW: Enhanced quiz layout */
     .quiz-question-container {
       position: relative;
-      z-index: 20;
-      margin-bottom: 2rem;
+      z-index: 10;
     }
     
     .quiz-options-wrapper {
       position: relative;
-      z-index: 10;
+      z-index: 5;
+    }
+    
+    /* NEW: Sticky effect for better header visibility */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      background: rgba(248, 250, 252, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 1rem 0;
+      z-index: 1000;
+      border-bottom: 1px solid rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
     }
   </style>
 </head>
@@ -349,100 +318,85 @@
 <main class="relative z-10">
 <!-- Mission Section with Neural Network Effect -->
 <section id="about" class="py-16 md:py-24 bg-white neural-network">
-  <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron section-header">
-      Our Mission
-    </h2>
-    <div class="glass-effect p-8 md:p-12 rounded-3xl">
-      <p class="mission-text text-lg md:text-xl mb-12">
-        <b class="text-brand-red-orange font-bold">Auxion</b> is a knowledge hub connecting <b class="text-brand-red-orange font-bold">technology</b> and <b class="text-brand-red-orange font-bold">humanity</b>. 
-        We bring together discussions, practical insights, and forward-looking ideas about AI, technology, and digital change with a clear focus on ethical human-first innovation. 
-        Together we learn, experiment and drive innovation. Join and make your contribution together with us.
-      </p>
+  <div class="container mx-auto px-4 max-w-6xl">
+    <!-- FIXED: Header with proper z-index -->
+    <div class="section-header-container">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Our Mission</h2>
+        <div class="section-header-line"></div>
+      </div>
+    </div>
+    
+    <div class="section-content fade-in">
+      <div class="glass-effect p-8 md:p-12 rounded-3xl">
+        <p class="mission-text text-lg md:text-xl mb-12">
+          <b class="text-brand-red-orange font-bold">Auxion</b> is a knowledge hub connecting <b class="text-brand-red-orange font-bold">technology</b> and <b class="text-brand-red-orange font-bold">humanity</b>. 
+          We bring together discussions, practical insights, and forward-looking ideas about AI, technology, and digital change with a clear focus on ethical human-first innovation. 
+          Together we learn, experiment and drive innovation. Join and make your contribution together with us.
+        </p>
 
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-16">
-        <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
-          <i data-feather="users" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
-          <h3 class="text-2xl font-semibold text-brand-blue mb-4">People</h3>
-          <p class="text-gray-600">Human-centered innovation driving technological progress</p>
-        </div>
-        <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
-          <i data-feather="refresh-cw" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
-          <h3 class="text-2xl font-semibold text-brand-blue mb-4">Change</h3>
-          <p class="text-gray-600">Transforming ideas into actionable digital evolution</p>
-        </div>
-        <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
-          <i data-feather="cpu" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
-          <h3 class="text-2xl font-semibold text-brand-blue mb-4">Technology</h3>
-          <p class="text-gray-600">Cutting-edge AI solutions with ethical foundations</p>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mt-16">
+          <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
+            <i data-feather="users" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
+            <h3 class="text-2xl font-semibold text-brand-blue mb-4">People</h3>
+            <p class="text-gray-600">Human-centered innovation driving technological progress</p>
+          </div>
+          <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
+            <i data-feather="refresh-cw" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
+            <h3 class="text-2xl font-semibold text-brand-blue mb-4">Change</h3>
+            <p class="text-gray-600">Transforming ideas into actionable digital evolution</p>
+          </div>
+          <div class="fade-in card-3d p-6 rounded-2xl hover:shadow-xl transition-all duration-300">
+            <i data-feather="cpu" class="w-16 h-16 mx-auto mb-6 text-brand-orange"></i>
+            <h3 class="text-2xl font-semibold text-brand-blue mb-4">Technology</h3>
+            <p class="text-gray-600">Cutting-edge AI solutions with ethical foundations</p>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
-<!-- Section Transition -->
-<div class="section-transition">
-  <div class="floating-icons">
-    <i data-feather="zap" class="floating-icon text-brand-orange" style="top: 20%; left: 10%; width: 24px; height: 24px;"></i>
-    <i data-feather="cpu" class="floating-icon text-brand-blue" style="top: 60%; left: 85%; width: 28px; height: 28px;"></i>
-    <i data-feather="target" class="floating-icon text-brand-orange" style="top: 80%; left: 15%; width: 22px; height: 22px;"></i>
-    <i data-feather="globe" class="floating-icon text-brand-blue" style="top: 30%; left: 70%; width: 26px; height: 26px;"></i>
-    <i data-feather="trending-up" class="floating-icon text-brand-orange" style="top: 45%; left: 25%; width: 24px; height: 24px;"></i>
-  </div>
-</div>
 
 <!-- Manifesto Section -->
 <section class="py-16 md:py-24 bg-gray-50">
-  <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron section-header">
-      Our Manifesto
-    </h2>
-    <div class="glass-effect p-8 md:p-12 rounded-3xl">
-      <p class="manifesto-text text-lg md:text-xl">
-        <span class="manifesto-highlight text-brand-red-orange font-bold">People</span> drive progress. 
-        <span class="manifesto-highlight text-brand-red-orange font-bold">Technology</span> accelerates it. 
-        <span class="manifesto-highlight text-brand-red-orange font-bold">Auxion</span> exists to connect the two, enabling meaningful collaboration and informed action. 
-        <b class="font-semibold">Austrian rooted. Globally minded. Forward focused.</b> 
-        We <span class="manifesto-highlight text-brand-red-orange font-bold">spark</span> conversation. 
-        We <span class="manifesto-highlight text-brand-red-orange font-bold">shape</span> action. 
-        We <span class="manifesto-highlight text-brand-red-orange font-bold">lead</span> the conversation. 
-        Progress guided by insight, innovation grounded in responsibility. Be the change. Join us.
-      </p>
-      
-      <!-- NEW: Interactive manifesto icons -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-        <div class="text-center p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
-          <i data-feather="zap" class="w-12 h-12 mx-auto mb-3 text-brand-orange"></i>
-          <p class="font-semibold text-brand-blue">Spark</p>
-        </div>
-        <div class="text-center p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
-          <i data-feather="edit-3" class="w-12 h-12 mx-auto mb-3 text-brand-orange"></i>
-          <p class="font-semibold text-brand-blue">Shape</p>
-        </div>
-        <div class="text-center p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
-          <i data-feather="navigation" class="w-12 h-12 mx-auto mb-3 text-brand-orange"></i>
-          <p class="font-semibold text-brand-blue">Lead</p>
-        </div>
-        <div class="text-center p-4 rounded-2xl bg-white shadow-md hover:shadow-lg transition-all duration-300">
-          <i data-feather="users" class="w-12 h-12 mx-auto mb-3 text-brand-orange"></i>
-          <p class="font-semibold text-brand-blue">Connect</p>
-        </div>
+  <div class="container mx-auto px-4 max-w-6xl">
+    <!-- FIXED: Header with proper z-index -->
+    <div class="section-header-container">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Our Manifesto</h2>
+        <div class="section-header-line"></div>
+      </div>
+    </div>
+    
+    <div class="section-content fade-in">
+      <div class="glass-effect p-8 md:p-12 rounded-3xl">
+        <p class="manifesto-text text-lg md:text-xl">
+          <span class="text-brand-red-orange font-bold">People</span> drive progress. 
+          <span class="text-brand-red-orange font-bold">Technology</span> accelerates it. 
+          <span class="text-brand-red-orange font-bold">Auxion</span> exists to connect the two, enabling meaningful collaboration and informed action. 
+          <b class="font-semibold">Austrian rooted. Globally minded. Forward focused.</b> 
+          We <span class="text-brand-red-orange font-bold">spark</span> conversation. 
+          We <span class="text-brand-red-orange font-bold">shape</span> action. 
+          We <span class="text-brand-red-orange font-bold">lead</span> the conversation. 
+          Progress guided by insight, innovation grounded in responsibility. Be the change. Join us.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Knowledge Hub Section with Enhanced Cards -->
+<!-- Knowledge Hub Section -->
 <section id="hub" class="py-16 md:py-24 bg-white">
   <div class="container mx-auto px-4 max-w-6xl">
-    <!-- FIXED: Header positioned above the section content -->
-    <div class="text-center mb-16 relative z-50">
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Knowledge Hub</h2>
-      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    <!-- FIXED: Sticky header for better visibility -->
+    <div class="sticky-header">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Knowledge Hub</h2>
+        <div class="section-header-line"></div>
+      </div>
     </div>
     
-    <div class="fade-in">
+    <div class="section-content fade-in">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Post 1 -->
         <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
@@ -526,16 +480,18 @@
   </div>
 </section>
 
-<!-- AI Quiz Section with Enhanced UI -->
+<!-- AI Quiz Section -->
 <section id="quiz" class="py-16 md:py-24 bg-gray-50">
   <div class="container mx-auto px-4 max-w-4xl">
-    <!-- FIXED: Header positioned above the quiz container -->
-    <div class="text-center mb-12 relative z-50">
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">How AI Native Are You?</h2>
-      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    <!-- FIXED: Sticky header for better visibility -->
+    <div class="sticky-header">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">How AI Native Are You?</h2>
+        <div class="section-header-line"></div>
+      </div>
     </div>
     
-    <div class="fade-in quiz-container">
+    <div class="section-content fade-in quiz-container">
       <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl card-3d">
         <div class="flex justify-between items-center mb-8">
           <p id="quiz-progress" class="text-sm text-gray-500 font-medium"></p>
@@ -559,16 +515,18 @@
   </div>
 </section>
 
-<!-- Gamification Section with Enhanced Progress -->
+<!-- Gamification Section -->
 <section id="gamification" class="py-16 md:py-24 bg-white">
   <div class="container mx-auto px-4 max-w-4xl">
-    <!-- FIXED: Header positioned above the section content -->
-    <div class="text-center mb-12 relative z-50">
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Your Innovation Score</h2>
-      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    <!-- FIXED: Sticky header for better visibility -->
+    <div class="sticky-header">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Your Innovation Score</h2>
+        <div class="section-header-line"></div>
+      </div>
     </div>
     
-    <div class="fade-in text-center">
+    <div class="section-content fade-in text-center">
       <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
         Read articles in our Knowledge Hub and complete our quizzes to increase your score and unlock exclusive content!
       </p>
@@ -586,50 +544,65 @@
   </div>
 </section>
 
-<!-- Sign-Up Section with Enhanced Form -->
+<!-- Sign-Up Section -->
 <section id="signup" class="py-20 md:py-32 bg-brand-blue text-white">
-  <div class="container mx-auto px-4 max-w-4xl fade-in text-center">
-    <h2 class="text-4xl md:text-5xl font-bold mb-6 font-orbitron">Be the change. Join Auxion today.</h2>
-    <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
-      Join our community to receive exclusive insights, early updates and invitations to private events.
-    </p>
+  <div class="container mx-auto px-4 max-w-4xl">
+    <div class="section-header-container">
+      <div class="section-header">
+        <h2 class="text-4xl md:text-5xl font-bold font-orbitron">Be the change. Join Auxion today.</h2>
+        <div class="section-header-line"></div>
+      </div>
+    </div>
+    
+    <div class="section-content fade-in text-center">
+      <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
+        Join our community to receive exclusive insights, early updates and invitations to private events.
+      </p>
 
-    <form id="early-access-form" action="https://formspree.io/f/xqalrbok" method="POST" class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-6 max-w-2xl mx-auto">
-      <input type="email" name="email" placeholder="Your email address" required
-          class="w-full md:w-2/3 px-6 py-5 rounded-2xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-all duration-300 focus:scale-105 shadow-lg">
-      <button type="submit"
-          class="w-full md:w-1/3 bg-brand-orange text-white px-8 py-5 rounded-2xl font-semibold shadow-2xl hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 cta-pulse-animation">
-          Join Now <i data-feather="send" class="ml-2 inline-block"></i>
-      </button>
-    </form>
+      <form id="early-access-form" action="https://formspree.io/f/xqalrbok" method="POST" class="flex flex-col md:flex-row justify-center items-center space-y-6 md:space-y-0 md:space-x-6 max-w-2xl mx-auto">
+        <input type="email" name="email" placeholder="Your email address" required
+            class="w-full md:w-2/3 px-6 py-5 rounded-2xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-all duration-300 focus:scale-105 shadow-lg">
+        <button type="submit"
+            class="w-full md:w-1/3 bg-brand-orange text-white px-8 py-5 rounded-2xl font-semibold shadow-2xl hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 cta-pulse-animation">
+            Join Now <i data-feather="send" class="ml-2 inline-block"></i>
+        </button>
+      </form>
 
-    <p id="form-success" class="text-green-300 px-6 py-4 rounded-2xl mt-6 glass-effect hidden">
-      <i data-feather="check-circle" class="inline-block mr-2"></i> Thank you for joining! We'll keep you updated.
-    </p>
-    <p id="form-error" class="text-red-300 px-6 py-4 rounded-2xl mt-6 glass-effect hidden">
-      <i data-feather="alert-circle" class="inline-block mr-2"></i> Oops! Something went wrong. Please try again.
-    </p>
+      <p id="form-success" class="text-green-300 px-6 py-4 rounded-2xl mt-6 glass-effect hidden">
+        <i data-feather="check-circle" class="inline-block mr-2"></i> Thank you for joining! We'll keep you updated.
+      </p>
+      <p id="form-error" class="text-red-300 px-6 py-4 rounded-2xl mt-6 glass-effect hidden">
+        <i data-feather="alert-circle" class="inline-block mr-2"></i> Oops! Something went wrong. Please try again.
+      </p>
+    </div>
   </div>
 </section>
 
-<!-- Footer with Enhanced Contact -->
+<!-- Footer -->
 <footer id="contact" class="py-16 bg-white text-gray-600">
-  <div class="container mx-auto px-4 text-center fade-in">
-    <div class="max-w-md mx-auto mb-8">
-      <h3 class="text-2xl font-bold text-brand-blue mb-4">Get in Touch</h3>
-      <p class="mb-2">Email: <a href="mailto:info@auxion.io" class="hover:text-brand-orange transition-colors duration-300 font-medium">info@auxion.io</a></p>
+  <div class="container mx-auto px-4 text-center">
+    <div class="section-header-container">
+      <div class="section-header">
+        <h3 class="text-2xl font-bold text-brand-blue mb-4">Get in Touch</h3>
+      </div>
     </div>
     
-    <div class="flex justify-center space-x-6 mb-8">
-      <a href="https://www.linkedin.com/company/auxion.io" target="_blank" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
-        <i data-feather="linkedin" class="w-6 h-6"></i>
-      </a>
-      <a href="https://twitter.com/auxion" target="_blank" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
-        <i data-feather="twitter" class="w-6 h-6"></i>
-      </a>
+    <div class="section-content fade-in">
+      <div class="max-w-md mx-auto mb-8">
+        <p class="mb-2">Email: <a href="mailto:info@auxion.io" class="hover:text-brand-orange transition-colors duration-300 font-medium">info@auxion.io</a></p>
+      </div>
+      
+      <div class="flex justify-center space-x-6 mb-8">
+        <a href="https://www.linkedin.com/company/auxion.io" target="_blank" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
+          <i data-feather="linkedin" class="w-6 h-6"></i>
+        </a>
+        <a href="https://twitter.com/auxion" target="_blank" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
+          <i data-feather="twitter" class="w-6 h-6"></i>
+        </a>
+      </div>
+      
+      <p class="text-sm">&copy; 2025 Auxion. All Rights Reserved.</p>
     </div>
-    
-    <p class="text-sm">&copy; 2025 Auxion. All Rights Reserved.</p>
   </div>
 </footer>
 
@@ -670,7 +643,7 @@ document.addEventListener('DOMContentLoaded', () => {
     observer.observe(element);
   });
 
-  // Mobile menu functionality with enhanced animations
+  // Mobile menu functionality
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const closeMenuButton = document.getElementById('close-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
@@ -790,7 +763,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // FIXED: Enhanced quiz rendering with proper layering
+  // Enhanced quiz rendering with proper layering
   function renderQuizQuestion() {
     const q = quizQuestions[currentQuestionIndex];
     quizContent.innerHTML = `
@@ -976,4 +949,3 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
-
