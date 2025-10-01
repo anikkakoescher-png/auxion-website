@@ -435,137 +435,153 @@
 
 <!-- Knowledge Hub Section with Enhanced Cards -->
 <section id="hub" class="py-16 md:py-24 bg-white">
-  <div class="container mx-auto px-4 max-w-6xl fade-in">
-    <!-- FIXED: Added section-header class to ensure proper z-index -->
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-16 font-orbitron section-header">Knowledge Hub</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  <div class="container mx-auto px-4 max-w-6xl">
+    <!-- FIXED: Header positioned above the section content -->
+    <div class="text-center mb-16 relative z-50">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Knowledge Hub</h2>
+      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    </div>
+    
+    <div class="fade-in">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Post 1 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+               alt="AI is not happening to us" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
+          <p class="text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+          <a href="https://open.substack.com/pub/auxion/p/ai-has-no-moral-compass-thankfully?r=5yddq5&utm_campaign=post&utm_medium=web" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
 
-      <!-- Post 1 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
-             alt="AI is not happening to us" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
-        <p class="text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
-        <a href="https://open.substack.com/pub/auxion/p/ai-has-no-moral-compass-thankfully?r=5yddq5&utm_campaign=post&utm_medium=web" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
+        <!-- Post 2 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+               alt="AGI: Are you ready?" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
+          <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+          <a href="https://open.substack.com/pub/auxion/p/agi-are-you-ready?r=5yddq5&utm_campaign=post&utm_medium=web" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
+
+        <!-- Post 3 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+               alt="Digital Humanism in Vienna" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
+          <p class="text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+          <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
+
+        <!-- Post 4 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
+               alt="The true AI challenge" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
+          <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
+          <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
+
+        <!-- Post 5 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
+               alt="Key Principles for Human-Centered AI" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
+          <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
+          <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
+
+        <!-- Post 6 -->
+        <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
+               alt="How can people and AI work together" 
+               class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
+          <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
+          <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
+             target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
+            Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
+          </a>
+        </div>
       </div>
-
-      <!-- Post 2 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
-             alt="AGI: Are you ready?" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
-        <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
-        <a href="https://open.substack.com/pub/auxion/p/agi-are-you-ready?r=5yddq5&utm_campaign=post&utm_medium=web" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
-      </div>
-
-      <!-- Post 3 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
-             alt="Digital Humanism in Vienna" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
-        <p class="text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
-        <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
-      </div>
-
-      <!-- Post 4 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
-             alt="The true AI challenge" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
-        <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
-        <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
-      </div>
-
-      <!-- Post 5 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
-             alt="Key Principles for Human-Centered AI" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
-        <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
-        <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
-      </div>
-
-      <!-- Post 6 -->
-      <div class="hub-card bg-white p-6 rounded-3xl shadow-lg border border-gray-100 card-3d">
-        <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
-             alt="How can people and AI work together" 
-             class="w-full h-48 object-cover rounded-2xl mb-6 shadow-md">
-        <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
-        <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
-        <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
-           target="_blank" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300">
-          Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 arrow-icon transition-transform duration-300"></i>
-        </a>
-      </div>
-
     </div>
   </div>
 </section>
 
 <!-- AI Quiz Section with Enhanced UI -->
 <section id="quiz" class="py-16 md:py-24 bg-gray-50">
-  <div class="container mx-auto px-4 max-w-4xl fade-in quiz-container">
-    <!-- FIXED: Added section-header class to ensure proper z-index -->
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron section-header">How AI Native Are You?</h2>
-    <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl card-3d">
-      <div class="flex justify-between items-center mb-8">
-        <p id="quiz-progress" class="text-sm text-gray-500 font-medium"></p>
-        <div class="flex items-center">
-          <span class="text-sm text-gray-500 mr-2">Score:</span>
-          <span id="current-score" class="text-2xl font-bold text-brand-orange">0</span>
+  <div class="container mx-auto px-4 max-w-4xl">
+    <!-- FIXED: Header positioned above the quiz container -->
+    <div class="text-center mb-12 relative z-50">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">How AI Native Are You?</h2>
+      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    </div>
+    
+    <div class="fade-in quiz-container">
+      <div class="bg-white p-8 md:p-12 rounded-3xl shadow-2xl card-3d">
+        <div class="flex justify-between items-center mb-8">
+          <p id="quiz-progress" class="text-sm text-gray-500 font-medium"></p>
+          <div class="flex items-center">
+            <span class="text-sm text-gray-500 mr-2">Score:</span>
+            <span id="current-score" class="text-2xl font-bold text-brand-orange">0</span>
+          </div>
         </div>
+        
+        <div id="quiz-content" class="mb-8">
+          <!-- Quiz content will be dynamically loaded here -->
+        </div>
+        
+        <button id="next-question-button" class="w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 hidden">
+          Next Question <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+        </button>
+        
+        <div id="quiz-feedback" class="mt-8 text-center text-lg font-semibold hidden p-6 rounded-2xl"></div>
       </div>
-      
-      <div id="quiz-content" class="mb-8">
-        <!-- Quiz content will be dynamically loaded here -->
-      </div>
-      
-      <button id="next-question-button" class="w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105 hidden">
-        Next Question <i data-feather="arrow-right" class="ml-2 inline-block"></i>
-      </button>
-      
-      <div id="quiz-feedback" class="mt-8 text-center text-lg font-semibold hidden p-6 rounded-2xl"></div>
     </div>
   </div>
 </section>
 
 <!-- Gamification Section with Enhanced Progress -->
 <section id="gamification" class="py-16 md:py-24 bg-white">
-  <div class="container mx-auto px-4 max-w-4xl fade-in text-center">
-    <!-- FIXED: Added section-header class to ensure proper z-index -->
-    <h2 class="text-4xl md:text-5xl font-bold text-center text-brand-blue mb-12 font-orbitron section-header">Your Innovation Score</h2>
-    <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
-      Read articles in our Knowledge Hub and complete our quizzes to increase your score and unlock exclusive content!
-    </p>
-    <div class="bg-gray-100 p-8 rounded-3xl shadow-inner max-w-md mx-auto card-3d">
-      <div class="flex justify-between items-center mb-6">
-        <span class="text-lg font-semibold text-gray-600">Progress</span>
-        <span id="score-display" class="text-3xl font-bold text-brand-orange">0</span>
+  <div class="container mx-auto px-4 max-w-4xl">
+    <!-- FIXED: Header positioned above the section content -->
+    <div class="text-center mb-12 relative z-50">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue font-orbitron">Your Innovation Score</h2>
+      <div class="w-24 h-1 bg-brand-orange mx-auto mt-4 rounded-full"></div>
+    </div>
+    
+    <div class="fade-in text-center">
+      <p class="text-xl text-gray-700 max-w-3xl mx-auto mb-8">
+        Read articles in our Knowledge Hub and complete our quizzes to increase your score and unlock exclusive content!
+      </p>
+      <div class="bg-gray-100 p-8 rounded-3xl shadow-inner max-w-md mx-auto card-3d">
+        <div class="flex justify-between items-center mb-6">
+          <span class="text-lg font-semibold text-gray-600">Progress</span>
+          <span id="score-display" class="text-3xl font-bold text-brand-orange">0</span>
+        </div>
+        <div class="w-full h-6 bg-gray-300 rounded-full overflow-hidden mb-4">
+          <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-brand-orange to-brand-blue rounded-full" style="width: 0%;"></div>
+        </div>
+        <p class="text-sm text-gray-600">Complete challenges to level up!</p>
       </div>
-      <div class="w-full h-6 bg-gray-300 rounded-full overflow-hidden mb-4">
-        <div id="progress-bar" class="progress-bar h-full bg-gradient-to-r from-brand-orange to-brand-blue rounded-full" style="width: 0%;"></div>
-      </div>
-      <p class="text-sm text-gray-600">Complete challenges to level up!</p>
     </div>
   </div>
 </section>
@@ -960,3 +976,4 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 </body>
 </html>
+
