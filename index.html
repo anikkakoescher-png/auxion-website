@@ -896,7 +896,7 @@
         <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
         <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
         <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-          We believe technology shapes society only as wisely as society shapes technology. That’s why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
+          We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
         </p>
       </div>
       
@@ -1075,7 +1075,16 @@
       </div>
       
       <!-- Desktop Ecosystem Grid -->
-       <div class="text-center">
+      <div class="desktop-only grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto stagger-animate">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
+            <i data-feather="users" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-blue mb-2">Students</h3>
+          <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
+        </div>
+        
+        <div class="text-center">
           <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 0.5s">
             <i data-feather="book" class="text-white w-8 h-8"></i>
           </div>
@@ -1091,16 +1100,7 @@
           <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
         </div>
 
-       <div class="desktop-only grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto stagger-animate">
         <div class="text-center">
-          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
-            <i data-feather="users" class="text-white w-8 h-8"></i>
-          </div>
-          <h3 class="text-lg font-semibold text-brand-blue mb-2">Students</h3>
-          <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
-        </div>
-
-         <div class="text-center">
           <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1.5s">
             <i data-feather="heart" class="text-white w-8 h-8"></i>
           </div>
@@ -1112,8 +1112,18 @@
       <!-- Mobile Swipeable Ecosystem -->
       <div class="mobile-only">
         <div class="swipe-container flex overflow-x-auto pb-4 -mx-4 px-4">
-            <div class="swipe-section pr-4">
+          <div class="swipe-section pr-4">
             <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.1s">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="users" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Students</h3>
+              <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
+            </div>
+          </div>
+          
+          <div class="swipe-section pr-4">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.2s">
               <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i data-feather="book" class="text-white"></i>
               </div>
@@ -1123,22 +1133,12 @@
           </div>
           
           <div class="swipe-section pr-4">
-            <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.2s">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom">
               <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i data-feather="briefcase" class="text-white"></i>
               </div>
               <h3 class="font-semibold text-brand-blue mb-2">Industry</h3>
               <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
-            </div>
-          </div>
-
-           <div class="swipe-section pr-4">
-            <div class="glass-card p-6 text-center animate-slide-in-bottom">
-              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                <i data-feather="users" class="text-white"></i>
-              </div>
-              <h3 class="font-semibold text-brand-blue mb-2">Students</h3>
-              <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
             </div>
           </div>
 
@@ -1359,7 +1359,6 @@
     </p>
   </div>
 </div>
-
 
   <!-- Join Ecosystem Section -->
   <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
@@ -1653,6 +1652,3 @@
 </script>
 </body>
 </html>
-
-
-
