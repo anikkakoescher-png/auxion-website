@@ -72,6 +72,65 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     
+    /* Mobile Navigation - NEW */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 40;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      display: flex;
+      justify-content: space-around;
+      padding: 12px 0;
+      transform: translateY(100%);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .mobile-nav.active {
+      transform: translateY(0);
+    }
+    
+    .mobile-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex: 1;
+      padding: 8px 0;
+      border-radius: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-item.active {
+      background: rgba(216, 69, 69, 0.1);
+    }
+    
+    .mobile-nav-icon {
+      width: 24px;
+      height: 24px;
+      margin-bottom: 4px;
+      color: var(--brand-blue);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-item.active .mobile-nav-icon {
+      color: var(--brand-coral);
+    }
+    
+    .mobile-nav-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--brand-blue);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-nav-item.active .mobile-nav-label {
+      color: var(--brand-coral);
+    }
+    
     /* Mobile Menu */
     .mobile-menu {
       position: fixed;
@@ -87,6 +146,99 @@
     
     .mobile-menu.open {
       transform: translateX(0);
+    }
+    
+    /* Enhanced Action Hub Cards - NEW */
+    .action-card {
+      position: relative;
+      background: white;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .action-card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(216, 69, 69, 0.15);
+    }
+    
+    .action-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 6px;
+      background: linear-gradient(90deg, var(--brand-coral), var(--brand-blue));
+      z-index: 1;
+    }
+    
+    .action-card-icon {
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      color: white;
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.5s ease;
+    }
+    
+    .action-card:hover .action-card-icon {
+      transform: scale(1.1) rotate(5deg);
+    }
+    
+    .action-card.learn .action-card-icon {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+    }
+    
+    .action-card.connect .action-card-icon {
+      background: linear-gradient(135deg, #059669, #0d9488);
+    }
+    
+    .action-card.act .action-card-icon {
+      background: linear-gradient(135deg, #ea580c, #dc2626);
+    }
+    
+    .action-card-content {
+      padding: 32px 24px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .action-card-cta {
+      margin-top: auto;
+      display: inline-flex;
+      align-items: center;
+      font-weight: 600;
+      padding: 12px 0;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    
+    .action-card-cta::after {
+      content: '';
+      position: absolute;
+      bottom: 8px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: currentColor;
+      transition: width 0.3s ease;
+    }
+    
+    .action-card-cta:hover::after {
+      width: 100%;
     }
     
     /* Ecosystem Visualization */
@@ -447,6 +599,79 @@
         font-size: 1rem;
         line-height: 1.5;
       }
+      
+      /* Mobile section spacing */
+      .mobile-section {
+        padding: 2rem 0;
+      }
+      
+      /* Mobile card adjustments */
+      .mobile-card {
+        margin-bottom: 1.5rem;
+        border-radius: 1rem;
+      }
+      
+      /* Mobile navigation trigger */
+      .mobile-nav-trigger {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--brand-coral);
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 25px rgba(216, 69, 69, 0.3);
+        z-index: 30;
+        transition: all 0.3s ease;
+      }
+      
+      .mobile-nav-trigger.active {
+        transform: rotate(45deg);
+        background: var(--brand-blue);
+      }
+    }
+    
+    /* Desktop enhancements */
+    @media (min-width: 768px) {
+      /* Parallax effect for hero */
+      .parallax-bg {
+        background-attachment: fixed;
+      }
+      
+      /* Interactive hover states */
+      .interactive-hover {
+        transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      
+      .interactive-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      }
+      
+      /* Enhanced text effects */
+      .text-glow {
+        text-shadow: 0 0 20px rgba(216, 69, 69, 0.3);
+      }
+      
+      /* Gradient text animation */
+      .animated-gradient {
+        background: linear-gradient(-45deg, #d84545, #111d40, #d84545, #111d40);
+        background-size: 400% 400%;
+        animation: gradientShift 8s ease infinite;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
     }
   </style>
 </head>
@@ -458,10 +683,10 @@
     <div class="flex justify-between items-center">
       <div class="text-2xl font-bold text-brand-blue font-orbitron">AUXION</div>
       <div class="hidden md:flex space-x-8">
-        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Ecosystem</a>
-        <a href="#hub" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Action Hub</a>
-        <a href="#collaborate" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Collaborate</a>
-        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Join</a>
+        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium interactive-hover">Ecosystem</a>
+        <a href="#hub" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium interactive-hover">Action Hub</a>
+        <a href="#collaborate" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium interactive-hover">Collaborate</a>
+        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium interactive-hover">Join</a>
       </div>
       <button class="md:hidden text-gray-600" id="mobile-menu-button">
         <i data-feather="menu"></i>
@@ -469,6 +694,33 @@
     </div>
   </div>
 </nav>
+
+<!-- Mobile Navigation - NEW -->
+<div class="mobile-nav" id="mobile-nav">
+  <a href="#ecosystem" class="mobile-nav-item" data-section="ecosystem">
+    <i data-feather="grid" class="mobile-nav-icon"></i>
+    <span class="mobile-nav-label">Ecosystem</span>
+  </a>
+  <a href="#hub" class="mobile-nav-item" data-section="hub">
+    <i data-feather="target" class="mobile-nav-icon"></i>
+    <span class="mobile-nav-label">Action Hub</span>
+  </a>
+  <a href="#collaborate" class="mobile-nav-item" data-section="collaborate">
+    <i data-feather="users" class="mobile-nav-icon"></i>
+    <span class="mobile-nav-label">Collaborate</span>
+  </a>
+  <a href="#join" class="mobile-nav-item" data-section="join">
+    <i data-feather="user-plus" class="mobile-nav-icon"></i>
+    <span class="mobile-nav-label">Join</span>
+  </a>
+</div>
+
+<!-- Mobile Navigation Trigger - NEW -->
+<div class="md:hidden">
+  <button class="mobile-nav-trigger" id="mobile-nav-trigger">
+    <i data-feather="plus"></i>
+  </button>
+</div>
 
 <!-- Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
@@ -489,7 +741,7 @@
 </div>
 
 <!-- Enhanced Hero Section -->
-<section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
+<section class="hero-gradient text-white py-16 md:py-32 overflow-hidden parallax-bg">
   <div class="hero-pattern"></div>
   <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
     <!-- Vienna Positioning -->
@@ -500,9 +752,9 @@
     </div>
     
     <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading">
-      <span class="ai-gradient-text">People.</span>
-      <span class="ai-gradient-text">Change.</span>
-      <span class="text-brand-coral">Technology.</span>
+      <span class="animated-gradient">People.</span>
+      <span class="animated-gradient">Change.</span>
+      <span class="text-brand-coral text-glow">Technology.</span>
       <span class="text-white">Together.</span>
     </h1>
     
@@ -510,14 +762,14 @@
       Auxion collaborative hub where diverse voices unite to transform AI awareness into agency through collaboration and action
     </p>
     
-    <a href="#join" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse mobile-full-width md:w-auto">
+    <a href="#join" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse mobile-full-width md:w-auto interactive-hover">
       Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
     </a>
   </div>
 </section>
 
 <!-- Ecosystem Visualization Section -->
-<section id="ecosystem" class="section-padding bg-white">
+<section id="ecosystem" class="section-padding bg-white mobile-section">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16">
       <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Auxion Ecosystem</h2>
@@ -529,7 +781,7 @@
     
     <!-- Ecosystem Grid -->
     <div class="ecosystem-grid">
-      <div class="ecosystem-node">
+      <div class="ecosystem-node mobile-card">
         <div class="node-icon">
           <i data-feather="users"></i>
         </div>
@@ -537,7 +789,7 @@
         <p class="text-gray-600 text-sm mobile-body">Emerging leaders shaping tomorrow's AI landscape</p>
       </div>
       
-      <div class="ecosystem-node">
+      <div class="ecosystem-node mobile-card">
         <div class="node-icon">
           <i data-feather="book"></i>
         </div>
@@ -545,7 +797,7 @@
         <p class="text-gray-600 text-sm mobile-body">Pioneering ethical AI research and innovation</p>
       </div>
       
-      <div class="ecosystem-node">
+      <div class="ecosystem-node mobile-card">
         <div class="node-icon">
           <i data-feather="briefcase"></i>
         </div>
@@ -553,7 +805,7 @@
         <p class="text-gray-600 text-sm mobile-body">Leading people-first AI adoption</p>
       </div>
       
-      <div class="ecosystem-node">
+      <div class="ecosystem-node mobile-card">
         <div class="node-icon">
           <i data-feather="heart"></i>
         </div>
@@ -586,7 +838,7 @@
 </section>
 
 <!-- Enhanced Action Hub Section -->
-<section id="hub" class="section-padding bg-white">
+<section id="hub" class="section-padding bg-white mobile-section">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16">
       <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Action Hub</h2>
@@ -597,47 +849,53 @@
       </p>
     </div>
     
-    <!-- Action Cards -->
+    <!-- Action Cards - REDESIGNED -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
       <!-- Learn Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-blue-50 to-blue-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="book-open" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Learn & Discover</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Access curated resources, research papers and foundational knowledge about responsible AI</p>
-          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
+      <div class="action-card learn">
+        <div class="action-card-content">
+          <div class="action-card-icon">
+            <i data-feather="book-open"></i>
+          </div>
+          <h3 class="text-xl md:text-2xl font-bold text-brand-blue mb-4 text-center">Learn & Discover</h3>
+          <p class="text-gray-600 mb-6 mobile-body text-center">Access curated resources, research papers and foundational knowledge about responsible AI</p>
+          <div class="mt-auto">
+            <a href="#" class="action-card-cta text-brand-blue">
+              Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
         </div>
       </div>
       
       <!-- Connect Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-green-50 to-green-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="users" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Join discussions, find partners and participate in Vienna's AI community events</p>
-          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-            Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
+      <div class="action-card connect">
+        <div class="action-card-content">
+          <div class="action-card-icon">
+            <i data-feather="users"></i>
+          </div>
+          <h3 class="text-xl md:text-2xl font-bold text-brand-blue mb-4 text-center">Connect & Collaborate</h3>
+          <p class="text-gray-600 mb-6 mobile-body text-center">Join discussions, find partners and participate in Vienna's AI community events</p>
+          <div class="mt-auto">
+            <a href="#" class="action-card-cta text-brand-blue">
+              Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
         </div>
       </div>
       
       <!-- Act Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-orange-50 to-orange-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="target" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Act & Implement</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
-          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-            See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
+      <div class="action-card act">
+        <div class="action-card-content">
+          <div class="action-card-icon">
+            <i data-feather="target"></i>
+          </div>
+          <h3 class="text-xl md:text-2xl font-bold text-brand-blue mb-4 text-center">Act & Implement</h3>
+          <p class="text-gray-600 mb-6 mobile-body text-center">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
+          <div class="mt-auto">
+            <a href="#" class="action-card-cta text-brand-blue">
+              See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
         </div>
       </div>
     </div>
@@ -647,7 +905,7 @@
       <h3 class="text-2xl md:text-3xl font-bold text-brand-blue mb-8 text-center mobile-heading">Latest Insights</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
         <!-- Article 1 -->
-        <div class="card fade-in hover-lift">
+        <div class="card fade-in interactive-hover">
           <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
             <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
                  alt="AI is not happening to us" 
@@ -664,7 +922,7 @@
         </div>
         
         <!-- Article 2 -->
-        <div class="card fade-in hover-lift">
+        <div class="card fade-in interactive-hover">
           <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
             <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
                  alt="AGI: Are you ready?" 
@@ -681,7 +939,7 @@
         </div>
         
         <!-- Article 3 -->
-        <div class="card fade-in hover-lift">
+        <div class="card fade-in interactive-hover">
           <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
             <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
                  alt="Digital Humanism in Vienna" 
@@ -702,7 +960,7 @@
 </section>
 
 <!-- Stakeholder Pathways Section -->
-<section id="collaborate" class="section-padding bg-gray-50">
+<section id="collaborate" class="section-padding bg-gray-50 mobile-section">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16">
       <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Your Collaboration Pathway</h2>
@@ -714,7 +972,7 @@
     
     <div class="pathway-grid">
       <!-- Student Pathway -->
-      <div class="pathway-card">
+      <div class="pathway-card mobile-card">
         <div class="pathway-icon">
           <i data-feather="users"></i>
         </div>
@@ -734,13 +992,13 @@
             <span>Industry Connections</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors interactive-hover">
           Start Learning Path
         </button>
       </div>
       
       <!-- Researcher Pathway -->
-      <div class="pathway-card">
+      <div class="pathway-card mobile-card">
         <div class="pathway-icon">
           <i data-feather="book"></i>
         </div>
@@ -760,13 +1018,13 @@
             <span>Global Network</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors interactive-hover">
           Explore Collaboration
         </button>
       </div>
       
       <!-- Industry Pathway -->
-      <div class="pathway-card">
+      <div class="pathway-card mobile-card">
         <div class="pathway-icon">
           <i data-feather="briefcase"></i>
         </div>
@@ -786,7 +1044,7 @@
             <span>Strategic Partnerships</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors interactive-hover">
           Get Implementation Guide
         </button>
       </div>
@@ -795,7 +1053,7 @@
 </section>
 
 <!-- Join Ecosystem Section -->
-<section id="join" class="section-padding bg-brand-blue text-white">
+<section id="join" class="section-padding bg-brand-blue text-white mobile-section">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading">Ready to Join?</h2>
     <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8"></div>
@@ -839,7 +1097,7 @@
         </div>
         
         <button type="submit"
-            class="w-full bg-brand-coral text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold shadow-2xl hover:bg-brand-coral-dark transition-all duration-300 transform hover:scale-105">
+            class="w-full bg-brand-coral text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold shadow-2xl hover:bg-brand-coral-dark transition-all duration-300 transform hover:scale-105 interactive-hover">
             Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
         </button>
       </form>
@@ -862,13 +1120,13 @@
     </div>
     
     <div class="flex justify-center space-x-4 md:space-x-6 mb-8">
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 interactive-hover">
         <i data-feather="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
       </a>
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 interactive-hover">
         <i data-feather="twitter" class="w-5 h-5 md:w-6 md:h-6"></i>
       </a>
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 interactive-hover">
         <i data-feather="mail" class="w-5 h-5 md:w-6 md:h-6"></i>
       </a>
     </div>
@@ -908,6 +1166,60 @@
           mobileMenu.classList.remove('open');
         });
       });
+    }
+    
+    // Mobile Navigation - NEW
+    const mobileNav = document.getElementById('mobile-nav');
+    const mobileNavTrigger = document.getElementById('mobile-nav-trigger');
+    const mobileNavItems = document.querySelectorAll('.mobile-nav-item');
+    
+    if (mobileNav && mobileNavTrigger) {
+      mobileNavTrigger.addEventListener('click', function() {
+        mobileNav.classList.toggle('active');
+        mobileNavTrigger.classList.toggle('active');
+        
+        // Change icon based on state
+        const icon = mobileNavTrigger.querySelector('i');
+        if (mobileNav.classList.contains('active')) {
+          feather.replace();
+        } else {
+          feather.replace();
+        }
+      });
+      
+      // Set active nav item based on scroll position
+      function setActiveNavItem() {
+        const sections = document.querySelectorAll('section');
+        let currentSection = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 100;
+          const sectionHeight = section.clientHeight;
+          if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+        
+        mobileNavItems.forEach(item => {
+          item.classList.remove('active');
+          if (item.getAttribute('data-section') === currentSection) {
+            item.classList.add('active');
+          }
+        });
+      }
+      
+      // Close mobile nav when clicking on a nav item
+      mobileNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+          mobileNav.classList.remove('active');
+          mobileNavTrigger.classList.remove('active');
+          feather.replace();
+        });
+      });
+      
+      // Update active nav item on scroll
+      window.addEventListener('scroll', setActiveNavItem);
+      setActiveNavItem(); // Initialize on load
     }
     
     // Add scroll effect to navigation
@@ -956,10 +1268,22 @@
     });
     
     // Add floating animation to some elements
-    const floatingElements = document.querySelectorAll('.bridge-icon, .node-icon');
+    const floatingElements = document.querySelectorAll('.bridge-icon, .node-icon, .action-card-icon');
     floatingElements.forEach((element, index) => {
       element.classList.add('floating-element');
       element.style.animationDelay = `${index * 0.5}s`;
+    });
+    
+    // Enhanced hover effects for action cards
+    const actionCards = document.querySelectorAll('.action-card');
+    actionCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-12px) scale(1.02)';
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) scale(1)';
+      });
     });
   });
 </script>
