@@ -1,1128 +1,847 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
-  <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-  <script src="https://unpkg.com/feather-icons"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
+  <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
 
-  <style>
-    :root {
-      --brand-blue: #111d40;
-      --brand-coral: #d84545;
-      --brand-coral-dark: #c44545;
-      --brand-light: #f8fafc;
-      --brand-gray: #64748b;
-      --brand-success: #10b981;
-    }
-    
-    body {
-      font-family: 'Inter', sans-serif;
-      color: #1e293b;
-      background-color: #f8fafc;
-      overflow-x: hidden;
-    }
+  <style>
+    :root {
+      --brand-blue: #111d40;
+      --brand-coral: #d84545;
+      --brand-coral-dark: #c44545;
+      --brand-light: #f8fafc;
+      --brand-gray: #64748b;
+      --brand-success: #10b981;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      background-color: var(--brand-light); /* Use light background variable */
+      overflow-x: hidden;
+      /* NEW: Subtle Cyber Grid Background */
+      background-image: 
+        radial-gradient(circle at 10% 10%, rgba(17, 29, 64, 0.05) 1px, transparent 1px),
+        radial-gradient(circle at 90% 90%, rgba(216, 69, 69, 0.05) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
 
-    .font-orbitron { font-family: 'Orbitron', sans-serif; }
-    
-    .bg-brand-blue { background-color: var(--brand-blue); }
-    .text-brand-blue { color: var(--brand-blue); }
-    .bg-brand-coral { background-color: var(--brand-coral); }
-    .text-brand-coral { color: var(--brand-coral); }
-    
-    /* === ENHANCED ANIMATIONS === */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    
+    .bg-brand-blue { background-color: var(--brand-blue); }
+    .text-brand-blue { color: var(--brand-blue); }
+    .bg-brand-coral { background-color: var(--brand-coral); }
+    .text-brand-coral { color: var(--brand-coral); }
+    
+    /* === ENHANCED ANIMATIONS === */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    @keyframes fadeInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
 
-    @keyframes fadeInRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
 
-    @keyframes pulse-glow {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(216, 69, 69, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 30px rgba(216, 69, 69, 0.8);
-      }
-    }
+    /* ENHANCED: Deeper pulse-glow for glass elements */
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 10px rgba(17, 29, 64, 0.2);
+      }
+      50% {
+        box-shadow: 0 0 25px rgba(216, 69, 69, 0.4);
+      }
+    }
+    
+    @keyframes slideInFromBottom {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
-    @keyframes slideInFromBottom {
-      from {
-        opacity: 0;
-        transform: translateY(50px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(0.5deg); }
+    }
+    
+    /* ENHANCED: Shimmer animation for CTAs */
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
 
-    @keyframes float {
-      0%, 100% { transform: translateY(0px) rotate(0deg); }
-      50% { transform: translateY(-20px) rotate(1deg); }
-    }
+    /* NEW: Hero Gradient Shift (Cyber-Glow) */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
-    @keyframes shimmer {
-      0% { background-position: -1000px 0; }
-      100% { background-position: 1000px 0; }
-    }
+    /* ENHANCED: Card 3D Perspective Hover */
+    @keyframes cardHover {
+      0% { transform: translateY(0) rotateX(0) rotateY(0); }
+      100% { transform: translateY(-15px) rotateX(3deg) rotateY(3deg); }
+    }
+    .value-card:hover {
+      /* Override default with no animation, handled by hover class */
+      transform: none; 
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+    .value-card:hover .value-card-content {
+      transform: translateY(-5px);
+    }
 
-    /* NEW: Enhanced brand animations */
-    @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
 
-    /* NEW: Card-specific animations (Adjusted for subtle motion) */
-    @keyframes cardLift {
-      0% { transform: translateY(0); box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); }
-      100% { transform: translateY(-5px); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15); }
-    }
+    @keyframes borderGlow {
+      0%, 100% { box-shadow: 0 0 5px rgba(216, 69, 69, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(216, 69, 69, 0.6); }
+    }
 
-    @keyframes iconPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
+    /* NEW: Subtle digital flicker for important text */
+    @keyframes textFlicker {
+      0% { text-shadow: 0 0 1px rgba(255, 255, 255, 0.7); }
+      1% { text-shadow: none; }
+      2% { text-shadow: 0 0 2px rgba(255, 255, 255, 0.8); }
+      3% { text-shadow: none; }
+      100% { text-shadow: none; }
+    }
+    .text-flicker {
+      animation: textFlicker 10s infinite step-end;
+    }
 
-    @keyframes borderGlow {
-      0%, 100% { box-shadow: 0 0 5px rgba(216, 69, 69, 0.3); }
-      50% { box-shadow: 0 0 20px rgba(216, 69, 69, 0.6); }
-    }
+    /* ENHANCED: Animation class application */
+    .stagger-animate > * {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    /* Keep the stagger delays */
 
-    @keyframes textGlow {
-      0%, 100% { text-shadow: 0 0 5px rgba(216, 69, 69, 0.3); }
-      50% { text-shadow: 0 0 15px rgba(216, 69, 69, 0.6); }
-    }
+    /* ENHANCED Hero Section */
+    .hero-gradient {
+      /* Subtle pulsating gradient */
+      background: linear-gradient(135deg, #111d40 0%, #1a2a5a 50%, #111d40 100%);
+      background-size: 300% 300%;
+      animation: gradientShift 15s ease infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.15; /* Increased opacity for effect */
+      /* Use a grid pattern for a data-plane look */
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: 0;
+    }
+    
+    /* NEW: Enhanced brand elements */
+    .brand-glow {
+      filter: drop-shadow(0 0 12px rgba(216, 69, 69, 0.7)); /* Stronger glow */
+    }
+    
+    /* ENHANCED: Value Proposition Cards (3D Effect) */
+    .value-card {
+      background: white;
+      border-radius: 20px;
+      overflow: visible; /* Allows pseudo-element to be visible */
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      position: relative;
+      border: 1px solid transparent;
+      perspective: 1000px; /* Enable 3D perspective */
+    }
+    .value-card:hover {
+      transform: translateY(-10px) rotateX(2deg) rotateY(-2deg); /* Added 3D rotation */
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    }
+    
+    .value-card::before {
+      /* Animated Border Glow - Now more pronounced and internal */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--brand-coral) 0%, var(--brand-blue) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      animation: borderGlow 3s ease-in-out infinite; /* Keep border glow subtle */
+    }
+    
+    .value-card:hover::before {
+      opacity: 1;
+    }
+    
+    .value-card-icon {
+      transition: all 0.5s ease;
+      transform-origin: center;
+      position: relative;
+      z-index: 10;
+    }
+    
+    .value-card:hover .value-card-icon {
+      transform: scale(1.1) rotate(-5deg); /* Slight inverse rotate for contrast */
+    }
+    
+    /* ENHANCED: Micro-interactions */
+    .micro-interaction {
+      transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .micro-interaction:hover {
+      transform: scale(1.08); /* More noticeable scale */
+    }
+    
+    /* === FIXED MOBILE NAVIGATION === */
+    .app-tab-bar {
+      /* Stronger glass effect for mobile nav */
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(25px); 
+    }
+    
+    .tab-item.active {
+      color: var(--brand-coral);
+      /* Add a subtle hover effect to active item */
+      background: rgba(216, 69, 69, 0.05);
+      transform: translateY(-2px);
+    }
+    
+    .active-indicator {
+      /* More visible active indicator */
+      top: 2px;
+      width: 8px;
+      height: 8px;
+      background: var(--brand-coral);
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+    
+    /* === MODERN CTA BUTTON EFFECTS (Shimmer Override) === */
+    .cta-modern {
+      background: linear-gradient(135deg, var(--brand-coral) 0%, var(--brand-coral-dark) 100%);
+      background-size: 200% 100%; /* Prepare for shimmer */
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
 
-    @keyframes sparkle {
-      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
-      50% { opacity: 1; transform: scale(1) rotate(180deg); }
-    }
+    .cta-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -150%;
+      width: 50%; /* Reduced width for a sharper flash */
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent); /* Whiter flash */
+      transition: left 0.7s cubic-bezier(0.6, 0.05, 0.45, 1);
+      transform: skewX(-20deg); /* Angled flash for speed */
+    }
 
-    /* Animation classes */
-    .animate-fade-in-up {
-      animation: fadeInUp 0.8s ease-out forwards;
-    }
+    .cta-modern:hover::before {
+      left: 150%;
+    }
 
-    .animate-fade-in-left {
-      animation: fadeInLeft 0.8s ease-out forwards;
-    }
+    .cta-modern:hover {
+      transform: translateY(-4px); /* Deeper lift */
+      box-shadow: 0 15px 30px rgba(216, 69, 69, 0.6); /* Stronger glow shadow */
+    }
+    
+    /* ENHANCED: CTA Secondary */
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--brand-coral);
+      color: var(--brand-coral);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
 
-    .animate-fade-in-right {
-      animation: fadeInRight 0.8s ease-out forwards;
-    }
+    .cta-secondary::before {
+      /* Now a smooth wipe effect */
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--brand-coral);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1);
+      z-index: -1;
+    }
 
-    .animate-slide-in-bottom {
-      animation: slideInFromBottom 0.6s ease-out forwards;
-    }
+    .cta-secondary:hover::before {
+      transform: scaleX(1);
+    }
 
-    .animate-float {
-      animation: float 6s ease-in-out infinite;
-    }
-
-    .animate-pulse-glow {
-      animation: pulse-glow 2s ease-in-out infinite;
-    }
-
-    .animate-gradient-shift {
-      background: linear-gradient(-45deg, #111d40, #d84545, #1a2a5a, #c44545);
-      background-size: 400% 400%;
-      animation: gradientShift 8s ease infinite;
-    }
-
-    /* NEW: Card animation classes */
-    .animate-card-lift-hover {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-    .animate-card-lift-hover:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15), 0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-
-
-    .animate-icon-pulse {
-      animation: iconPulse 2s ease-in-out infinite;
-    }
-
-    .animate-border-glow {
-      animation: borderGlow 3s ease-in-out infinite;
-    }
-
-    .animate-text-glow {
-      animation: textGlow 3s ease-in-out infinite;
-    }
-
-    .animate-sparkle {
-      animation: sparkle 2s ease-in-out infinite;
-    }
-
-    /* Stagger animations for lists */
-    .stagger-animate > * {
-      opacity: 0;
-      animation: fadeInUp 0.6s ease-out forwards;
-    }
-
-    .stagger-animate > *:nth-child(1) { animation-delay: 0.1s; }
-    .stagger-animate > *:nth-child(2) { animation-delay: 0.2s; }
-    .stagger-animate > *:nth-child(3) { animation-delay: 0.3s; }
-    .stagger-animate > *:nth-child(4) { animation-delay: 0.4s; }
-    .stagger-animate > *:nth-child(5) { animation-delay: 0.5s; }
-
-    /* Enhanced Hero Section */
-    .hero-gradient {
-      background: linear-gradient(135deg, #111d40 0%, #1a2a5a 100%);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .hero-pattern {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      opacity: 0.1;
-      background-image: radial-gradient(circle at 25% 25%, #d84545 2px, transparent 2px),
-                        radial-gradient(circle at 75% 75%, #d84545 2px, transparent 2px);
-      background-size: 50px 50px;
-    }
-    
-    /* NEW: Enhanced brand elements */
-    .brand-glow {
-      filter: drop-shadow(0 0 10px rgba(216, 69, 69, 0.3));
-    }
-    
-    .brand-gradient-text {
-      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* NEW: Enhanced value proposition cards (Simplified hover based on feedback) */
-    .value-card {
-      background: white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      height: 100%;
-      position: relative;
-      border: 1px solid transparent;
-      background-clip: padding-box;
-      /* Removed aggressive perspective transform */
-    }
-    
-    /* Subtle border effect on hover */
-    .value-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 20px;
-      padding: 2px;
-      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .value-card:hover::before {
-      opacity: 1;
-    }
-    
-    .value-card:hover {
-      /* Simplified hover: only lift */
-      transform: translateY(-5px); 
-      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    }
-    
-    .value-card-icon {
-      transition: all 0.5s ease;
-      transform-origin: center;
-      position: relative;
-    }
-    
-    .value-card:hover .value-card-icon {
-      transform: scale(1.1) rotate(0deg); /* Reduced scale and removed rotation */
-    }
-    
-    .value-card-content {
-      transition: all 0.3s ease;
-    }
-    
-    .value-card:hover .value-card-content {
-      transform: translateY(-5px);
-    }
-    
-    .sparkle {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      background: #d84545;
-      border-radius: 50%;
-      opacity: 0;
-    }
-    
-    .value-card:hover .sparkle {
-      animation: sparkle 2s ease-in-out;
-    }
-    
-    /* NEW: Micro-interactions */
-    .micro-interaction {
-      transition: all 0.2s ease;
-    }
-    
-    .micro-interaction:hover {
-      transform: scale(1.05);
-    }
-    
-    /* === FIXED MOBILE NAVIGATION === */
-    .app-tab-bar {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid rgba(0, 0, 0, 0.08);
-      z-index: 1000;
-      padding: 0.5rem 0;
-      display: flex !important;
-      flex-direction: row !important;
-      justify-content: space-around;
-      align-items: center;
-      height: 60px;
-    }
-    
-    .tab-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 0.5rem;
-      border-radius: 0.75rem;
-      transition: all 0.3s ease;
-      flex: 1;
-      position: relative;
-      -webkit-tap-highlight-color: transparent;
-      min-width: 60px;
-      max-width: 80px;
-    }
-    
-    .tab-item.active {
-      color: var(--brand-coral);
-    }
-    
-    .active-indicator {
-      position: absolute;
-      top: -2px;
-      width: 4px;
-      height: 4px;
-      border-radius: 50%;
-      background: var(--brand-coral);
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .tab-item.active .active-indicator {
-      opacity: 1;
-    }
-    
-    .tab-icon {
-      width: 1.25rem;
-      height: 1.25rem;
-      margin-bottom: 0.25rem;
-    }
-    
-    .tab-label {
-      font-size: 0.7rem;
-      font-weight: 500;
-    }
-    
-    /* App Content Area */
-    .app-content {
-      padding-bottom: 5rem;
-    }
-    
-    /* === MODERN CTA BUTTON EFFECTS === */
-    .cta-modern {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--brand-coral) 0%, var(--brand-coral-dark) 100%);
-      border: none;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      transform: translateY(0);
-    }
-
-    .cta-modern::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-      transition: left 0.7s ease;
-    }
-
-    .cta-modern:hover::before {
-      left: 100%;
-    }
-
-    .cta-modern:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 40px rgba(216, 69, 69, 0.4);
-    }
-
-    .cta-modern:active {
-      transform: translateY(-1px);
-    }
-
-    .cta-secondary {
-      background: transparent;
-      border: 2px solid var(--brand-coral);
-      color: var(--brand-coral);
-      position: relative;
-      overflow: hidden;
-      transition: all 0.4s ease;
-    }
-
-    .cta-secondary::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: var(--brand-coral);
-      transition: left 0.4s ease;
-      z-index: -1;
-    }
-
-    .cta-secondary:hover::before {
-      left: 0;
-    }
-
-    .cta-secondary:hover {
-      color: white;
-      transform: translateY(-2px);
-    }
-    
-    /* === GLASS MORPHISM DESIGN === */
-    .glass-card {
-      /* Made background slightly more opaque for better legibility on busy backgrounds */
-      background: rgba(255, 255, 255, 0.95); 
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      /* Subtly darkened border for higher contrast */
-      border: 1px solid rgba(0, 0, 0, 0.1); 
-      box-shadow: 
-        0 8px 32px rgba(0, 0, 0, 0.1),
-        0 2px 8px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .glass-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 
-        0 15px 40px rgba(0, 0, 0, 0.15),
-        0 5px 15px rgba(0, 0, 0, 0.08);
-    }
-    
-    .glass-card:active {
-      transform: scale(0.98) translateY(2px);
-      box-shadow: 
-        0 4px 16px rgba(0, 0, 0, 0.1),
-        0 1px 4px rgba(0, 0, 0, 0.05);
-    }
-    
-    /* === SOCIAL FEED STYLES === */
-    .feed-item {
-      /* Added transition for subtle opacity/lift on hover */
-      background: white;
-      border-radius: 16px;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-      overflow: hidden;
-      transition: all 0.3s ease;
-      /* NEW: Added a subtle border for definition */
-      border: 1px solid #e2e8f0;
-    }
-
-    .feed-item:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    }
-    
-    .feed-header {
-      padding: 1rem 1rem 0.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-    
-    .feed-avatar {
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #d84545, #111d40);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-      transition: transform 0.3s ease;
-      /* Added border for a defined 'social' look */
-      border: 2px solid white; 
-      box-shadow: 0 0 0 2px var(--brand-coral);
-    }
-
-    .feed-item:hover .feed-avatar {
-      transform: scale(1.05); /* Reduced scale */
-    }
-    
-    .feed-content {
-      padding: 0 1rem 1rem;
-    }
-    
-    .feed-actions {
-      padding: 0.75rem 1rem;
-      border-top: 1px solid #f1f5f9;
-      display: flex;
-      gap: 1rem;
-    }
-    
-    .action-btn {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.5rem;
-      border-radius: 8px;
-      transition: all 0.2s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    
-    .action-btn:active {
-      background: #f8fafc;
-      transform: scale(0.95);
-    }
-    
-    /* === BOTTOM SHEET === */
-    .bottom-sheet {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: white;
-      border-radius: 24px 24px 0 0;
-      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
-      z-index: 1100;
-      transform: translateY(100%);
-      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .bottom-sheet.open {
-      transform: translateY(0);
-    }
-    
-    .sheet-handle {
-      width: 3rem;
-      height: 0.25rem;
-      background: #e2e8f0;
-      border-radius: 0.125rem;
-      margin: 0.75rem auto;
-    }
-    
-    /* === SWIPEABLE SECTIONS === */
-    .swipe-container {
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: 0 1rem;
-      margin: 0 -1rem;
-    }
-    
-    .swipe-container::-webkit-scrollbar {
-      display: none;
-    }
-    
-    .swipe-section {
-      scroll-snap-align: start;
-      flex: 0 0 85%;
-    }
-    
-    /* === PULL TO REFRESH === */
-    .refresh-indicator {
-      position: fixed;
-      top: -60px;
-      left: 0;
-      right: 0;
-      text-align: center;
-      padding: 1rem;
-      background: var(--brand-coral);
-      color: white;
-      z-index: 1001;
-      transition: transform 0.3s ease;
-    }
-    
-    .refresh-indicator.active {
-      transform: translateY(60px);
-    }
-    
-    /* === PROGRESSIVE DISCLOSURE CARDS === */
-    .expandable-card {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      margin-bottom: 1rem;
-    }
-    
-    .card-preview {
-      padding: 1.5rem;
-    }
-    
-    .expand-trigger {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      width: 100%;
-      background: none;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-
-    .expand-trigger:hover {
-      background: rgba(248, 250, 252, 0.5);
-    }
-    
-    .card-details {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    
-    .card-details.open {
-      max-height: 500px;
-    }
-    
-    /* === DESKTOP NAVIGATION === */
-    .nav-container {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 50;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .nav-container.scrolled {
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* === AWARENESS AGENCY SECTION === */
-    .awareness-agency {
-      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-    }
-    
-    /* === FIXED MEDIA QUERIES === */
-    /* Show desktop elements only on desktop */
-    .desktop-only {
-      display: block;
-    }
-    
-    .mobile-only {
-      display: none;
-    }
-    
-    @media (max-width: 767px) {
-      .desktop-only {
-        display: none !important;
-      }
-      
-      .mobile-only {
-        display: flex !important; /* Changed to flex for horizontal layout */
-      }
-      
-      .mobile-optimized {
-        padding: 0 1rem;
-      }
-      
-      .mobile-section {
-        padding: 2rem 0;
-      }
-      
-      .mobile-heading {
-        font-size: 2rem;
-        line-height: 1.2;
-      }
-      
-      .mobile-subheading {
-        font-size: 1.125rem;
-        line-height: 1.4;
-      }
-      
-      .mobile-body {
-        font-size: 1rem;
-        line-height: 1.5;
-      }
-      
-      /* Ensure content doesn't hide behind nav */
-      .app-content {
-        padding-bottom: 5rem;
-      }
-
-      /* Force horizontal layout for mobile nav */
-      .app-tab-bar {
-        display: flex !important;
-        flex-direction: row !important;
-        justify-content: space-around !important;
-      }
-      
-      .tab-item {
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-      }
-    }
-    
-    /* NEW: Enhanced brand sections */
-    .trust-signals {
-      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-    }
-    
-    .testimonial-card {
-      background: white;
-      border-radius: 16px;
-      padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      position: relative;
-    }
-    
-    .testimonial-card::before {
-      content: '"';
-      position: absolute;
-      top: 1rem;
-      left: 1.5rem;
-      font-size: 4rem;
-      color: #f1f5f9;
-      font-family: serif;
-      line-height: 1;
-    }
-    
-    /* Utility classes */
-    .text-balance {
-      text-wrap: balance;
-    }
-    
-    .ai-gradient-text {
-      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    .section-padding {
-      padding: 3rem 0;
-    }
-    
-    @media (min-width: 768px) {
-      .section-padding {
-        padding: 5rem 0;
-      }
-    }
-
-    /* Fix white space between join and footer */
-    .join-section {
-      margin-bottom: 0 !important;
-      padding-bottom: 0 !important;
-    }
-    
-    footer {
-      margin-top: 0 !important;
-    }
-
-    /* Loading animation for images */
-    .image-loading {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 1000px 100%;
-      animation: shimmer 2s infinite linear;
-    }
-    
-    /* NEW: Skeleton loading */
-    .skeleton {
-      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-      background-size: 1000px 100%;
-      animation: shimmer 2s infinite linear;
-      border-radius: 4px;
-    }
-    
-    /* NEW: Enhanced focus states for accessibility */
-    .focus-brand:focus {
-      outline: 2px solid var(--brand-coral);
-      outline-offset: 2px;
-    }
-    
-    /* NEW: Custom Counter for Data Visualization */
-    .data-counter {
-        font-family: 'Orbitron', sans-serif;
-        font-weight: 700;
-        font-size: 2.25rem; /* text-4xl */
-        line-height: 1;
-        background: linear-gradient(135deg, #fff 30%, var(--brand-coral) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        display: inline-block;
-        /* Default for JS initialization */
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-
-    /* Scroll Reveal Animation CSS for Javascript Hook */
-    .scroll-reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    }
-
-    .scroll-reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-  </style>
+    .cta-secondary:hover {
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(216, 69, 69, 0.3);
+    }
+    
+    /* === ENHANCED GLASS MORPHISM DESIGN === */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.85); /* Slightly less opaque */
+      backdrop-filter: blur(20px); /* Stronger blur */
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.5); /* Whiter border */
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      animation: pulse-glow 3s ease-in-out infinite alternate; /* Subtle breathing glow */
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-8px); /* More pronounced lift */
+      box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.2),
+        0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* NEW: Micro-interactions for list items (Mobile Feed) */
+    .feed-item {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .feed-item:active {
+      transform: scale(0.98);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* === PROGRESSIVE DISCLOSURE CARDS === */
+    .card-details.open {
+      max-height: 800px; /* Increased height limit for safety */
+      padding: 0 1.5rem 1.5rem; /* Add padding when open */
+    }
+    
+    /* === DESKTOP NAVIGATION === */
+    .nav-container {
+      backdrop-filter: blur(20px); /* Stronger blur for nav */
+    }
+    
+  </style>
 </head>
 <body class="bg-white">
 
 <nav class="nav-container desktop-only">
-  <div class="max-w-7xl mx-auto px-6 py-4">
-    <div class="flex justify-between items-center">
-      <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow animate-fade-in-left">AUXION</div>
-      <div class="hidden md:flex space-x-8">
-        <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right focus-brand" style="animation-delay: 0.1s">Awareness</a>
-        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right focus-brand" style="animation-delay: 0.2s">Ecosystem</a>
-        <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right focus-brand" style="animation-delay: 0.3s">Insights</a>
-        <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right focus-brand" style="animation-delay: 0.4s">Community</a>
-        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right focus-brand" style="animation-delay: 0.5s">Join</a>
-      </div>
-    </div>
-  </div>
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow animate-fade-in-left">AUXION</div>
+      <div class="hidden md:flex space-x-8">
+        <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.1s">Awareness</a>
+        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.2s">Ecosystem</a>
+        <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.3s">Insights</a>
+        <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.4s">Community</a>
+        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.5s">Join</a>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <nav class="app-tab-bar mobile-only">
-  <div class="tab-item active focus-brand" data-tab="home">
-    <i data-feather="home" class="tab-icon"></i>
-    <span class="tab-label">Home</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item focus-brand" data-tab="ecosystem">
-    <i data-feather="grid" class="tab-icon"></i>
-    <span class="tab-label">Ecosystem</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item focus-brand" data-tab="insights">
-    <i data-feather="compass" class="tab-icon"></i>
-    <span class="tab-label">Insights</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item focus-brand" data-tab="join">
-    <i data-feather="user" class="tab-icon"></i>
-    <span class="tab-label">Join</span>
-    <div class="active-indicator"></div>
-  </div>
+  <div class="tab-item active" data-tab="home">
+    <i data-feather="home" class="tab-icon"></i>
+    <span class="tab-label">Home</span>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="ecosystem">
+    <i data-feather="grid" class="tab-icon"></i>
+    <span class="tab-label">Ecosystem</span>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="insights">
+    <i data-feather="compass" class="tab-icon"></i>
+    <span class="tab-label">Insights</span>
+    <div class="active-indicator"></div>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="join">
+    <i data-feather="user" class="tab-icon"></i>
+    <span class="tab-label">Join</span>
+    <div class="active-indicator"></div>
+  </div>
 </nav>
 
 <main class="app-content">
-  <section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
-    <div class="hero-pattern"></div>
-    <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
-      <div class="mb-8 animate-fade-in-up">
-        <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction">
-          <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
-          Vienna's Home for Responsible AI
-        </span>
-      </div>
-      
-      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
-        <span class="text-white">People.</span>
-        <span class="text-white">Change.</span>
-        <span class="text-brand-coral brand-glow">Technology.</span>
-        <span class="text-white">Together.</span>
-      </h1>
-      
-      <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
-        Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
-      </p>
-      
-      <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
-        <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
-          Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
-        </a>
-        <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
-          Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
-        </a>
-      </div>
-      
-      <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
-        
-        <div class="flex flex-col items-center text-gray-300">
-            <span class="data-counter text-4xl md:text-5xl" data-target="200" data-suffix="+" id="member-count">0</span>
-            <span class="text-sm font-medium mt-1">Members</span>
-        </div>
-        
-        <div class="flex flex-col items-center text-gray-300">
-            <span class="data-counter text-4xl md:text-5xl" data-target="12" data-suffix="+" id="events-count">0</span>
-            <span class="text-sm font-medium mt-1">Monthly Events</span>
-        </div>
-        
-        <div class="flex flex-col items-center text-gray-300">
-            <span class="data-counter text-4xl md:text-5xl" data-target="100" data-suffix="%" id="vienna-focus">0</span>
-            <span class="text-sm font-medium mt-1">Vienna-Focused</span>
-        </div>
+    <section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+            <div class="mb-8 animate-fade-in-up">
+        <span class="inline-block bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction">
+          <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
+          Vienna's Home for Responsible AI
+        </span>
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
+        <span class="text-white">People.</span>
+        <span class="text-white">Change.</span>
+        <span class="text-brand-coral brand-glow text-flicker">Technology.</span>
+        <span class="text-white">Together.</span>
+      </h1>
+      
+      <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
+        Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
+        <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
+          Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+        </a>
+        <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
+          Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
+        </a>
+      </div>
+      
+            <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="users" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
+          <span class="text-sm">200+ Members</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="calendar" class="w-5 h-5 text-brand-coral animate-icon-pulse" style="animation-delay: 0.2s;"></i>
+          <span class="text-sm">Monthly Events</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="award" class="w-5 h-5 text-brand-coral animate-icon-pulse" style="animation-delay: 0.4s;"></i>
+          <span class="text-sm">Vienna-Based</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      </div>
-    </div>
-  </section>
+    <section id="value" class="section-padding bg-white mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-animate">
+                <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-brand-coral-dark rounded-2xl flex items-center justify-center">
+              <i data-feather="shield" class="text-white w-8 h-8"></i>
+            </div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 text-flicker">Ethical Foundation</h3>
+            <p class="text-gray-600 mb-4">We believe AI should be developed with human values at its core, ensuring technology enhances human potential.</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-brand-coral/10 text-brand-coral rounded-full text-sm font-medium animate-pulse-glow">
+                Human-Centered
+              </span>
+            </div>
+          </div>
+        </div>
+        
+                <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-brand-blue to-blue-800 rounded-2xl flex items-center justify-center">
+              <i data-feather="git-merge" class="text-white w-8 h-8"></i>
+            </div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 text-flicker">Collaborative Innovation</h3>
+            <p class="text-gray-600 mb-4">Breaking down silos between academia, industry and society to create solutions that work for everyone, not just a select few.</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-medium animate-pulse-glow">
+                Cross-Disciplinary
+              </span>
+            </div>
+          </div>
+        </div>
+        
+                <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center">
+              <i data-feather="compass" class="text-white w-8 h-8"></i>
+            </div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 text-flicker">Vienna's Compass</h3>
+            <p class="text-gray-600 mb-4">Vienna is emerging as the European hub for Digital Humanism, building on its rich tradition of humanistic innovation to shape technology that serves people, society and democracy..</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm font-medium animate-pulse-glow">
+                Vienna-Focused
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  <section id="value" class="section-padding bg-white mobile-section">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-12 md:mb-16">
-        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading scroll-reveal">Why Auxion</h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 scroll-reveal" style="transition-delay: 0.1s;"></div>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body scroll-reveal" style="transition-delay: 0.2s;">
-          We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
-        </p>
-      </div>
-      
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="value-card p-6 md:p-8 scroll-reveal" style="transition-delay: 0.3s;">
-          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-brand-coral-dark rounded-2xl flex items-center justify-center">
-              <i data-feather="shield" class="text-white w-8 h-8"></i>
-            </div>
-          </div>
-          <div class="value-card-content text-center md:text-left">
-            <h3 class="text-xl font-bold text-brand-blue mb-4">Ethical Foundation</h3>
-            <p class="text-gray-600 mb-4">We believe AI should be developed with human values at its core, ensuring technology enhances human potential.</p>
-            <div class="flex justify-center md:justify-start">
-              <span class="inline-block px-3 py-1 bg-brand-coral/10 text-brand-coral rounded-full text-sm font-medium micro-interaction focus-brand">
-                Human-Centered
-              </span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="value-card p-6 md:p-8 scroll-reveal" style="transition-delay: 0.4s;">
-          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-brand-blue to-blue-800 rounded-2xl flex items-center justify-center">
-              <i data-feather="git-merge" class="text-white w-8 h-8"></i>
-            </div>
-          </div>
-          <div class="value-card-content text-center md:text-left">
-            <h3 class="text-xl font-bold text-brand-blue mb-4">Collaborative Innovation</h3>
-            <p class="text-gray-600 mb-4">Breaking down silos between academia, industry and society to create solutions that work for everyone, not just a select few.</p>
-            <div class="flex justify-center md:justify-start">
-              <span class="inline-block px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-medium micro-interaction focus-brand">
-                Cross-Disciplinary
-              </span>
-            </div>
-          </div>
-        </div>
-        
-        <div class="value-card p-6 md:p-8 scroll-reveal" style="transition-delay: 0.5s;">
-          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center">
-              <i data-feather="compass" class="text-white w-8 h-8"></i>
-            </div>
-          </div>
-          <div class="value-card-content text-center md:text-left">
-            <h3 class="text-xl font-bold text-brand-blue mb-4">Vienna's Compass</h3>
-            <p class="text-gray-600 mb-4">Vienna is emerging as the European hub for Digital Humanism, building on its rich tradition of humanistic innovation to shape technology that serves people, society and democracy..</p>
-            <div class="flex justify-center md:justify-start">
-              <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm font-medium micro-interaction focus-brand">
-                Vienna-Focused
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <section id="awareness" class="section-padding awareness-agency mobile-section">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+      
+      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        Vienna's premier collaborative hub for responsible AI Innovation
+      </p>
 
-  <section id="awareness" class="section-padding awareness-agency mobile-section">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading scroll-reveal">From Awareness to Agency</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 scroll-reveal" style="transition-delay: 0.1s;"></div>
-      
-      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto mobile-body scroll-reveal" style="transition-delay: 0.2s;">
-        Vienna's premier collaborative hub for responsible AI Innovation
-      </p>
+            <div class="desktop-only grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto stagger-animate">
+        <div class="glass-card p-8 text-left">
+          <div class="w-16 h-16 bg-brand-coral rounded-2xl flex items-center justify-center mb-6 animate-float">
+            <i data-feather="eye" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-blue mb-4 text-flicker">Awareness</h3>
+          <p class="text-gray-600 mb-6">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights.</p>
+          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
+            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+        
+        <div class="glass-card p-8 text-left">
+          <div class="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1s">
+            <i data-feather="zap" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-blue mb-4 text-flicker">Agency</h3>
+          <p class="text-gray-600 mb-6">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations.</p>
+          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
+            Take Action <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
 
-      <div class="desktop-only grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="glass-card p-8 text-left scroll-reveal" style="transition-delay: 0.3s;">
-          <div class="w-16 h-16 bg-brand-coral rounded-2xl flex items-center justify-center mb-6 animate-icon-pulse" style="animation-play-state: running;">
-            <i data-feather="eye" class="text-white w-8 h-8"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-blue mb-4">Awareness</h3>
-          <p class="text-gray-600 mb-6">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights.</p>
-          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group focus-brand">
-            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
-        </div>
-        
-        <div class="glass-card p-8 text-left scroll-reveal" style="transition-delay: 0.4s;">
-          <div class="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center mb-6 animate-icon-pulse" style="animation-delay: 0.5s; animation-play-state: running;">
-            <i data-feather="zap" class="text-white w-8 h-8"></i>
-          </div>
-          <h3 class="text-2xl font-bold text-brand-blue mb-4">Agency</h3>
-          <p class="text-gray-600 mb-6">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations.</p>
-          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group focus-brand">
-            Take Action <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+            <div class="mobile-only flex flex-col gap-4 mobile-optimized stagger-animate">
+                <div class="expandable-card glass-card">
+          <div class="card-preview">
+            <button class="expand-trigger focus-brand" onclick="toggleCard(this)">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-brand-coral rounded-full flex items-center justify-center animate-icon-pulse">
+                  <i data-feather="eye" class="text-white w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-brand-blue mobile-subheading">Awareness</h3>
+              </div>
+              <i data-feather="chevron-down" class="w-5 h-5 text-brand-gray transition-transform duration-300 rotate-0"></i>
+            </button>
+          </div>
+          <div class="card-details">
+            <p class="text-gray-600 mobile-body mb-4 px-6 pb-4">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights. Access exclusive webinars and policy briefings.</p>
+          </div>
+        </div>
+
+                <div class="expandable-card glass-card" style="animation-delay: 0.2s;">
+          <div class="card-preview">
+            <button class="expand-trigger focus-brand" onclick="toggleCard(this)">
+              <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center animate-icon-pulse" style="animation-delay: 0.1s;">
+                  <i data-feather="zap" class="text-white w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-bold text-brand-blue mobile-subheading">Agency</h3>
+              </div>
+              <i data-feather="chevron-down" class="w-5 h-5 text-brand-gray transition-transform duration-300 rotate-0"></i>
+            </button>
+          </div>
+          <div class="card-details">
+            <p class="text-gray-600 mobile-body mb-4 px-6 pb-4">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations. Join a project team or start your own!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="ecosystem" class="section-padding bg-white mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold ai-gradient-text font-orbitron mobile-heading animate-fade-in-up">Our Collaborative Ecosystem</h2>
+        <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.2s">
+          The network of organizations, partners, and individuals making Vienna a leader in Digital Humanism.
+        </p>
+      </div>
+      
+            <div class="swipe-container flex gap-4 md:gap-8 justify-center items-center h-24 md:h-32 mb-12 bg-gray-50 rounded-xl overflow-hidden animate-slide-in-bottom" style="animation-delay: 0.4s;">
+        <div class="swipe-section flex-shrink-0 w-full md:w-auto flex items-center justify-center">
+          <div class="text-lg font-semibold text-brand-blue opacity-70">Industry Partners</div>
+        </div>
+        <div class="swipe-section flex-shrink-0 w-full md:w-auto flex items-center justify-center">
+          <div class="text-lg font-semibold text-brand-coral opacity-70">Academic Network</div>
+        </div>
+        <div class="swipe-section flex-shrink-0 w-full md:w-auto flex items-center justify-center">
+          <div class="text-lg font-semibold text-gray-700 opacity-70">Government & NGO's</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="insights" class="section-padding awareness-agency mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold ai-gradient-text font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
+        <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.2s">
+          Stay current with Vienna's policy, research, and community news on ethical AI.
+        </p>
+      </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-animate mobile-optimized">
+        <div class="glass-card p-6">
+          <div class="h-32 bg-gray-200 rounded-lg mb-4 skeleton"></div>
+          <h3 class="text-xl font-bold text-brand-blue mb-2">Policy Brief: $\text{EU}$ AI Act</h3>
+          <p class="text-gray-600 text-sm">How the new regulations impact the Vienna tech scene and responsible innovation.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="h-32 bg-gray-200 rounded-lg mb-4 skeleton" style="animation-delay: 0.1s;"></div>
+          <h3 class="text-xl font-bold text-brand-blue mb-2">Research Spotlight: Digital Humanism</h3>
+          <p class="text-gray-600 text-sm">Key takeaways from the $\text{TU}$ Vienna's recent research on $\text{AI}$ ethics.</p>
+        </div>
+        <div class="glass-card p-6">
+          <div class="h-32 bg-gray-200 rounded-lg mb-4 skeleton" style="animation-delay: 0.2s;"></div>
+          <h3 class="text-xl font-bold text-brand-blue mb-2">Community Event Recap</h3>
+          <p class="text-gray-600 text-sm">Photos and highlights from our latest collaborative hackathon.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="testimonials" class="section-padding bg-white mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold ai-gradient-text font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
+        <p class="text-lg md:text-xl text-gray-600 mt-4 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.2s">
+          See what our members and partners are sharing on the platform.
+        </p>
+      </div>
+
+            <div class="max-w-xl mx-auto mobile-optimized stagger-animate">
+                <div class="feed-item">
+          <div class="feed-header">
+            <div class="feed-avatar text-sm">JL</div>
+            <div>
+              <p class="font-semibold text-brand-blue">Jane L.</p>
+              <p class="text-xs text-gray-500">@ViennaTechLead • 1h ago</p>
+            </div>
+          </div>
+          <div class="feed-content">
+            <p class="text-gray-700">Thrilled to see Auxion leading the conversation on ethical $\text{AI}$ governance. The insights provided on the $\text{EU}$ $\text{AI}$ Act are game-changers for my team! \#ResponsibleAI \#ViennaTech</p>
+          </div>
+          <div class="feed-actions">
+            <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand"><i data-feather="heart" class="w-4 h-4"></i> 15</button>
+            <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand"><i data-feather="message-circle" class="w-4 h-4"></i> 3</button>
+          </div>
+        </div>
+
+                <div class="feed-item" style="animation-delay: 0.1s;">
+          <div class="feed-header">
+            <div class="feed-avatar text-sm">SA</div>
+            <div>
+              <p class="font-semibold text-brand-blue">Sebastian A.</p>
+              <p class="text-xs text-gray-500">@TUViennaAI • 3h ago</p>
+            </div>
+          </div>
+          <div class="feed-content">
+            <p class="text-gray-700">Our collaboration with Auxion on the Digital Humanism paper is driving real policy change. Excited for the next steps! 💡</p>
+          </div>
+          <div class="feed-actions">
+            <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand"><i data-feather="heart" class="w-4 h-4"></i> 8</button>
+            <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand"><i data-feather="message-circle" class="w-4 h-4"></i> 1</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+    <section id="join" class="section-padding bg-brand-blue join-section mobile-section">
+    <div class="max-w-4xl mx-auto px-4 text-center text-white">
+      <h2 class="text-3xl md:text-5xl font-bold font-orbitron mb-6 mobile-heading animate-fade-in-up">Join Vienna's AI Vanguard</h2>
+      <p class="text-lg md:text-xl font-light mb-8 opacity-80 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">
+        Become a member of the only cross-sectorial network dedicated to driving ethical, human-first innovation in the heart of Europe.
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s">
+        <a href="#" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
+          Apply for Membership $\rightarrow$
+        </a>
+        <a href="#" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
+          Contact Team
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="bg-gray-900 text-white pt-12 pb-24 md:pb-12 border-t border-brand-coral">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="grid grid-cols-2 md:grid-cols-5 gap-8 border-b border-gray-700 pb-8 mb-8">
+      <div class="col-span-2 md:col-span-2">
+        <div class="text-2xl font-bold text-brand-coral font-orbitron mb-4 animate-fade-in-up">AUXION</div>
+        <p class="text-gray-400 text-sm">Vienna's collaborative hub for ethical and responsible AI. Turning awareness into agency.</p>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#value" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Mission</a></li>
+          <li><a href="#ecosystem" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Partners</a></li>
+          <li><a href="#insights" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Resources</a></li>
+          <li><a href="#join" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Careers</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Pillars</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#awareness" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Awareness</a></li>
+          <li><a href="#awareness" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Agency</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Ethics</a></li>
+          <li><a href="#" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction">Innovation</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-lg font-semibold mb-4">Connect</h4>
+        <div class="flex space-x-4">
+          <a href="#" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction"><i data-feather="linkedin" class="w-5 h-5"></i></a>
+          <a href="#" class="text-gray-400 hover:text-brand-coral transition-colors micro-interaction"><i data-feather="twitter" class="w-5 h-5"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="text-center text-gray-500 text-sm pt-4">
+      <p>&copy; 2024 Auxion. All rights reserved. | <a href="#" class="hover:text-brand-coral transition-colors micro-interaction">Privacy Policy</a></p>
+    </div>
+  </div>
+</footer>
+
 
 <script>
-  // Feather Icons initialization
-  feather.replace();
+  // === Feather Icons Initialization ===
+  feather.replace();
 
-  // === Scroll-Triggered Reveal (for all sections) ===
-  const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
+  // === Dynamic Mobile Card Expansion ===
+  function toggleCard(button) {
+    const card = button.closest('.expandable-card');
+    const details = card.querySelector('.card-details');
+    const icon = button.querySelector('i[data-feather="chevron-down"]');
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
-    });
-  }, {
-    threshold: 0.1, // Trigger when 10% of the element is in view
-    rootMargin: '0px 0px -100px 0px' // Start observing a bit early
-  });
+    if (details.classList.contains('open')) {
+      details.classList.remove('open');
+      icon.style.transform = 'rotate(0deg)';
+    } else {
+      // Optional: Close other open cards
+      document.querySelectorAll('.card-details.open').forEach(openDetails => {
+        openDetails.classList.remove('open');
+        openDetails.closest('.expandable-card').querySelector('i[data-feather="chevron-down"]').style.transform = 'rotate(0deg)';
+      });
+      
+      details.classList.add('open');
+      icon.style.transform = 'rotate(180deg)';
+    }
+  }
 
-  scrollRevealElements.forEach(el => {
-    observer.observe(el);
-  });
+  // === Scroll-Triggered Navbar Shadow (Desktop) ===
+  const nav = document.querySelector('.nav-container');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+  }
+  
+  // === Scroll-Triggered Staggered Animations ===
+  const staggerElements = document.querySelectorAll('.stagger-animate');
 
-  // === Data Counter Animation (for hero trust signals) ===
-  function animateCounter(id, target, duration = 2000, suffix = '') {
-    const element = document.getElementById(id);
-    if (!element) return;
-    
-    element.style.opacity = '1';
-    let start = 0;
-    const increment = target / (duration / 16); // ~60fps
+  const staggerObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        // Start the stagger animation
+        entry.target.querySelectorAll('*').forEach((el, index) => {
+          el.style.animationDelay = `${index * 0.1}s`;
+        });
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, // Trigger when 10% of the container is in view
+    rootMargin: '0px 0px -100px 0px' 
+  });
 
-    function updateCounter() {
-      start += increment;
-      if (start < target) {
-        element.textContent = Math.ceil(start) + suffix;
-        requestAnimationFrame(updateCounter);
-      } else {
-        element.textContent = target + suffix;
-      }
-    }
-    updateCounter();
-  }
+  staggerElements.forEach(el => {
+    staggerObserver.observe(el);
+  });
+  
+  // === Smooth Scroll and Mobile Nav Active State ===
+  document.querySelectorAll('a[href^="#"], .tab-item').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href') ? this.getAttribute('href') : `#${this.dataset.tab}`;
+      const targetElement = document.querySelector(targetId);
 
-  const counterObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && !entry.target.classList.contains('counted')) {
-        const target = parseInt(entry.target.dataset.target);
-        const suffix = entry.target.dataset.suffix || '';
-        animateCounter(entry.target.id, target, 2000, suffix);
-        entry.target.classList.add('counted');
-      }
-    });
-  }, { threshold: 0.8 }); // Trigger when 80% visible
+      if (targetElement) {
+        const offset = nav ? nav.offsetHeight : 0;
+        window.scrollTo({
+          top: targetElement.offsetTop - offset,
+          behavior: 'smooth'
+        });
 
-  document.querySelectorAll('.data-counter').forEach(el => {
-    counterObserver.observe(el);
-  });
-  
-  // Initialize the counter for immediate elements (if they're in the viewport)
-  document.addEventListener('DOMContentLoaded', () => {
-      // Manually trigger counter animation for those immediately visible if IntersectionObserver fails to trigger instantly
-      document.querySelectorAll('.data-counter').forEach(el => {
-          if (el.getBoundingClientRect().top < window.innerHeight && el.getBoundingClientRect().bottom > 0) {
-              const target = parseInt(el.dataset.target);
-              const suffix = el.dataset.suffix || '';
-              animateCounter(el.id, target, 2000, suffix);
-              el.classList.add('counted');
-          }
-      });
-  });
+        // Update mobile active state
+        const mobileTab = document.querySelector(`.tab-item[data-tab="${targetId.substring(1)}"]`);
+        if (mobileTab) {
+          document.querySelectorAll('.tab-item').forEach(i => i.classList.remove('active'));
+          mobileTab.classList.add('active');
+        }
+      }
+    });
+  });
+  
+  // === Intersection Observer for general scroll animations (fadeInUp, etc.) ===
+  const generalAnimatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom');
 
-  // === Navbar Scroll Shadow ===
-  const nav = document.querySelector('.nav-container');
-  window.addEventListener('scroll', () => {
-    if (nav) {
-      if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }
-  });
+  const generalObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = 1;
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1, 
+    rootMargin: '0px 0px -50px 0px' 
+  });
 
-  // === Mobile Tab Bar Active State ===
-  document.querySelectorAll('.tab-item').forEach(item => {
-    item.addEventListener('click', function() {
-      document.querySelectorAll('.tab-item').forEach(i => i.classList.remove('active'));
-      this.classList.add('active');
-    });
-  });
+  generalAnimatedElements.forEach(el => {
+    el.style.opacity = 0; // Hide initially
+    generalObserver.observe(el);
+  });
 
 </script>
 </body>
