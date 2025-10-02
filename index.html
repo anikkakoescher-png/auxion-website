@@ -1,700 +1,1654 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
-    <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/feather-icons"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
+  <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/feather-icons"></script>
 
-    <style>
-        :root {
-            --brand-blue: #111d40;
-            --brand-coral: #d84545;
-            --brand-coral-dark: #c44545;
-            --brand-light: #f8fafc;
-            --brand-gray: #64748b;
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #1e293b;
-            background-color: #f8fafc;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --brand-blue: #111d40;
+      --brand-coral: #d84545;
+      --brand-coral-dark: #c44545;
+      --brand-light: #f8fafc;
+      --brand-gray: #64748b;
+      --brand-success: #10b981;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1e293b;
+      background-color: #f8fafc;
+      overflow-x: hidden;
+    }
 
-        .font-orbitron { font-family: 'Orbitron', sans-serif; }
-        .bg-brand-blue { background-color: var(--brand-blue); }
-        .text-brand-blue { color: var(--brand-blue); }
-        .bg-brand-coral { background-color: var(--brand-coral); }
-        .text-brand-coral { color: var(--brand-coral); }
-        
-        /* === BASE ANIMATIONS (Triggered by JS) === */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+    
+    .bg-brand-blue { background-color: var(--brand-blue); }
+    .text-brand-blue { color: var(--brand-blue); }
+    .bg-brand-coral { background-color: var(--brand-coral); }
+    .text-brand-coral { color: var(--brand-coral); }
+    
+    /* === ENHANCED ANIMATIONS === */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        @keyframes fadeInLeft {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+    @keyframes fadeInLeft {
+      from {
+        opacity: 0;
+        transform: translateX(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-        @keyframes fadeInRight {
-            from { opacity: 0; transform: translateX(30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
+    @keyframes fadeInRight {
+      from {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
 
-        @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(216, 69, 69, 0.4); }
-            50% { box-shadow: 0 0 30px rgba(216, 69, 69, 0.8); }
-        }
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(216, 69, 69, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 30px rgba(216, 69, 69, 0.8);
+      }
+    }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-10px) rotate(1deg); }
-        }
+    @keyframes slideInFromBottom {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
-        /* NEW: Simplified Border Glow on Hover */
-        @keyframes borderGlowPulse {
-             0%, 100% { box-shadow: 0 0 0 0 rgba(216, 69, 69, 0.5); }
-             50% { box-shadow: 0 0 10px 5px rgba(216, 69, 69, 0.8); }
-        }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1deg); }
+    }
 
-        /* Animation classes (Applied by JS when element is visible) */
-        .animate-fade-in-up { animation: fadeInUp 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-        .animate-fade-in-left { animation: fadeInLeft 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
-        .animate-fade-in-right { animation: fadeInRight 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards; }
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
 
-        /* Initial state for Intersection Observer */
-        .stagger-reveal, .reveal-onload, .card-reveal { opacity: 0; }
+    /* NEW: Enhanced brand animations */
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
 
+    /* NEW: Card-specific animations */
+    @keyframes cardHover {
+      0% { transform: translateY(0) rotateX(0) rotateY(0); }
+      100% { transform: translateY(-10px) rotateX(5deg) rotateY(5deg); }
+    }
 
-        /* Stagger animations for lists/grids - applied by JS on parents */
-        .stagger-active > * {
-            animation: fadeInUp 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
-            opacity: 0; /* Reset opacity for staggering */
-        }
+    @keyframes iconPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
 
-        .stagger-active > *:nth-child(1) { animation-delay: 0.1s; }
-        .stagger-active > *:nth-child(2) { animation-delay: 0.2s; }
-        .stagger-active > *:nth-child(3) { animation-delay: 0.3s; }
-        .stagger-active > *:nth-child(4) { animation-delay: 0.4s; }
-        .stagger-active > *:nth-child(5) { animation-delay: 0.5s; }
-        .stagger-active > *:nth-child(6) { animation-delay: 0.6s; }
+    @keyframes borderGlow {
+      0%, 100% { box-shadow: 0 0 5px rgba(216, 69, 69, 0.3); }
+      50% { box-shadow: 0 0 20px rgba(216, 69, 69, 0.6); }
+    }
 
-        /* === SECTION SPACING FIX === */
-        .section-padding { padding: 3rem 0; }
-        .section-padding-tight { padding: 2rem 0; } /* NEW: For tighter sections */
+    @keyframes textGlow {
+      0%, 100% { text-shadow: 0 0 5px rgba(216, 69, 69, 0.3); }
+      50% { text-shadow: 0 0 15px rgba(216, 69, 69, 0.6); }
+    }
 
-        @media (min-width: 768px) {
-            .section-padding { padding: 5rem 0; }
-            .section-padding-tight { padding: 3rem 0; }
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #111d40 0%, #1a2a5a 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        /* === ENHANCED CARD STYLES === */
-        .value-card {
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            height: 100%;
-            position: relative;
-        }
-        
-        /* Updated hover: more subtle, focusing on a single light source */
-        .value-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15), 0 0 20px rgba(216, 69, 69, 0.6);
-        }
-        
-        .value-card-icon {
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            transform-origin: center;
-            position: relative;
-        }
-        
-        .value-card:hover .value-card-icon {
-            transform: scale(1.1) rotate(5deg);
-        }
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: scale(0) rotate(0deg); }
+      50% { opacity: 1; transform: scale(1) rotate(180deg); }
+    }
 
-        /* === MICRO-INTERACTIONS & ACCESSIBILITY === */
-        .micro-interaction { transition: all 0.2s ease; }
-        .micro-interaction:hover { transform: scale(1.05); }
-        .focus-brand:focus { outline: 2px solid var(--brand-coral); outline-offset: 2px; }
+    /* Animation classes */
+    .animate-fade-in-up {
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
 
-        /* === MOBILE TAB BAR (Retained & Fixed) === */
-        .app-tab-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
-            z-index: 1000;
-            padding: 0.5rem 0;
-            display: flex !important;
-            flex-direction: row !important;
-            justify-content: space-around;
-            align-items: center;
-            height: 60px;
-        }
-        
-        .tab-item { /* ... (rest of tab-item styles) ... */ }
-        .mobile-only { display: none; }
-        @media (max-width: 767px) {
-            .desktop-only { display: none !important; }
-            .mobile-only { display: flex !important; }
-            .app-content { padding-bottom: 5rem; } /* Ensures content is visible above the fixed nav */
-        }
-    </style>
+    .animate-fade-in-left {
+      animation: fadeInLeft 0.8s ease-out forwards;
+    }
+
+    .animate-fade-in-right {
+      animation: fadeInRight 0.8s ease-out forwards;
+    }
+
+    .animate-slide-in-bottom {
+      animation: slideInFromBottom 0.6s ease-out forwards;
+    }
+
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .animate-pulse-glow {
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+
+    .animate-gradient-shift {
+      background: linear-gradient(-45deg, #111d40, #d84545, #1a2a5a, #c44545);
+      background-size: 400% 400%;
+      animation: gradientShift 8s ease infinite;
+    }
+
+    /* NEW: Card animation classes */
+    .animate-card-hover {
+      animation: cardHover 0.5s ease-out forwards;
+    }
+
+    .animate-icon-pulse {
+      animation: iconPulse 2s ease-in-out infinite;
+    }
+
+    .animate-border-glow {
+      animation: borderGlow 3s ease-in-out infinite;
+    }
+
+    .animate-text-glow {
+      animation: textGlow 3s ease-in-out infinite;
+    }
+
+    .animate-sparkle {
+      animation: sparkle 2s ease-in-out infinite;
+    }
+
+    /* Stagger animations for lists */
+    .stagger-animate > * {
+      opacity: 0;
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .stagger-animate > *:nth-child(1) { animation-delay: 0.1s; }
+    .stagger-animate > *:nth-child(2) { animation-delay: 0.2s; }
+    .stagger-animate > *:nth-child(3) { animation-delay: 0.3s; }
+    .stagger-animate > *:nth-child(4) { animation-delay: 0.4s; }
+    .stagger-animate > *:nth-child(5) { animation-delay: 0.5s; }
+
+    /* Enhanced Hero Section */
+    .hero-gradient {
+      background: linear-gradient(135deg, #111d40 0%, #1a2a5a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero-pattern {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: 0.1;
+      background-image: radial-gradient(circle at 25% 25%, #d84545 2px, transparent 2px),
+                        radial-gradient(circle at 75% 75%, #d84545 2px, transparent 2px);
+      background-size: 50px 50px;
+    }
+    
+    /* NEW: Enhanced brand elements */
+    .brand-glow {
+      filter: drop-shadow(0 0 10px rgba(216, 69, 69, 0.3));
+    }
+    
+    .brand-gradient-text {
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    /* NEW: Enhanced value proposition cards */
+    .value-card {
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      height: 100%;
+      position: relative;
+      border: 1px solid transparent;
+      background-clip: padding-box;
+    }
+    
+    .value-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 20px;
+      padding: 2px;
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .value-card:hover::before {
+      opacity: 1;
+    }
+    
+    .value-card:hover {
+      transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+    }
+    
+    .value-card-icon {
+      transition: all 0.5s ease;
+      transform-origin: center;
+      position: relative;
+    }
+    
+    .value-card:hover .value-card-icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+    
+    .value-card-content {
+      transition: all 0.3s ease;
+    }
+    
+    .value-card:hover .value-card-content {
+      transform: translateY(-5px);
+    }
+    
+    .sparkle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: #d84545;
+      border-radius: 50%;
+      opacity: 0;
+    }
+    
+    .value-card:hover .sparkle {
+      animation: sparkle 2s ease-in-out;
+    }
+    
+    /* NEW: Micro-interactions */
+    .micro-interaction {
+      transition: all 0.2s ease;
+    }
+    
+    .micro-interaction:hover {
+      transform: scale(1.05);
+    }
+    
+    /* === FIXED MOBILE NAVIGATION === */
+    .app-tab-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+      padding: 0.5rem 0;
+      display: flex !important;
+      flex-direction: row !important;
+      justify-content: space-around;
+      align-items: center;
+      height: 60px;
+    }
+    
+    .tab-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      flex: 1;
+      position: relative;
+      -webkit-tap-highlight-color: transparent;
+      min-width: 60px;
+      max-width: 80px;
+    }
+    
+    .tab-item.active {
+      color: var(--brand-coral);
+    }
+    
+    .active-indicator {
+      position: absolute;
+      top: -2px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--brand-coral);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .tab-item.active .active-indicator {
+      opacity: 1;
+    }
+    
+    .tab-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .tab-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    
+    /* App Content Area */
+    .app-content {
+      padding-bottom: 5rem;
+    }
+    
+    /* === MODERN CTA BUTTON EFFECTS === */
+    .cta-modern {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--brand-coral) 0%, var(--brand-coral-dark) 100%);
+      border: none;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transform: translateY(0);
+    }
+
+    .cta-modern::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.7s ease;
+    }
+
+    .cta-modern:hover::before {
+      left: 100%;
+    }
+
+    .cta-modern:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 40px rgba(216, 69, 69, 0.4);
+    }
+
+    .cta-modern:active {
+      transform: translateY(-1px);
+    }
+
+    .cta-secondary {
+      background: transparent;
+      border: 2px solid var(--brand-coral);
+      color: var(--brand-coral);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s ease;
+    }
+
+    .cta-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--brand-coral);
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+
+    .cta-secondary:hover::before {
+      left: 0;
+    }
+
+    .cta-secondary:hover {
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* === GLASS MORPHISM DESIGN === */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.1),
+        0 2px 8px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .glass-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 
+        0 15px 40px rgba(0, 0, 0, 0.15),
+        0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+    
+    .glass-card:active {
+      transform: scale(0.98) translateY(2px);
+      box-shadow: 
+        0 4px 16px rgba(0, 0, 0, 0.1),
+        0 1px 4px rgba(0, 0, 0, 0.05);
+    }
+    
+    /* === SOCIAL FEED STYLES === */
+    .feed-item {
+      background: white;
+      border-radius: 16px;
+      margin-bottom: 1rem;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .feed-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+    
+    .feed-header {
+      padding: 1rem 1rem 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    
+    .feed-avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d84545, #111d40);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .feed-item:hover .feed-avatar {
+      transform: scale(1.1);
+    }
+    
+    .feed-content {
+      padding: 0 1rem 1rem;
+    }
+    
+    .feed-actions {
+      padding: 0.75rem 1rem;
+      border-top: 1px solid #f1f5f9;
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .action-btn:active {
+      background: #f8fafc;
+      transform: scale(0.95);
+    }
+    
+    /* === BOTTOM SHEET === */
+    .bottom-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 24px 24px 0 0;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.15);
+      z-index: 1100;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .bottom-sheet.open {
+      transform: translateY(0);
+    }
+    
+    .sheet-handle {
+      width: 3rem;
+      height: 0.25rem;
+      background: #e2e8f0;
+      border-radius: 0.125rem;
+      margin: 0.75rem auto;
+    }
+    
+    /* === SWIPEABLE SECTIONS === */
+    .swipe-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 1rem;
+      margin: 0 -1rem;
+    }
+    
+    .swipe-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .swipe-section {
+      scroll-snap-align: start;
+      flex: 0 0 85%;
+    }
+    
+    /* === PULL TO REFRESH === */
+    .refresh-indicator {
+      position: fixed;
+      top: -60px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      padding: 1rem;
+      background: var(--brand-coral);
+      color: white;
+      z-index: 1001;
+      transition: transform 0.3s ease;
+    }
+    
+    .refresh-indicator.active {
+      transform: translateY(60px);
+    }
+    
+    /* === PROGRESSIVE DISCLOSURE CARDS === */
+    .expandable-card {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+    }
+    
+    .card-preview {
+      padding: 1.5rem;
+    }
+    
+    .expand-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .expand-trigger:hover {
+      background: rgba(248, 250, 252, 0.5);
+    }
+    
+    .card-details {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    
+    .card-details.open {
+      max-height: 500px;
+    }
+    
+    /* === DESKTOP NAVIGATION === */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-container.scrolled {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* === AWARENESS AGENCY SECTION === */
+    .awareness-agency {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    
+    /* === FIXED MEDIA QUERIES === */
+    /* Show desktop elements only on desktop */
+    .desktop-only {
+      display: block;
+    }
+    
+    .mobile-only {
+      display: none;
+    }
+    
+    @media (max-width: 767px) {
+      .desktop-only {
+        display: none !important;
+      }
+      
+      .mobile-only {
+        display: flex !important; /* Changed to flex for horizontal layout */
+      }
+      
+      .mobile-optimized {
+        padding: 0 1rem;
+      }
+      
+      .mobile-section {
+        padding: 2rem 0;
+      }
+      
+      .mobile-heading {
+        font-size: 2rem;
+        line-height: 1.2;
+      }
+      
+      .mobile-subheading {
+        font-size: 1.125rem;
+        line-height: 1.4;
+      }
+      
+      .mobile-body {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      /* Ensure content doesn't hide behind nav */
+      .app-content {
+        padding-bottom: 5rem;
+      }
+
+      /* Force horizontal layout for mobile nav */
+      .app-tab-bar {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: space-around !important;
+      }
+      
+      .tab-item {
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+      }
+    }
+    
+    /* NEW: Enhanced brand sections */
+    .trust-signals {
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    }
+    
+    .testimonial-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    
+    .testimonial-card::before {
+      content: '"';
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-size: 4rem;
+      color: #f1f5f9;
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    /* Utility classes */
+    .text-balance {
+      text-wrap: balance;
+    }
+    
+    .ai-gradient-text {
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 5rem 0;
+      }
+    }
+
+    /* Fix white space between join and footer */
+    .join-section {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+    }
+    
+    footer {
+      margin-top: 0 !important;
+    }
+
+    /* Loading animation for images */
+    .image-loading {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite linear;
+    }
+    
+    /* NEW: Skeleton loading */
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 2s infinite linear;
+      border-radius: 4px;
+    }
+    
+    /* NEW: Enhanced focus states for accessibility */
+    .focus-brand:focus {
+      outline: 2px solid var(--brand-coral);
+      outline-offset: 2px;
+    }
+  </style>
 </head>
 <body class="bg-white">
 
+<!-- Desktop Navigation -->
 <nav class="nav-container desktop-only">
-    <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-            <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow reveal-onload animate-fade-in-left">AUXION</div>
-            <div class="hidden md:flex space-x-8">
-                <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction reveal-onload animate-fade-in-right" style="animation-delay: 0.1s">Awareness</a>
-                <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction reveal-onload animate-fade-in-right" style="animation-delay: 0.2s">Ecosystem</a>
-                <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction reveal-onload animate-fade-in-right" style="animation-delay: 0.3s">Insights</a>
-                <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction reveal-onload animate-fade-in-right" style="animation-delay: 0.4s">Community</a>
-                <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction reveal-onload animate-fade-in-right" style="animation-delay: 0.5s">Join</a>
-            </div>
-        </div>
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow animate-fade-in-left">AUXION</div>
+      <div class="hidden md:flex space-x-8">
+        <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.1s">Awareness</a>
+        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.2s">Ecosystem</a>
+        <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.3s">Insights</a>
+        <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.4s">Community</a>
+        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.5s">Join</a>
+      </div>
     </div>
+  </div>
 </nav>
 
+<!-- FIXED: Mobile App Navigation - Now properly horizontal -->
 <nav class="app-tab-bar mobile-only">
-    <a href="#hero" class="tab-item active" data-tab="home">
-        <i data-feather="home" class="tab-icon"></i>
-        <span class="tab-label">Home</span>
-        <div class="active-indicator"></div>
-    </a>
-    <a href="#ecosystem" class="tab-item" data-tab="ecosystem">
-        <i data-feather="grid" class="tab-icon"></i>
-        <span class="tab-label">Ecosystem</span>
-        <div class="active-indicator"></div>
-    </a>
-    <a href="#insights" class="tab-item" data-tab="insights">
-        <i data-feather="compass" class="tab-icon"></i>
-        <span class="tab-label">Insights</span>
-        <div class="active-indicator"></div>
-    </a>
-    <a href="#join" class="tab-item" data-tab="join">
-        <i data-feather="user" class="tab-icon"></i>
-        <span class="tab-label">Join</span>
-        <div class="active-indicator"></div>
-    </a>
+  <div class="tab-item active" data-tab="home">
+    <i data-feather="home" class="tab-icon"></i>
+    <span class="tab-label">Home</span>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="ecosystem">
+    <i data-feather="grid" class="tab-icon"></i>
+    <span class="tab-label">Ecosystem</span>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="insights">
+    <i data-feather="compass" class="tab-icon"></i>
+    <span class="tab-label">Insights</span>
+    <div class="active-indicator"></div>
+  </div>
+  
+  <div class="tab-item" data-tab="join">
+    <i data-feather="user" class="tab-icon"></i>
+    <span class="tab-label">Join</span>
+    <div class="active-indicator"></div>
+  </div>
 </nav>
 
+<!-- App Content Area -->
 <main class="app-content">
-    
-    <section id="hero" class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
-        <div class="hero-pattern"></div>
-        <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
-            
-            <div class="mb-8 reveal-onload animate-fade-in-up">
-                <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction">
-                    <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
-                    Vienna's Home for Responsible AI
-                </span>
-            </div>
-            
-            <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-reveal reveal-onload">
-                <span class="text-white" style="animation-delay: 0.1s;">People.</span>
-                <span class="text-white" style="animation-delay: 0.2s;">Change.</span>
-                <span class="text-brand-coral brand-glow" style="animation-delay: 0.3s;">Technology.</span>
-                <span class="text-white" style="animation-delay: 0.4s;">Together.</span>
-            </h1>
-            
-            <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading reveal-onload animate-fade-in-up" style="animation-delay: 0.5s">
-                Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
-            </p>
-            
-            <div class="flex flex-col md:flex-row gap-4 justify-center items-center reveal-onload animate-fade-in-up" style="animation-delay: 0.7s">
-                <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl md:w-auto focus-brand">
-                    Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
-                </a>
-                <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold md:w-auto focus-brand">
-                    Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
-                </a>
-            </div>
-            
-            <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 reveal-onload animate-fade-in-up" style="animation-delay: 0.9s">
-                <div class="flex items-center gap-2 text-gray-300">
-                    <i data-feather="users" class="w-5 h-5 text-brand-coral"></i>
-                    <span class="text-sm">200+ Members</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-300">
-                    <i data-feather="calendar" class="w-5 h-5 text-brand-coral"></i>
-                    <span class="text-sm">Monthly Events</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-300">
-                    <i data-feather="award" class="w-5 h-5 text-brand-coral"></i>
-                    <span class="text-sm">Vienna-Based</span>
-                </div>
-            </div>
+  <!-- Enhanced Hero Section -->
+  <section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
+    <div class="hero-pattern"></div>
+    <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+      <!-- Vienna Positioning -->
+      <div class="mb-8 animate-fade-in-up">
+        <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction">
+          <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
+          Vienna's Home for Responsible AI
+        </span>
+      </div>
+      
+      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
+        <span class="text-white">People.</span>
+        <span class="text-white">Change.</span>
+        <span class="text-brand-coral brand-glow">Technology.</span>
+        <span class="text-white">Together.</span>
+      </h1>
+      
+      <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
+        Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
+      </p>
+      
+      <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
+        <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
+          Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+        </a>
+        <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
+          Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
+        </a>
+      </div>
+      
+      <!-- NEW: Trust indicators -->
+      <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="users" class="w-5 h-5 text-brand-coral"></i>
+          <span class="text-sm">200+ Members</span>
         </div>
-    </section>
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="calendar" class="w-5 h-5 text-brand-coral"></i>
+          <span class="text-sm">Monthly Events</span>
+        </div>
+        <div class="flex items-center gap-2 text-gray-300">
+          <i data-feather="award" class="w-5 h-5 text-brand-coral"></i>
+          <span class="text-sm">Vienna-Based</span>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="value" class="section-padding bg-white mobile-section">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16 stagger-reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Why Auxion</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body">
-                    We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
-                </p>
+  <!-- ENHANCED: Value Proposition Section with animated cards -->
+  <section id="value" class="section-padding bg-white mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility. By uniting diverse voices, we turn awareness into agency and ideas into impact. Auxion ensures innovation stays human-first, ethical and inclusive.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-animate">
+        <!-- Card 1: Ethical Foundation -->
+        <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-brand-coral-dark rounded-2xl flex items-center justify-center">
+              <i data-feather="shield" class="text-white w-8 h-8"></i>
+            </div>
+            <!-- Sparkle effects -->
+            <div class="sparkle top-0 left-0" style="animation-delay: 0.2s"></div>
+            <div class="sparkle top-0 right-0" style="animation-delay: 0.4s"></div>
+            <div class="sparkle bottom-0 left-0" style="animation-delay: 0.6s"></div>
+            <div class="sparkle bottom-0 right-0" style="animation-delay: 0.8s"></div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 animate-text-glow">Ethical Foundation</h3>
+            <p class="text-gray-600 mb-4">We believe AI should be developed with human values at its core, ensuring technology enhances human potential.</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-brand-coral/10 text-brand-coral rounded-full text-sm font-medium animate-pulse-glow">
+                Human-Centered
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 2: Collaborative Innovation -->
+        <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-brand-blue to-blue-800 rounded-2xl flex items-center justify-center">
+              <i data-feather="git-merge" class="text-white w-8 h-8"></i>
+            </div>
+            <!-- Sparkle effects -->
+            <div class="sparkle top-0 left-0" style="animation-delay: 0.3s"></div>
+            <div class="sparkle top-0 right-0" style="animation-delay: 0.5s"></div>
+            <div class="sparkle bottom-0 left-0" style="animation-delay: 0.7s"></div>
+            <div class="sparkle bottom-0 right-0" style="animation-delay: 0.9s"></div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 animate-text-glow">Collaborative Innovation</h3>
+            <p class="text-gray-600 mb-4">Breaking down silos between academia, industry and society to create solutions that work for everyone, not just a select few.</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-medium animate-pulse-glow">
+                Cross-Disciplinary
+              </span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Card 3: Vienna's Compass -->
+        <div class="value-card p-6 md:p-8">
+          <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center">
+              <i data-feather="compass" class="text-white w-8 h-8"></i>
+            </div>
+            <!-- Sparkle effects -->
+            <div class="sparkle top-0 left-0" style="animation-delay: 0.4s"></div>
+            <div class="sparkle top-0 right-0" style="animation-delay: 0.6s"></div>
+            <div class="sparkle bottom-0 left-0" style="animation-delay: 0.8s"></div>
+            <div class="sparkle bottom-0 right-0" style="animation-delay: 1s"></div>
+          </div>
+          <div class="value-card-content text-center md:text-left">
+            <h3 class="text-xl font-bold text-brand-blue mb-4 animate-text-glow">Vienna's Compass</h3>
+            <p class="text-gray-600 mb-4">Vienna is emerging as the European hub for Digital Humanism, building on its rich tradition of humanistic innovation to shape technology that serves people, society and democracy..</p>
+            <div class="flex justify-center md:justify-start">
+              <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm font-medium animate-pulse-glow">
+                Vienna-Focused
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEW: Awareness Agency Section -->
+  <section id="awareness" class="section-padding awareness-agency mobile-section">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+      
+      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        Vienna's premier collaborative hub for responsible AI Innovation
+      </p>
+
+      <!-- Desktop Awareness Cards -->
+      <div class="desktop-only grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto stagger-animate">
+        <div class="glass-card p-8 text-left">
+          <div class="w-16 h-16 bg-brand-coral rounded-2xl flex items-center justify-center mb-6 animate-float">
+            <i data-feather="eye" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-blue mb-4">Awareness</h3>
+          <p class="text-gray-600 mb-6">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights.</p>
+          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
+            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+        
+        <div class="glass-card p-8 text-left">
+          <div class="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1s">
+            <i data-feather="zap" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-2xl font-bold text-brand-blue mb-4">Agency</h3>
+          <p class="text-gray-600 mb-6">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations.</p>
+          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
+            Take Action <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Mobile Expandable Cards -->
+      <div class="mobile-only space-y-4 stagger-animate">
+        <div class="expandable-card glass-card">
+          <div class="card-preview">
+            <button class="expand-trigger" data-expand="awareness">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-brand-coral rounded-xl flex items-center justify-center">
+                  <i data-feather="eye" class="text-white"></i>
+                </div>
+                <div class="text-left">
+                  <h3 class="font-bold text-brand-blue">Awareness</h3>
+                  <p class="text-sm text-gray-600">Understand the AI landscape</p>
+                </div>
+              </div>
+              <i data-feather="chevron-down" class="expand-icon text-gray-400 transition-transform duration-300"></i>
+            </button>
+          </div>
+          <div class="card-details" id="awareness-details">
+            <div class="p-4 border-t border-gray-100">
+              <p class="text-gray-600 mb-4">Access curated resources, research papers, and foundational knowledge about responsible AI development and ethical considerations.</p>
+              <a href="#" class="text-brand-coral font-semibold text-sm group">
+                Explore Resources <i data-feather="arrow-right" class="ml-1 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="expandable-card glass-card">
+          <div class="card-preview">
+            <button class="expand-trigger" data-expand="agency">
+              <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-brand-blue rounded-xl flex items-center justify-center">
+                  <i data-feather="zap" class="text-white"></i>
+                </div>
+                <div class="text-left">
+                  <h3 class="font-bold text-brand-blue">Agency</h3>
+                  <p class="text-sm text-gray-600">Transform knowledge into action</p>
+                </div>
+              </div>
+              <i data-feather="chevron-down" class="expand-icon text-gray-400 transition-transform duration-300"></i>
+            </button>
+          </div>
+          <div class="card-details" id="agency-details">
+            <div class="p-4 border-t border-gray-100">
+              <p class="text-gray-600 mb-4">Participate in collaborative projects, community initiatives and real-world implementations that create meaningful impact.</p>
+              <a href="#" class="text-brand-coral font-semibold text-sm group">
+                Take Action <i data-feather="arrow-right" class="ml-1 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ecosystem Visualization Section -->
+  <section id="ecosystem" class="section-padding bg-white mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12 md:mb-16">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Auxion Ecosystem</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          Creating meaningful impact by bringing together Vienna's diverse AI voices from academia, business, research and activism
+        </p>
+      </div>
+      
+      <!-- Desktop Ecosystem Grid -->
+      <div class="desktop-only grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto stagger-animate">
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float">
+            <i data-feather="users" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-blue mb-2">Students</h3>
+          <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 0.5s">
+            <i data-feather="book" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-blue mb-2">Researchers</h3>
+          <p class="text-gray-600 text-sm">Pioneering ethical AI research and innovation</p>
+        </div>
+        
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1s">
+            <i data-feather="briefcase" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-blue mb-2">Industry</h3>
+          <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
+        </div>
+
+        <div class="text-center">
+          <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4 animate-float" style="animation-delay: 1.5s">
+            <i data-feather="heart" class="text-white w-8 h-8"></i>
+          </div>
+          <h3 class="text-lg font-semibold text-brand-blue mb-2">Activists</h3>
+          <p class="text-gray-600 text-sm">Advocating for ethical AI practices</p>
+        </div>
+      </div>
+
+      <!-- Mobile Swipeable Ecosystem -->
+      <div class="mobile-only">
+        <div class="swipe-container flex overflow-x-auto pb-4 -mx-4 px-4">
+          <div class="swipe-section pr-4">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.1s">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="users" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Students</h3>
+              <p class="text-gray-600 text-sm">Emerging voices shaping tomorrow's AI landscape</p>
+            </div>
+          </div>
+          
+          <div class="swipe-section pr-4">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.2s">
+              <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="book" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Researchers</h3>
+              <p class="text-gray-600 text-sm">Pioneering ethical AI research</p>
+            </div>
+          </div>
+          
+          <div class="swipe-section pr-4">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom">
+              <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="briefcase" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Industry</h3>
+              <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
+            </div>
+          </div>
+
+          <div class="swipe-section">
+            <div class="glass-card p-6 text-center animate-slide-in-bottom" style="animation-delay: 0.3s">
+              <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="heart" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Activists</h3>
+              <p class="text-gray-600 text-sm">Advocating for ethical AI practices</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Style Insights Feed -->
+  <section id="insights" class="section-padding bg-gray-50 mobile-section">
+    <div class="max-w-2xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
+        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
+      </div>
+
+      <!-- Social Feed -->
+      <div class="space-y-4 stagger-animate">
+        <!-- Feed Item 1 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar">AU</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">Auxion Team</h4>
+              <span class="text-sm text-gray-500">2 days ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
+            <p class="text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-xl mb-4 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                   alt="AI Awareness" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-sm">87</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-sm">23</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Item 2 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">AR</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">AI Research Vienna</h4>
+              <span class="text-sm text-gray-500">1 week ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
+            <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-xl mb-4 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                   alt="AGI Discussion" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-sm">124</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-sm">42</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Item 3 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DH</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">Digital Humanism Initiative</h4>
+              <span class="text-sm text-gray-500">2 weeks ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
+            <p class="text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-xl mb-4 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                   alt="Digital Humanism" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-sm">56</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-sm">18</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Load More Button -->
+      <div class="text-center mt-8 animate-fade-in-up" style="animation-delay: 0.4s">
+        <button class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+          Load More Insights
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="section-padding trust-signals mobile-section">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          Hear from Vienna's AI community about their experiences with Auxion
+        </p>
+      </div>
+      
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-animate">
+  <div class="testimonial-card">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+        MS
+      </div>
+      <div>
+        <h4 class="font-semibold text-brand-blue">Maria Schmidt</h4>
+        <p class="text-sm text-gray-500">AI Researcher, TU Vienna</p>
+      </div>
+    </div>
+    <p class="text-gray-600 italic">
+      "Technology evolves faster than our understanding of its consequences. Reflecting on who benefits, who is left behind, and how ethical principles can guide design is essential if we want AI to serve society responsibly."
+    </p>
+  </div>
+  
+  <div class="testimonial-card">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+        TK
+      </div>
+      <div>
+        <h4 class="font-semibold text-brand-blue">Thomas Klein</h4>
+        <p class="text-sm text-gray-500">Tech Entrepreneur</p>
+      </div>
+    </div>
+    <p class="text-gray-600 italic">
+      "As we integrate AI into daily life, the most important questions are not technical but societal: how do we ensure fairness, transparency and accountability?"
+    </p>
+  </div>
+  
+  <div class="testimonial-card">
+    <div class="flex items-center mb-4">
+      <div class="w-12 h-12 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-4">
+        LS
+      </div>
+      <div>
+        <h4 class="font-semibold text-brand-blue">Lena Schmidt</h4>
+        <p class="text-sm text-gray-500">Graduate Student, Digital Ethics</p>
+      </div>
+    </div>
+    <p class="text-gray-600 italic">
+      "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
+    </p>
+  </div>
+</div>
+
+  <!-- Join Ecosystem Section -->
+  <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+      
+      <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        Become part of Vienna's premier collaborative hub for responsible AI innovation
+      </p>
+
+      <div class="glass-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+            <div>
+              <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
+              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
+                <option value="">Select your role</option>
+                <option value="student">Student / Learner</option>
+                <option value="researcher">Researcher / Academic</option>
+                <option value="industry">Industry Professional</option>
+                <option value="activist">Activist / Advocate</option>
+                <option value="other">Other</option>
+              </select>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-reveal stagger-cards">
-                <div class="value-card p-6 md:p-8 card-reveal">
-                    <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-brand-coral to-brand-coral-dark rounded-2xl flex items-center justify-center">
-                            <i data-feather="shield" class="text-white w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="value-card-content text-center md:text-left">
-                        <h3 class="text-xl font-bold text-brand-blue mb-4">Ethical Foundation</h3>
-                        <p class="text-gray-600 mb-4">We believe AI should be developed with human values at its core, ensuring technology enhances human potential.</p>
-                        <div class="flex justify-center md:justify-start">
-                            <span class="inline-block px-3 py-1 bg-brand-coral/10 text-brand-coral rounded-full text-sm font-medium">
-                                Human-Centered
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="value-card p-6 md:p-8 card-reveal">
-                    <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-brand-blue to-blue-800 rounded-2xl flex items-center justify-center">
-                            <i data-feather="git-merge" class="text-white w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="value-card-content text-center md:text-left">
-                        <h3 class="text-xl font-bold text-brand-blue mb-4">Collaborative Innovation</h3>
-                        <p class="text-gray-600 mb-4">Breaking down silos between academia, industry and society to create solutions that work for everyone, not just a select few.</p>
-                        <div class="flex justify-center md:justify-start">
-                            <span class="inline-block px-3 py-1 bg-brand-blue/10 text-brand-blue rounded-full text-sm font-medium">
-                                Cross-Disciplinary
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="value-card p-6 md:p-8 card-reveal">
-                    <div class="value-card-icon relative mb-6 mx-auto md:mx-0 flex justify-center">
-                        <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-2xl flex items-center justify-center">
-                            <i data-feather="compass" class="text-white w-8 h-8"></i>
-                        </div>
-                    </div>
-                    <div class="value-card-content text-center md:text-left">
-                        <h3 class="text-xl font-bold text-brand-blue mb-4">Vienna's Compass</h3>
-                        <p class="text-gray-600 mb-4">Vienna is emerging as the European hub for Digital Humanism, building on its rich tradition of humanistic innovation to shape technology that serves people, society and democracy..</p>
-                        <div class="flex justify-center md:justify-start">
-                            <span class="inline-block px-3 py-1 bg-purple-500/10 text-purple-600 rounded-full text-sm font-medium">
-                                Vienna-Focused
-                            </span>
-                        </div>
-                    </div>
-                </div>
+            <div>
+              <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
+              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
+                <option value="">Select interest area</option>
+                <option value="ethics">AI Ethics & Governance</option>
+                <option value="technical">Technical Development</option>
+                <option value="policy">Policy & Regulation</option>
+                <option value="education">Education & Awareness</option>
+                <option value="research">Research Collaboration</option>
+              </select>
             </div>
+          </div>
+          
+          <div>
+            <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
+            <input type="email" placeholder="Enter your email" required
+                class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
+          </div>
+          
+          <button type="submit"
+              class="w-full cta-modern text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold focus-brand">
+              Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
+          </button>
+        </form>
+        
+        <p class="text-gray-300 text-sm mt-6 mobile-body">
+          By joining, you become part of Vienna's collaborative network working towards responsible AI innovation
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MOVED: Partners Section - Now between Join and Footer -->
+  <section class="section-padding trust-signals mobile-section">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Trusted by Vienna's AI Community</h2>
+        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Partners and supporters of our mission</p>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-70 stagger-animate">
+        <div class="flex justify-center">
+          <div class="h-12 bg-gray-200 rounded-lg w-32 skeleton"></div>
         </div>
-    </section>
-
-    <section id="awareness" class="section-padding-tight awareness-agency mobile-section">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading stagger-reveal">From Awareness to Agency</h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 stagger-reveal" style="animation-delay: 0.1s"></div>
-            
-            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto mobile-body stagger-reveal" style="animation-delay: 0.2s">
-                Vienna's premier collaborative hub for responsible AI Innovation
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto stagger-reveal stagger-cards">
-                <div class="glass-card p-8 text-left card-reveal">
-                    <div class="w-16 h-16 bg-brand-coral rounded-2xl flex items-center justify-center mb-6 animate-float">
-                        <i data-feather="eye" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-brand-blue mb-4">Awareness</h3>
-                    <p class="text-gray-600 mb-6">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights.</p>
-                    <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
-                        Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-                    </a>
-                </div>
-                
-                <div class="glass-card p-8 text-left card-reveal">
-                    <div class="w-16 h-16 bg-brand-blue rounded-2xl flex items-center justify-center mb-6 animate-float" style="animation-delay: 1s">
-                        <i data-feather="zap" class="text-white w-8 h-8"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold text-brand-blue mb-4">Agency</h3>
-                    <p class="text-gray-600 mb-6">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations.</p>
-                    <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group">
-                        Take Action <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-                    </a>
-                </div>
-            </div>
+        <div class="flex justify-center">
+          <div class="h-12 bg-gray-200 rounded-lg w-32 skeleton"></div>
         </div>
-    </section>
-    
-    <section id="ecosystem" class="section-padding bg-white mobile-section">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16 stagger-reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">The Auxion Ecosystem</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body">
-                    We are a collaborative network of academics, industry professionals, policymakers, and citizens.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center stagger-reveal stagger-cards">
-                <div class="glass-card p-6 card-reveal">
-                    <i data-feather="monitor" class="w-10 h-10 text-brand-coral mb-4 animate-icon-pulse"></i>
-                    <h3 class="text-xl font-bold text-brand-blue mb-2">Industry Leaders</h3>
-                    <p class="text-gray-600 text-sm">Driving ethical implementation.</p>
-                </div>
-                <div class="glass-card p-6 card-reveal">
-                    <i data-feather="book-open" class="w-10 h-10 text-brand-blue mb-4 animate-icon-pulse"></i>
-                    <h3 class="text-xl font-bold text-brand-blue mb-2">Academia</h3>
-                    <p class="text-gray-600 text-sm">Pioneering research and ethics.</p>
-                </div>
-                <div class="glass-card p-6 card-reveal">
-                    <i data-feather="users" class="w-10 h-10 text-purple-600 mb-4 animate-icon-pulse"></i>
-                    <h3 class="text-xl font-bold text-brand-blue mb-2">Citizen Voices</h3>
-                    <p class="text-gray-600 text-sm">Ensuring human oversight.</p>
-                </div>
-                <div class="glass-card p-6 card-reveal">
-                    <i data-feather="settings" class="w-10 h-10 text-green-500 mb-4 animate-icon-pulse"></i>
-                    <h3 class="text-xl font-bold text-brand-blue mb-2">Policy Makers</h3>
-                    <p class="text-gray-600 text-sm">Shaping fair regulations.</p>
-                </div>
-            </div>
-            
+        <div class="flex justify-center">
+          <div class="h-12 bg-gray-200 rounded-lg w-32 skeleton"></div>
         </div>
-    </section>
-
-    <section id="insights" class="section-padding-tight awareness-agency mobile-section">
-        <div class="max-w-6xl mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16 stagger-reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Latest Insights</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body">
-                    Stay current with our community's latest discussions, events, and breakthroughs.
-                </p>
-            </div>
-
-            <div class="mobile-only">
-                <div class="swipe-container flex gap-4 overflow-x-scroll snap-x mandatory">
-                    <div class="feed-item swipe-section flex-shrink-0 w-11/12 card-reveal">
-                        <div class="feed-header">
-                            <div class="feed-avatar">A</div>
-                            <div>
-                                <p class="font-semibold text-brand-blue">Auxion Official</p>
-                                <p class="text-sm text-gray-500">2 hours ago</p>
-                            </div>
-                        </div>
-                        <div class="feed-content">
-                            <p class="text-gray-700">Thrilled to announce our next Ethics Workshop focusing on the EU AI Act. Sign up now! #ResponsibleAI #EUAIAct</p>
-                        </div>
-                        <div class="feed-actions">
-                            <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand">
-                                <i data-feather="heart" class="w-4 h-4"></i> Like
-                            </button>
-                            <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand">
-                                <i data-feather="message-circle" class="w-4 h-4"></i> Comment
-                            </button>
-                        </div>
-                    </div>
-                    <div class="feed-item swipe-section flex-shrink-0 w-11/12 card-reveal">
-                        <div class="feed-header">
-                            <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">J</div>
-                            <div>
-                                <p class="font-semibold text-brand-blue">Jane Doe (Policy)</p>
-                                <p class="text-sm text-gray-500">Yesterday</p>
-                            </div>
-                        </div>
-                        <div class="feed-content">
-                            <p class="text-gray-700">Fascinating discussion on data governance and citizen trust. Highly recommend the thread from @ViennaAI. #DigitalHumanism</p>
-                        </div>
-                        <div class="feed-actions">
-                            <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand">
-                                <i data-feather="heart" class="w-4 h-4"></i> Like
-                            </button>
-                            <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand">
-                                <i data-feather="message-circle" class="w-4 h-4"></i> Comment
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="desktop-only grid grid-cols-3 gap-8 stagger-reveal stagger-cards">
-                <div class="feed-item card-reveal">
-                    <div class="feed-header">
-                        <div class="feed-avatar">A</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Auxion Official</p>
-                            <p class="text-sm text-gray-500">2 hours ago</p>
-                        </div>
-                    </div>
-                    <div class="feed-content">
-                        <p class="text-gray-700">Thrilled to announce our next Ethics Workshop focusing on the EU AI Act. Sign up now! #ResponsibleAI #EUAIAct</p>
-                    </div>
-                    <div class="feed-actions">
-                        <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand">
-                            <i data-feather="heart" class="w-4 h-4"></i> Like
-                        </button>
-                        <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand">
-                            <i data-feather="message-circle" class="w-4 h-4"></i> Comment
-                        </button>
-                    </div>
-                </div>
-                <div class="feed-item card-reveal" style="animation-delay: 0.1s;">
-                    <div class="feed-header">
-                        <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">J</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Jane Doe (Policy)</p>
-                            <p class="text-sm text-gray-500">Yesterday</p>
-                        </div>
-                    </div>
-                    <div class="feed-content">
-                        <p class="text-gray-700">Fascinating discussion on data governance and citizen trust. Highly recommend the thread from @ViennaAI. #DigitalHumanism</p>
-                    </div>
-                    <div class="feed-actions">
-                        <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand">
-                            <i data-feather="heart" class="w-4 h-4"></i> Like
-                        </button>
-                        <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand">
-                            <i data-feather="message-circle" class="w-4 h-4"></i> Comment
-                        </button>
-                    </div>
-                </div>
-                <div class="feed-item card-reveal" style="animation-delay: 0.2s;">
-                    <div class="feed-header">
-                        <div class="feed-avatar" style="background: linear-gradient(135deg, #9333ea, #6d28d9);">M</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Mark Smith (Research)</p>
-                            <p class="text-sm text-gray-500">3 days ago</p>
-                        </div>
-                    </div>
-                    <div class="feed-content">
-                        <p class="text-gray-700">My new paper on "Explainable AI in Public Services" is out. Feedback from the Auxion group was invaluable! Link in bio.</p>
-                    </div>
-                    <div class="feed-actions">
-                        <button class="action-btn text-brand-coral hover:bg-brand-coral/10 focus-brand">
-                            <i data-feather="heart" class="w-4 h-4"></i> Like
-                        </button>
-                        <button class="action-btn text-brand-blue hover:bg-brand-blue/10 focus-brand">
-                            <i data-feather="message-circle" class="w-4 h-4"></i> Comment
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="text-center mt-12 stagger-reveal" style="animation-delay: 0.3s">
-                <a href="#" class="cta-modern text-white font-semibold px-8 py-4 rounded-2xl shadow-xl focus-brand">
-                    View All Insights <i data-feather="link" class="ml-2 inline-block"></i>
-                </a>
-            </div>
+        <div class="flex justify-center">
+          <div class="h-12 bg-gray-200 rounded-lg w-32 skeleton"></div>
         </div>
-    </section>
-
-    <section id="testimonials" class="section-padding bg-white mobile-section">
-        <div class="max-w-7xl mx-auto px-4">
-            <div class="text-center mb-12 md:mb-16 stagger-reveal">
-                <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">The Community Speaks</h2>
-                <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body">
-                    Hear from the diverse individuals making a difference in Vienna's AI landscape.
-                </p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 stagger-reveal stagger-cards">
-                <div class="testimonial-card card-reveal">
-                    <p class="text-xl text-gray-800 italic mb-6 relative z-10">"Auxion has provided the crucial link between theoretical ethics and practical application. The collaborative spirit is unmatched."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-brand-blue flex items-center justify-center text-white font-bold">A</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Anna Huber</p>
-                            <p class="text-sm text-gray-500">Tech Ethicist</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card card-reveal">
-                    <p class="text-xl text-gray-800 italic mb-6 relative z-10">"The monthly meetups are essential for networking and staying ahead of policy changes. It's truly Vienna's AI compass."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-brand-coral flex items-center justify-center text-white font-bold">L</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Lukas Wagner</p>
-                            <p class="text-sm text-gray-500">Startup Founder</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="testimonial-card desktop-only card-reveal">
-                    <p class="text-xl text-gray-800 italic mb-6 relative z-10">"Before Auxion, I felt siloed. Now I'm actively shaping the conversation on Digital Humanism with peers."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold">M</div>
-                        <div>
-                            <p class="font-semibold text-brand-blue">Maria Schmidt</p>
-                            <p class="text-sm text-gray-500">Gov. Advisor</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="join" class="section-padding-tight awareness-agency mobile-section join-section">
-        <div class="max-w-4xl mx-auto px-4 text-center">
-            <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading stagger-reveal">Ready to Shape the Future?</h2>
-            <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 stagger-reveal" style="animation-delay: 0.1s"></div>
-            
-            <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-3xl mx-auto mobile-body stagger-reveal" style="animation-delay: 0.2s">
-                Join Vienna's collaborative hub and contribute to a human-centered AI future.
-            </p>
-
-            <a href="#" class="cta-modern text-white font-semibold px-10 py-5 rounded-2xl shadow-2xl focus-brand stagger-reveal" style="animation-delay: 0.3s">
-                Register for Free <i data-feather="log-in" class="ml-2 inline-block"></i>
-            </a>
-        </div>
-    </section>
-
+      </div>
+    </div>
+  </section>
 </main>
 
-<footer class="bg-brand-blue text-white py-12">
-    <div class="max-w-7xl mx-auto px-4">
-        <div class="grid grid-cols-2 md:grid-cols-5 gap-8">
-            <div>
-                <h4 class="text-lg font-bold mb-4 text-brand-coral font-orbitron">Auxion</h4>
-                <p class="text-sm text-gray-300">Vienna, Austria</p>
-                <p class="text-sm text-gray-300">Responsible AI Hub</p>
-            </div>
-            <div>
-                <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
-                <ul>
-                    <li><a href="#awareness" class="text-gray-300 hover:text-brand-coral text-sm transition">Awareness</a></li>
-                    <li><a href="#ecosystem" class="text-gray-300 hover:text-brand-coral text-sm transition">Ecosystem</a></li>
-                    <li><a href="#insights" class="text-gray-300 hover:text-brand-coral text-sm transition">Insights</a></li>
-                    <li><a href="#join" class="text-gray-300 hover:text-brand-coral text-sm transition">Join Us</a></li>
-                </ul>
-            </div>
-            <div class="desktop-only">
-                <h4 class="text-lg font-semibold mb-4">Resources</h4>
-                <ul>
-                    <li><a href="#" class="text-gray-300 hover:text-brand-coral text-sm transition">AI Act Tracker</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-brand-coral text-sm transition">Digital Humanism</a></li>
-                    <li><a href="#" class="text-gray-300 hover:text-brand-coral text-sm transition">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="col-span-2 md:col-span-2">
-                <h4 class="text-lg font-semibold mb-4">Stay Connected</h4>
-                <div class="flex space-x-4">
-                    <a href="#" class="text-white hover:text-brand-coral micro-interaction"><i data-feather="twitter" class="w-6 h-6"></i></a>
-                    <a href="#" class="text-white hover:text-brand-coral micro-interaction"><i data-feather="linkedin" class="w-6 h-6"></i></a>
-                    <a href="#" class="text-white hover:text-brand-coral micro-interaction"><i data-feather="mail" class="w-6 h-6"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="mt-8 pt-6 border-t border-gray-700 text-center">
-            <p class="text-sm text-gray-500">&copy; 2025 Auxion. All rights reserved. Built with ❤️ in Vienna.</p>
-        </div>
+<!-- Footer -->
+<footer class="py-12 md:py-16 bg-gray-900 text-gray-400">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <div class="mb-8">
+      <h3 class="text-2xl font-bold text-white mb-4 font-orbitron brand-glow">AUXION</h3>
+      <p class="text-gray-400 max-w-md mx-auto mobile-body">
+        Vienna's collaborative hub where diverse voices shape the future of responsible AI
+      </p>
     </div>
+    
+   <div class="flex justify-center space-x-4 md:space-x-6 mb-8">
+  <a href="https://www.linkedin.com/company/auxion.io" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+    <i data-feather="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
+  </a>
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+        <i data-feather="twitter" class="w-5 h-5 md:w-6 md:h-6"></i>
+      </a>
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+        <i data-feather="mail" class="w-5 h-5 md:w-6 md:h-6"></i>
+      </a>
+    </div>
+    
+    <div class="max-w-md mx-auto mb-8">
+      <p class="mb-2 mobile-body">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-coral transition-colors duration-300">info@auxion.io</a></p>
+      <p class="text-sm mobile-body">Vienna, Austria</p>
+    </div>
+    
+    <p class="text-sm mobile-body">&copy; 2025 Auxion. Vienna's Home for Responsible AI Innovation.</p>
+  </div>
 </footer>
 
-
 <script>
+  document.addEventListener('DOMContentLoaded', function() {
     // Initialize Feather Icons
     feather.replace();
-
-    // === JS for Scroll-Based Animations (Intersection Observer) ===
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = entry.target;
-
-                // For Staggering Cards/Lists
-                if (target.classList.contains('stagger-cards')) {
-                    target.classList.add('stagger-active');
-                    // Add the base animation class to all children for the staggering effect
-                    Array.from(target.children).forEach(child => {
-                        child.classList.add('animate-fade-in-up');
-                    });
-                } 
-                // For Single Element Reveals
-                else {
-                    target.classList.add('animate-fade-in-up');
-                }
-                
-                // For Hero Text Stagger (since it's not a flex/grid container)
-                if (target.classList.contains('stagger-reveal')) {
-                    Array.from(target.children).forEach((child, index) => {
-                         // Apply a slight delay to children that don't have a specific inline style
-                        if (!child.style.animationDelay) {
-                           child.style.animationDelay = `${0.1 + index * 0.1}s`;
-                        }
-                        child.classList.add('animate-fade-in-up');
-                    });
-                }
-
-
-                observer.unobserve(target);
-            }
-        });
-    }, observerOptions);
-
-    // Observe all elements marked for reveal (staggered or single)
-    document.querySelectorAll('.stagger-cards, .stagger-reveal').forEach(el => {
-        observer.observe(el);
-    });
     
-    // Trigger animations for elements that load immediately (Hero)
-    document.querySelectorAll('.reveal-onload').forEach(el => {
-        el.classList.add(el.classList.contains('animate-fade-in-left') ? 'animate-fade-in-left' : (el.classList.contains('animate-fade-in-right') ? 'animate-fade-in-right' : 'animate-fade-in-up'));
-        el.classList.remove('reveal-onload');
-    });
-
-    // === Navigation Scroll Effect ===
-    const nav = document.querySelector('.nav-container');
-    if (nav) {
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
+    // Initialize animations on page load
+    function initAnimations() {
+      const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom');
+      
+      animatedElements.forEach((el, index) => {
+        // Remove existing animation classes
+        el.classList.remove('animate-fade-in-up', 'animate-fade-in-left', 'animate-fade-in-right', 'animate-slide-in-bottom');
+        
+        // Re-add after a small delay to trigger animation
+        setTimeout(() => {
+          const originalClasses = Array.from(el.classList).filter(cls => 
+            cls.startsWith('animate-') || cls === 'stagger-animate'
+          );
+          originalClasses.forEach(cls => el.classList.add(cls));
+        }, 100);
+      });
     }
 
-    // === Mobile Tab Bar Active State ===
-    document.querySelectorAll('.app-tab-bar a').forEach(item => {
-        item.addEventListener('click', (e) => {
-            // Remove active from all
-            document.querySelectorAll('.app-tab-bar a').forEach(link => link.classList.remove('active'));
-            // Add active to clicked item
-            e.currentTarget.classList.add('active');
-        });
+    // Run animations after page load
+    setTimeout(initAnimations, 100);
+    
+    // Mobile Tab Navigation
+    const tabItems = document.querySelectorAll('.tab-item');
+    
+    tabItems.forEach(item => {
+      item.addEventListener('click', function() {
+        const tabName = this.getAttribute('data-tab');
+        
+        // Remove active class from all tabs
+        tabItems.forEach(tab => tab.classList.remove('active'));
+        
+        // Add active class to clicked tab
+        this.classList.add('active');
+        
+        // Scroll to corresponding section
+        if (tabName === 'home') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          const targetSection = document.getElementById(tabName);
+          if (targetSection) {
+            const offsetTop = targetSection.offsetTop - 20;
+            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+          }
+        }
+      });
     });
+    
+    // Enhanced value card interactions
+    const valueCards = document.querySelectorAll('.value-card');
+    
+    valueCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        this.style.transform = 'translateY(-10px) rotateX(5deg) rotateY(5deg)';
+        this.style.boxShadow = '0 25px 50px rgba(0, 0, 0, 0.15)';
+        
+        const icon = this.querySelector('.value-card-icon');
+        if (icon) {
+          icon.style.transform = 'scale(1.2) rotate(5deg)';
+        }
+        
+        const content = this.querySelector('.value-card-content');
+        if (content) {
+          content.style.transform = 'translateY(-5px)';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        this.style.transform = 'translateY(0) rotateX(0) rotateY(0)';
+        this.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.05)';
+        
+        const icon = this.querySelector('.value-card-icon');
+        if (icon) {
+          icon.style.transform = 'scale(1) rotate(0)';
+        }
+        
+        const content = this.querySelector('.value-card-content');
+        if (content) {
+          content.style.transform = 'translateY(0)';
+        }
+      });
+    });
+    
+    // Expandable Cards
+    const expandTriggers = document.querySelectorAll('.expand-trigger');
+    
+    expandTriggers.forEach(trigger => {
+      trigger.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-expand') + '-details';
+        const targetDetails = document.getElementById(targetId);
+        const icon = this.querySelector('.expand-icon');
+        
+        if (targetDetails.classList.contains('open')) {
+          targetDetails.classList.remove('open');
+          icon.style.transform = 'rotate(0deg)';
+        } else {
+          targetDetails.classList.add('open');
+          icon.style.transform = 'rotate(180deg)';
+        }
+        
+        // Re-initialize Feather Icons for the rotated icon
+        feather.replace();
+      });
+    });
+    
+    // Social Feed Interactions
+    const likeButtons = document.querySelectorAll('.like-btn');
+    
+    likeButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const icon = this.querySelector('i');
+        const count = this.querySelector('span');
+        
+        if (icon.getAttribute('data-feather') === 'heart') {
+          // Change to filled heart
+          icon.setAttribute('data-feather', 'heart');
+          // Update like count
+          count.textContent = parseInt(count.textContent) + 1;
+          // Add visual feedback
+          this.style.color = '#d84545';
+        } else {
+          // Change back to outline heart
+          icon.setAttribute('data-feather', 'heart');
+          // Update like count
+          count.textContent = parseInt(count.textContent) - 1;
+          // Remove visual feedback
+          this.style.color = '';
+        }
+        feather.replace();
+      });
+    });
+    
+    // Add scroll effect to desktop navigation
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('.nav-container');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for desktop navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+
+    // Image loading animation
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+      img.addEventListener('load', function() {
+        this.classList.remove('image-loading');
+      });
+      
+      if (!img.complete) {
+        img.classList.add('image-loading');
+      }
+    });
+  });
 </script>
 </body>
 </html>
