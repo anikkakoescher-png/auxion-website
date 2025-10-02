@@ -167,8 +167,8 @@
       border-top: 1px solid rgba(0, 0, 0, 0.08);
       z-index: 1000;
       padding: 0.5rem 0;
-      display: flex !important; /* Force flex display */
-      flex-direction: row !important; /* Ensure horizontal layout */
+      display: flex;
+      flex-direction: row;
       justify-content: space-around;
       align-items: center;
     }
@@ -184,7 +184,7 @@
       flex: 1;
       position: relative;
       -webkit-tap-highlight-color: transparent;
-      min-width: 60px; /* Ensure minimum width */
+      min-width: 60px;
     }
     
     .tab-item.active {
@@ -546,12 +546,6 @@
       .app-content {
         padding-bottom: 5rem;
       }
-
-      /* Force horizontal layout for mobile nav */
-      .app-tab-bar {
-        display: flex !important;
-        flex-direction: row !important;
-      }
     }
     
     /* Utility classes */
@@ -576,10 +570,10 @@
       }
     }
 
-    /* Fix white space between join and footer */
+    /* FIXED: Remove white space between join and footer */
     .join-section {
       margin-bottom: 0 !important;
-      padding-bottom: 3rem !important;
+      padding-bottom: 0 !important;
     }
     
     footer {
@@ -611,7 +605,7 @@
   </div>
 </nav>
 
-<!-- Mobile App Navigation - FIXED HORIZONTAL LAYOUT -->
+<!-- Mobile App Navigation - FIXED: Only shows on mobile -->
 <nav class="app-tab-bar mobile-only">
   <div class="tab-item active" data-tab="home">
     <i data-feather="home" class="tab-icon"></i>
@@ -997,7 +991,7 @@
     </div>
   </section>
 
-  <!-- Join Ecosystem Section - FIXED WHITE SPACE -->
+  <!-- Join Ecosystem Section - FIXED: No white space -->
   <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
@@ -1055,7 +1049,7 @@
   </section>
 </main>
 
-<!-- Footer - NO WHITE SPACE -->
+<!-- Footer - FIXED: No white space -->
 <footer class="py-12 md:py-16 bg-gray-900 text-gray-400">
   <div class="max-w-7xl mx-auto px-4 text-center">
     <div class="mb-8">
@@ -1124,6 +1118,7 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Feather Icons
     feather.replace();
     
     // Initialize animations on page load
@@ -1189,6 +1184,9 @@
           targetDetails.classList.add('open');
           icon.style.transform = 'rotate(180deg)';
         }
+        
+        // Re-initialize Feather Icons for the rotated icon
+        feather.replace();
       });
     });
     
@@ -1202,18 +1200,14 @@
         
         if (icon.getAttribute('data-feather') === 'heart') {
           // Change to filled heart
-          feather.icons.heart.toSvg().then(svg => {
-            icon.outerHTML = svg;
-          });
+          icon.setAttribute('data-feather', 'heart');
           // Update like count
           count.textContent = parseInt(count.textContent) + 1;
           // Add visual feedback
           this.style.color = '#d84545';
         } else {
           // Change back to outline heart
-          feather.icons.heart.toSvg().then(svg => {
-            icon.outerHTML = svg;
-          });
+          icon.setAttribute('data-feather', 'heart');
           // Update like count
           count.textContent = parseInt(count.textContent) - 1;
           // Remove visual feedback
