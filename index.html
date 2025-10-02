@@ -309,8 +309,25 @@
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
     }
     
-    /* === RESPONSIVE DESIGN FIXES === */
+    /* === FIXED MEDIA QUERIES === */
+    /* Show desktop elements only on desktop */
+    .desktop-only {
+      display: block;
+    }
+    
+    .mobile-only {
+      display: none;
+    }
+    
     @media (max-width: 767px) {
+      .desktop-only {
+        display: none !important;
+      }
+      
+      .mobile-only {
+        display: block !important;
+      }
+      
       .mobile-optimized {
         padding: 0 1rem;
       }
@@ -337,19 +354,6 @@
       /* Ensure content doesn't hide behind nav */
       .app-content {
         padding-bottom: 5rem;
-      }
-    }
-    
-    /* Desktop styles hidden on mobile */
-    @media (min-width: 768px) {
-      .mobile-only {
-        display: none;
-      }
-    }
-    
-    @media (max-width: 767px) {
-      .desktop-only {
-        display: none;
       }
     }
     
@@ -397,6 +401,15 @@
         transform: translateY(0);
       }
     }
+    
+    /* Fix white space between join and footer */
+    .join-section {
+      margin-bottom: 0 !important;
+    }
+    
+    footer {
+      margin-top: 0 !important;
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -430,9 +443,9 @@
     <div class="active-indicator"></div>
   </div>
   
-  <div class="tab-item" data-tab="discover">
+  <div class="tab-item" data-tab="insights">
     <i data-feather="compass" class="tab-icon"></i>
-    <span class="tab-label">Discover</span>
+    <span class="tab-label">Insights</span>
     <div class="active-indicator"></div>
   </div>
   
@@ -628,13 +641,23 @@
             </div>
           </div>
           
-          <div class="swipe-section">
+          <div class="swipe-section pr-4">
             <div class="glass-card p-6 text-center">
               <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
                 <i data-feather="briefcase" class="text-white"></i>
               </div>
               <h3 class="font-semibold text-brand-blue mb-2">Industry</h3>
               <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
+            </div>
+          </div>
+          
+          <div class="swipe-section">
+            <div class="glass-card p-6 text-center">
+              <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                <i data-feather="heart" class="text-white"></i>
+              </div>
+              <h3 class="font-semibold text-brand-blue mb-2">Activists</h3>
+              <p class="text-gray-600 text-sm">Advocating for ethical AI practices</p>
             </div>
           </div>
         </div>
@@ -679,11 +702,11 @@
           <div class="feed-actions">
             <button class="action-btn like-btn">
               <i data-feather="heart"></i>
-              <span class="text-sm">24</span>
+              <span class="text-sm">87</span>
             </button>
             <button class="action-btn comment-btn">
               <i data-feather="message-circle"></i>
-              <span class="text-sm">8</span>
+              <span class="text-sm">23</span>
             </button>
             <button class="action-btn share-btn">
               <i data-feather="share-2"></i>
@@ -710,16 +733,22 @@
           <div class="feed-content">
             <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
             <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-xl mb-4 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                   alt="AGI Discussion" 
+                   class="w-full h-full object-cover">
+            </div>
           </div>
           
           <div class="feed-actions">
             <button class="action-btn like-btn">
               <i data-feather="heart"></i>
-              <span class="text-sm">42</span>
+              <span class="text-sm">124</span>
             </button>
             <button class="action-btn comment-btn">
               <i data-feather="message-circle"></i>
-              <span class="text-sm">15</span>
+              <span class="text-sm">42</span>
             </button>
             <button class="action-btn share-btn">
               <i data-feather="share-2"></i>
@@ -757,11 +786,11 @@
           <div class="feed-actions">
             <button class="action-btn like-btn">
               <i data-feather="heart"></i>
-              <span class="text-sm">31</span>
+              <span class="text-sm">56</span>
             </button>
             <button class="action-btn comment-btn">
               <i data-feather="message-circle"></i>
-              <span class="text-sm">12</span>
+              <span class="text-sm">18</span>
             </button>
             <button class="action-btn share-btn">
               <i data-feather="share-2"></i>
@@ -783,7 +812,7 @@
   </section>
 
   <!-- Join Ecosystem Section -->
-  <section id="join" class="section-padding bg-brand-blue text-white mobile-section">
+  <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading">Ready to Join?</h2>
       <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8"></div>
@@ -965,17 +994,23 @@
         const count = this.querySelector('span');
         
         if (icon.getAttribute('data-feather') === 'heart') {
+          // Change to filled heart
           feather.icons.heart.toSvg().then(svg => {
             icon.outerHTML = svg;
-            icon.style.fill = '#d84545';
-            icon.style.color = '#d84545';
           });
+          // Update like count
           count.textContent = parseInt(count.textContent) + 1;
+          // Add visual feedback
+          this.style.color = '#d84545';
         } else {
+          // Change back to outline heart
           feather.icons.heart.toSvg().then(svg => {
             icon.outerHTML = svg;
           });
+          // Update like count
           count.textContent = parseInt(count.textContent) - 1;
+          // Remove visual feedback
+          this.style.color = '';
         }
         feather.replace();
       });
@@ -1011,31 +1046,6 @@
           // Here you would typically reload content
           console.log('Refreshing content...');
         }, 1000);
-      }
-    });
-    
-    // Swipe Section Progress
-    const swipeContainers = document.querySelectorAll('.swipe-container');
-    
-    swipeContainers.forEach(container => {
-      container.addEventListener('scroll', function() {
-        // You can add progress indicators here
-      });
-    });
-    
-    // Bottom Sheet Actions
-    const actionButtons = document.querySelectorAll('.action-btn');
-    const actionSheet = document.getElementById('action-sheet');
-    
-    // Simple bottom sheet trigger (you can enhance this)
-    setTimeout(() => {
-      // actionSheet.classList.add('open');
-    }, 2000);
-    
-    // Close bottom sheet when clicking outside
-    actionSheet.addEventListener('click', function(e) {
-      if (e.target === this) {
-        this.classList.remove('open');
       }
     });
     
