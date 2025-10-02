@@ -83,251 +83,144 @@
       z-index: 40;
       transform: translateX(-100%);
       transition: transform 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     
     .mobile-menu.open {
       transform: translateX(0);
     }
     
-    /* Ecosystem Visualization */
-    .ecosystem-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1.5rem;
-      max-width: 800px;
-      margin: 0 auto;
+    /* Enhanced Mobile Layout */
+    .mobile-section {
+      padding: 3rem 1.5rem;
     }
     
-    @media (min-width: 768px) {
-      .ecosystem-grid {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 2rem;
-      }
-    }
-    
-    .ecosystem-node {
-      text-align: center;
-      padding: 1.5rem 1rem;
-      border-radius: 1.5rem;
+    .mobile-card {
       background: white;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      position: relative;
+      margin-bottom: 1.5rem;
       border: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    @media (min-width: 768px) {
-      .ecosystem-node {
-        padding: 2rem 1rem;
-      }
-    }
-    
-    .ecosystem-node:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    }
-    
-    .ecosystem-node::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      border-radius: 1.5rem;
-      background: linear-gradient(45deg, #d84545, #111d40);
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .ecosystem-node:hover::before {
-      opacity: 1;
-    }
-    
-    .node-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #d84545, #e57373);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 1rem;
-      color: white;
-      font-size: 1.75rem;
-    }
-    
-    @media (min-width: 768px) {
-      .node-icon {
-        width: 80px;
-        height: 80px;
-        font-size: 2rem;
-      }
-    }
-    
-    /* Vienna Bridge */
-    .vienna-bridge {
+    .mobile-grid {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-      margin: 3rem 0;
+      gap: 1.5rem;
+    }
+    
+    /* Modern Action Hub Cards */
+    .action-hub-container {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin: 2rem 0;
     }
     
     @media (min-width: 768px) {
-      .vienna-bridge {
+      .action-hub-container {
         flex-direction: row;
         gap: 2rem;
       }
     }
     
-    .bridge-node {
-      text-align: center;
-      max-width: 300px;
+    .action-card {
+      background: white;
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s ease;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      flex: 1;
     }
     
-    .bridge-icon {
+    .action-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(216, 69, 69, 0.15);
+    }
+    
+    .action-card-header {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .action-card-learn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .action-card-connect {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+    
+    .action-card-act {
+      background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    }
+    
+    .action-card-icon {
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: var(--brand-blue);
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
       color: white;
       font-size: 2rem;
-      box-shadow: 0 8px 25px rgba(17, 29, 64, 0.3);
     }
     
-    @media (min-width: 768px) {
-      .bridge-icon {
-        width: 100px;
-        height: 100px;
-        font-size: 2.5rem;
-      }
+    .action-card-content {
+      padding: 2rem;
     }
     
-    .bridge-connector {
-      font-size: 1.5rem;
-      color: var(--brand-coral);
-      font-weight: bold;
-      transform: rotate(90deg);
-    }
-    
-    @media (min-width: 768px) {
-      .bridge-connector {
-        font-size: 2rem;
-        transform: rotate(0);
-      }
-    }
-    
-    /* Stakeholder Pathways */
-    .pathway-grid {
-      display: grid;
-      grid-template-columns: repeat(1, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    
-    @media (min-width: 768px) {
-      .pathway-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 2rem;
-      }
-    }
-    
-    .pathway-card {
-      background: white;
-      border-radius: 1.5rem;
-      padding: 1.5rem;
-      text-align: center;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    @media (min-width: 768px) {
-      .pathway-card {
-        padding: 2rem;
-      }
-    }
-    
-    .pathway-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--brand-coral);
-      box-shadow: 0 8px 30px rgba(216, 69, 69, 0.15);
-    }
-    
-    .pathway-icon {
-      width: 60px;
-      height: 60px;
+    .action-card-number {
+      position: absolute;
+      top: -10px;
+      right: 20px;
+      width: 40px;
+      height: 40px;
+      background: var(--brand-coral);
+      color: white;
       border-radius: 50%;
-      background: rgba(216, 69, 69, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 1rem;
-      color: var(--brand-coral);
+      font-weight: bold;
+      font-size: 1.2rem;
     }
     
-    @media (min-width: 768px) {
-      .pathway-icon {
-        width: 70px;
-        height: 70px;
-      }
+    /* Enhanced Mobile Typography */
+    .mobile-heading {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      font-weight: 700;
     }
     
-    /* Progress indicators */
-    .progress-dots {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin: 1rem 0;
+    .mobile-subheading {
+      font-size: 1.5rem;
+      line-height: 1.4;
+      font-weight: 600;
     }
     
-    .progress-dot {
-      width: 0.5rem;
-      height: 0.5rem;
-      border-radius: 50%;
-      background-color: #e5e7eb;
-      transition: all 0.3s ease;
+    .mobile-body {
+      font-size: 1.1rem;
+      line-height: 1.6;
     }
     
-    .progress-dot.active {
-      background-color: var(--brand-coral);
-      width: 1.5rem;
-      border-radius: 0.25rem;
-    }
-    
-    /* Card styles */
-    .card {
-      background: white;
-      border-radius: 1.5rem;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-    }
-    
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-    }
-    
-    /* Utility classes */
-    .text-balance {
-      text-wrap: balance;
-    }
-    
-    .ai-gradient-text {
-      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    .mobile-cta {
+      width: 100%;
+      padding: 1.25rem 2rem;
+      font-size: 1.1rem;
+      font-weight: 600;
     }
     
     /* Section spacing */
@@ -366,22 +259,22 @@
       }
     }
     
-    .hover-lift {
+    /* Enhanced Mobile Navigation */
+    .mobile-nav-item {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      width: 100%;
+      text-align: center;
       transition: all 0.3s ease;
     }
     
-    .hover-lift:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    .mobile-nav-item:hover {
+      color: var(--brand-coral);
     }
     
-    /* Modern elements */
-    .glass-effect {
-      background: rgba(255, 255, 255, 0.25);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-    }
-    
+    /* Floating elements for visual interest */
     .floating-element {
       animation: float 6s ease-in-out infinite;
     }
@@ -392,61 +285,163 @@
       100% { transform: translateY(0px); }
     }
     
-    .gradient-border {
-      position: relative;
+    /* Enhanced Ecosystem Grid for Mobile */
+    .ecosystem-grid-mobile {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .ecosystem-grid-mobile {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    .ecosystem-node-mobile {
       background: white;
       border-radius: 1.5rem;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    .gradient-border::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #d84545, #111d40);
-      border-radius: 1.5rem;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 0.3s ease;
+    .ecosystem-node-mobile:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
     }
     
-    .gradient-border:hover::before {
-      opacity: 1;
+    .node-icon-mobile {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d84545, #e57373);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+      font-size: 1.75rem;
     }
     
-    /* Mobile optimizations */
-    .mobile-stack {
+    /* Enhanced Vienna Bridge for Mobile */
+    .vienna-bridge-mobile {
       display: flex;
       flex-direction: column;
-      gap: 1.5rem;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
     }
     
-    .mobile-full-width {
-      width: 100%;
+    @media (min-width: 768px) {
+      .vienna-bridge-mobile {
+        flex-direction: row;
+        gap: 2rem;
+      }
     }
     
-    .mobile-text-center {
+    .bridge-node-mobile {
       text-align: center;
+      max-width: 300px;
     }
     
-    /* Enhanced typography for mobile */
-    @media (max-width: 767px) {
-      .mobile-heading {
+    .bridge-icon-mobile {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: var(--brand-blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+      font-size: 2rem;
+      box-shadow: 0 8px 25px rgba(17, 29, 64, 0.3);
+    }
+    
+    @media (min-width: 768px) {
+      .bridge-icon-mobile {
+        width: 100px;
+        height: 100px;
         font-size: 2.5rem;
-        line-height: 1.2;
       }
-      
-      .mobile-subheading {
-        font-size: 1.25rem;
-        line-height: 1.4;
+    }
+    
+    .bridge-connector-mobile {
+      font-size: 1.5rem;
+      color: var(--brand-coral);
+      font-weight: bold;
+      transform: rotate(90deg);
+    }
+    
+    @media (min-width: 768px) {
+      .bridge-connector-mobile {
+        font-size: 2rem;
+        transform: rotate(0);
       }
-      
-      .mobile-body {
-        font-size: 1rem;
-        line-height: 1.5;
+    }
+    
+    /* Enhanced Articles Grid */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .articles-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
       }
+    }
+    
+    .article-card {
+      background: white;
+      border-radius: 1.5rem;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    .article-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .article-image {
+      height: 200px;
+      width: 100%;
+      object-fit: cover;
+    }
+    
+    .article-content {
+      padding: 1.5rem;
+    }
+    
+    /* Utility classes */
+    .text-balance {
+      text-wrap: balance;
+    }
+    
+    .ai-gradient-text {
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.18);
     }
   </style>
 </head>
@@ -470,47 +465,66 @@
   </div>
 </nav>
 
-<!-- Mobile Menu -->
+<!-- Enhanced Mobile Menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <div class="p-6">
-    <div class="flex justify-between items-center mb-8">
-      <div class="text-2xl font-bold text-brand-blue font-orbitron">AUXION</div>
-      <button class="text-gray-600" id="close-menu-button">
-        <i data-feather="x"></i>
-      </button>
+  <div class="absolute top-6 right-6">
+    <button class="text-gray-600 p-2" id="close-menu-button">
+      <i data-feather="x" class="w-6 h-6"></i>
+    </button>
+  </div>
+  
+  <div class="w-full max-w-sm px-6">
+    <div class="text-center mb-12">
+      <div class="text-3xl font-bold text-brand-blue font-orbitron mb-4">AUXION</div>
+      <p class="text-gray-600">Vienna's Home for Responsible AI</p>
     </div>
-    <div class="mobile-stack">
-      <a href="#ecosystem" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Ecosystem</a>
-      <a href="#hub" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Action Hub</a>
-      <a href="#collaborate" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Collaborate</a>
-      <a href="#join" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Join</a>
+    
+    <div class="space-y-2">
+      <a href="#ecosystem" class="mobile-nav-item block">Ecosystem</a>
+      <a href="#hub" class="mobile-nav-item block">Action Hub</a>
+      <a href="#collaborate" class="mobile-nav-item block">Collaborate</a>
+      <a href="#join" class="mobile-nav-item block">Join</a>
+    </div>
+    
+    <div class="mt-12 pt-8 border-t border-gray-200">
+      <div class="flex justify-center space-x-4">
+        <a href="#" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300">
+          <i data-feather="linkedin" class="w-5 h-5"></i>
+        </a>
+        <a href="#" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300">
+          <i data-feather="twitter" class="w-5 h-5"></i>
+        </a>
+        <a href="#" class="p-3 bg-gray-100 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300">
+          <i data-feather="mail" class="w-5 h-5"></i>
+        </a>
+      </div>
     </div>
   </div>
 </div>
 
 <!-- Enhanced Hero Section -->
-<section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
+<section class="hero-gradient text-white py-20 md:py-32 overflow-hidden">
   <div class="hero-pattern"></div>
-  <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
+  <div class="relative z-10 text-center px-6 max-w-6xl mx-auto">
     <!-- Vienna Positioning -->
     <div class="mb-8">
       <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
-        Vienna's Home for Responsible AI
+        🏛️ Vienna's Home for Responsible AI
       </span>
     </div>
     
-    <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading">
+    <h1 class="mobile-heading font-bold leading-tight mb-6 font-orbitron">
       <span class="ai-gradient-text">People.</span>
       <span class="ai-gradient-text">Change.</span>
       <span class="text-brand-coral">Technology.</span>
       <span class="text-white">Together.</span>
     </h1>
     
-    <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading">
+    <p class="mobile-body text-gray-200 mb-8 font-light max-w-3xl mx-auto">
       Auxion collaborative hub where diverse voices unite to transform AI awareness into agency through collaboration and action
     </p>
     
-    <a href="#join" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse mobile-full-width md:w-auto">
+    <a href="#join" class="mobile-cta inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse">
       Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
     </a>
   </div>
@@ -518,68 +532,68 @@
 
 <!-- Ecosystem Visualization Section -->
 <section id="ecosystem" class="section-padding bg-white">
-  <div class="max-w-7xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Auxion Ecosystem</h2>
+      <h2 class="mobile-heading font-bold text-brand-blue mb-4 font-orbitron">Auxion Ecosystem</h2>
       <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
-        Creating meaningful impact by bringing together Vienna's diverse AI voices from academia, business, research and activism
+      <p class="mobile-body text-gray-600 max-w-2xl mx-auto">
+        Creating meaningful impact by bringing together Vienna's diverse AI voices from academia, business, research, and activism
       </p>
     </div>
     
     <!-- Ecosystem Grid -->
-    <div class="ecosystem-grid">
-      <div class="ecosystem-node">
-        <div class="node-icon">
+    <div class="ecosystem-grid-mobile">
+      <div class="ecosystem-node-mobile">
+        <div class="node-icon-mobile">
           <i data-feather="users"></i>
         </div>
-        <h3 class="text-lg font-semibold text-brand-blue mb-2">Students</h3>
-        <p class="text-gray-600 text-sm mobile-body">Emerging leaders shaping tomorrow's AI landscape</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Students</h3>
+        <p class="mobile-body text-gray-600">Emerging leaders shaping tomorrow's AI landscape</p>
       </div>
       
-      <div class="ecosystem-node">
-        <div class="node-icon">
+      <div class="ecosystem-node-mobile">
+        <div class="node-icon-mobile">
           <i data-feather="book"></i>
         </div>
-        <h3 class="text-lg font-semibold text-brand-blue mb-2">Researchers</h3>
-        <p class="text-gray-600 text-sm mobile-body">Pioneering ethical AI research and innovation</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Researchers</h3>
+        <p class="mobile-body text-gray-600">Pioneering ethical AI research and innovation</p>
       </div>
       
-      <div class="ecosystem-node">
-        <div class="node-icon">
+      <div class="ecosystem-node-mobile">
+        <div class="node-icon-mobile">
           <i data-feather="briefcase"></i>
         </div>
-        <h3 class="text-lg font-semibold text-brand-blue mb-2">Industry</h3>
-        <p class="text-gray-600 text-sm mobile-body">Leading people-first AI adoption</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Industry</h3>
+        <p class="mobile-body text-gray-600">Leading people-first AI adoption</p>
       </div>
       
-      <div class="ecosystem-node">
-        <div class="node-icon">
+      <div class="ecosystem-node-mobile">
+        <div class="node-icon-mobile">
           <i data-feather="heart"></i>
         </div>
-        <h3 class="text-lg font-semibold text-brand-blue mb-2">Activists</h3>
-        <p class="text-gray-600 text-sm mobile-body">Advocating for ethical AI practices</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Activists</h3>
+        <p class="mobile-body text-gray-600">Advocating for ethical AI practices</p>
       </div>
     </div>
     
     <!-- Vienna Global Bridge -->
-    <div class="vienna-bridge mt-12 md:mt-16">
-      <div class="bridge-node">
-        <div class="bridge-icon">
+    <div class="vienna-bridge-mobile">
+      <div class="bridge-node-mobile">
+        <div class="bridge-icon-mobile floating-element">
           <i data-feather="map-pin"></i>
         </div>
-        <h3 class="text-xl font-semibold text-brand-blue mb-2">Vienna Rooted</h3>
-        <p class="text-gray-600 mobile-body">At the heart of European Digital Humanism</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Vienna Rooted</h3>
+        <p class="mobile-body text-gray-600">At the heart of European Digital Humanism</p>
       </div>
       
-      <div class="bridge-connector">⟷</div>
+      <div class="bridge-connector-mobile">⟷</div>
       
-      <div class="bridge-node">
-        <div class="bridge-icon">
+      <div class="bridge-node-mobile">
+        <div class="bridge-icon-mobile floating-element">
           <i data-feather="globe"></i>
         </div>
-        <h3 class="text-xl font-semibold text-brand-blue mb-2">Global Impact</h3>
-        <p class="text-gray-600 mobile-body">Local solutions meeting worldwide challenges</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-2">Global Impact</h3>
+        <p class="mobile-body text-gray-600">Local solutions meeting worldwide challenges</p>
       </div>
     </div>
   </div>
@@ -587,26 +601,29 @@
 
 <!-- Enhanced Action Hub Section -->
 <section id="hub" class="section-padding bg-white">
-  <div class="max-w-7xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Action Hub</h2>
+      <h2 class="mobile-heading font-bold text-brand-blue mb-4 font-orbitron">Action Hub</h2>
       <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-      <h3 class="text-xl md:text-3xl font-semibold text-brand-coral mb-4 mobile-subheading">From Awareness to Agency</h3>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
+      <h3 class="mobile-subheading font-semibold text-brand-coral mb-4">From Awareness to Agency</h3>
+      <p class="mobile-body text-gray-600 max-w-2xl mx-auto">
         Resources and tools to turn AI principles into collaborative action
       </p>
     </div>
     
-    <!-- Action Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+    <!-- Modern Action Cards -->
+    <div class="action-hub-container">
       <!-- Learn Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-blue-50 to-blue-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="book-open" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
+      <div class="action-card fade-in">
+        <div class="action-card-number">01</div>
+        <div class="action-card-header action-card-learn">
+          <div class="action-card-icon">
+            <i data-feather="book-open"></i>
+          </div>
         </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Learn & Discover</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Access curated resources, research papers and foundational knowledge about responsible AI</p>
+        <div class="action-card-content">
+          <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Learn & Discover</h3>
+          <p class="mobile-body text-gray-600 mb-4">Access curated resources, research papers, and foundational knowledge about responsible AI</p>
           <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
             Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
@@ -614,13 +631,16 @@
       </div>
       
       <!-- Connect Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-green-50 to-green-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="users" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
+      <div class="action-card fade-in">
+        <div class="action-card-number">02</div>
+        <div class="action-card-header action-card-connect">
+          <div class="action-card-icon">
+            <i data-feather="users"></i>
+          </div>
         </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Join discussions, find partners and participate in Vienna's AI community events</p>
+        <div class="action-card-content">
+          <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
+          <p class="mobile-body text-gray-600 mb-4">Join discussions, find partners, and participate in Vienna's AI community events</p>
           <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
             Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
@@ -628,13 +648,16 @@
       </div>
       
       <!-- Act Card -->
-      <div class="card gradient-border">
-        <div class="h-40 md:h-48 bg-gradient-to-br from-orange-50 to-orange-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="target" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
+      <div class="action-card fade-in">
+        <div class="action-card-number">03</div>
+        <div class="action-card-header action-card-act">
+          <div class="action-card-icon">
+            <i data-feather="target"></i>
+          </div>
         </div>
-        <div class="p-5 md:p-6">
-          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Act & Implement</h3>
-          <p class="text-gray-600 mb-4 mobile-body">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
+        <div class="action-card-content">
+          <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Act & Implement</h3>
+          <p class="mobile-body text-gray-600 mb-4">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
           <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
             See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
@@ -643,19 +666,17 @@
     </div>
     
     <!-- Blog Articles Section -->
-    <div class="mb-12 md:mb-16">
-      <h3 class="text-2xl md:text-3xl font-bold text-brand-blue mb-8 text-center mobile-heading">Latest Insights</h3>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+    <div class="mt-16">
+      <h3 class="mobile-heading font-bold text-brand-blue mb-8 text-center">Latest Insights</h3>
+      <div class="articles-grid">
         <!-- Article 1 -->
-        <div class="card fade-in hover-lift">
-          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
-                 alt="AI is not happening to us" 
-                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-          </div>
-          <div class="p-5 md:p-6">
-            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
-            <p class="text-gray-600 mb-4 mobile-body">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+        <div class="article-card fade-in">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+               alt="AI is not happening to us" 
+               class="article-image">
+          <div class="article-content">
+            <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
+            <p class="mobile-body text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
             <a href="https://open.substack.com/pub/auxion/p/ai-has-no-moral-compass-thankfully?r=5yddq5&utm_campaign=post&utm_medium=web" 
                target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
               Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -664,15 +685,13 @@
         </div>
         
         <!-- Article 2 -->
-        <div class="card fade-in hover-lift">
-          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
-                 alt="AGI: Are you ready?" 
-                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-          </div>
-          <div class="p-5 md:p-6">
-            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
-            <p class="text-gray-600 mb-4 mobile-body">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+        <div class="article-card fade-in">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+               alt="AGI: Are you ready?" 
+               class="article-image">
+          <div class="article-content">
+            <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
+            <p class="mobile-body text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
             <a href="https://open.substack.com/pub/auxion/p/agi-are-you-ready?r=5yddq5&utm_campaign=post&utm_medium=web" 
                target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
               Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -681,15 +700,13 @@
         </div>
         
         <!-- Article 3 -->
-        <div class="card fade-in hover-lift">
-          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
-                 alt="Digital Humanism in Vienna" 
-                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-          </div>
-          <div class="p-5 md:p-6">
-            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
-            <p class="text-gray-600 mb-4 mobile-body">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+        <div class="article-card fade-in">
+          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+               alt="Digital Humanism in Vienna" 
+               class="article-image">
+          <div class="article-content">
+            <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
+            <p class="mobile-body text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
             <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
                target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
               Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
@@ -703,23 +720,23 @@
 
 <!-- Stakeholder Pathways Section -->
 <section id="collaborate" class="section-padding bg-gray-50">
-  <div class="max-w-7xl mx-auto px-4">
+  <div class="max-w-7xl mx-auto px-6">
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Your Collaboration Pathway</h2>
+      <h2 class="mobile-heading font-bold text-brand-blue mb-4 font-orbitron">Your Collaboration Pathway</h2>
       <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
+      <p class="mobile-body text-gray-600 max-w-2xl mx-auto">
         Join our ecosystem and discover meaningful ways to contribute and grow
       </p>
     </div>
     
-    <div class="pathway-grid">
+    <div class="mobile-grid">
       <!-- Student Pathway -->
-      <div class="pathway-card">
+      <div class="mobile-card">
         <div class="pathway-icon">
           <i data-feather="users"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Students & Learners</h3>
-        <p class="text-gray-600 mb-4 mobile-body">Build your career in responsible AI through hands-on experience and mentorship</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Students & Learners</h3>
+        <p class="mobile-body text-gray-600 mb-4">Build your career in responsible AI through hands-on experience and mentorship</p>
         <div class="space-y-2 text-sm text-gray-500 mobile-body">
           <div class="flex items-center">
             <i data-feather="book-open" class="w-4 h-4 mr-2 text-brand-coral"></i>
@@ -740,12 +757,12 @@
       </div>
       
       <!-- Researcher Pathway -->
-      <div class="pathway-card">
+      <div class="mobile-card">
         <div class="pathway-icon">
           <i data-feather="book"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Researchers</h3>
-        <p class="text-gray-600 mb-4 mobile-body">Transform academic insights into real-world impact through collaboration</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Researchers</h3>
+        <p class="mobile-body text-gray-600 mb-4">Transform academic insights into real-world impact through collaboration</p>
         <div class="space-y-2 text-sm text-gray-500 mobile-body">
           <div class="flex items-center">
             <i data-feather="database" class="w-4 h-4 mr-2 text-brand-coral"></i>
@@ -766,12 +783,12 @@
       </div>
       
       <!-- Industry Pathway -->
-      <div class="pathway-card">
+      <div class="mobile-card">
         <div class="pathway-icon">
           <i data-feather="briefcase"></i>
         </div>
-        <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Industry Leaders</h3>
-        <p class="text-gray-600 mb-4 mobile-body">Drive innovation while shaping responsible AI practices across your organization</p>
+        <h3 class="mobile-subheading font-semibold text-brand-blue mb-3">Industry Leaders</h3>
+        <p class="mobile-body text-gray-600 mb-4">Drive innovation while shaping responsible AI practices across your organization</p>
         <div class="space-y-2 text-sm text-gray-500 mobile-body">
           <div class="flex items-center">
             <i data-feather="tool" class="w-4 h-4 mr-2 text-brand-coral"></i>
@@ -796,15 +813,15 @@
 
 <!-- Join Ecosystem Section -->
 <section id="join" class="section-padding bg-brand-blue text-white">
-  <div class="max-w-4xl mx-auto px-4 text-center">
-    <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading">Ready to Join?</h2>
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <h2 class="mobile-heading font-bold mb-6 font-orbitron">Ready to Join Our Ecosystem?</h2>
     <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8"></div>
     
-    <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body">
+    <p class="mobile-body text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto">
       Become part of Vienna's premier collaborative hub for responsible AI innovation
     </p>
 
-    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
+    <div class="glass-effect rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
       <form class="space-y-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           <div>
@@ -853,7 +870,7 @@
 
 <!-- Footer -->
 <footer class="py-12 md:py-16 bg-gray-900 text-gray-400">
-  <div class="max-w-7xl mx-auto px-4 text-center">
+  <div class="max-w-7xl mx-auto px-6 text-center">
     <div class="mb-8">
       <h3 class="text-2xl font-bold text-white mb-4 font-orbitron">AUXION</h3>
       <p class="text-gray-400 max-w-md mx-auto mobile-body">
@@ -895,10 +912,12 @@
     if (mobileMenuButton && closeMenuButton && mobileMenu) {
       mobileMenuButton.addEventListener('click', function() {
         mobileMenu.classList.add('open');
+        document.body.style.overflow = 'hidden';
       });
       
       closeMenuButton.addEventListener('click', function() {
         mobileMenu.classList.remove('open');
+        document.body.style.overflow = 'auto';
       });
       
       // Close menu when clicking on a link
@@ -906,6 +925,7 @@
       mobileMenuLinks.forEach(link => {
         link.addEventListener('click', function() {
           mobileMenu.classList.remove('open');
+          document.body.style.overflow = 'auto';
         });
       });
     }
@@ -937,18 +957,6 @@
       });
     });
     
-    // Add hover effects to ecosystem nodes
-    const ecosystemNodes = document.querySelectorAll('.ecosystem-node');
-    ecosystemNodes.forEach(node => {
-      node.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) scale(1.02)';
-      });
-      
-      node.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) scale(1)';
-      });
-    });
-    
     // Add staggered animation to cards
     const cards = document.querySelectorAll('.fade-in');
     cards.forEach((card, index) => {
@@ -956,7 +964,7 @@
     });
     
     // Add floating animation to some elements
-    const floatingElements = document.querySelectorAll('.bridge-icon, .node-icon');
+    const floatingElements = document.querySelectorAll('.bridge-icon-mobile, .node-icon-mobile');
     floatingElements.forEach((element, index) => {
       element.classList.add('floating-element');
       element.style.animationDelay = `${index * 0.5}s`;
@@ -965,4 +973,3 @@
 </script>
 </body>
 </html>
-
