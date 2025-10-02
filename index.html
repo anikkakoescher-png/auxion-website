@@ -20,7 +20,6 @@
 
   <!-- Feather Icons -->
   <script src="https://unpkg.com/feather-icons"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
   <!-- Vanta.js for 3D background -->
   <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
@@ -793,14 +792,12 @@
 <!-- Sign-Up Section -->
 <section id="signup" class="py-20 md:py-32 bg-brand-blue text-white">
   <div class="container mx-auto px-4 max-w-4xl">
-    <div class="section-header-container">
-      <div class="section-header">
-        <h2 class="text-4xl md:text-5xl font-bold font-orbitron">Be the change. Join Auxion today.</h2>
-        <div class="section-header-line"></div>
-      </div>
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold font-orbitron">Be the change. Join Auxion today.</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-orange to-brand-blue mx-auto mt-4 mb-8"></div>
     </div>
     
-    <div class="section-content fade-in text-center">
+    <div class="fade-in text-center">
       <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
         Join our community to receive exclusive insights, early updates and invitations to private events.
       </p>
@@ -827,13 +824,12 @@
 <!-- Footer -->
 <footer id="contact" class="py-16 bg-white text-gray-600">
   <div class="container mx-auto px-4 text-center">
-    <div class="section-header-container">
-      <div class="section-header">
-        <h3 class="text-2xl font-bold text-brand-blue mb-4">Get in Touch</h3>
-      </div>
+    <div class="text-center mb-8">
+      <h3 class="text-2xl font-bold text-brand-blue mb-4">Get in Touch</h3>
+      <div class="w-16 h-1 bg-gradient-to-r from-brand-orange to-brand-blue mx-auto mb-6"></div>
     </div>
     
-    <div class="section-content fade-in">
+    <div class="fade-in">
       <div class="max-w-md mx-auto mb-8">
         <p class="mb-2">Email: <a href="mailto:info@auxion.io" class="hover:text-brand-orange transition-colors duration-300 font-medium">info@auxion.io</a></p>
       </div>
@@ -1138,20 +1134,22 @@ document.addEventListener('click', function(e) {
 // Main initialization
 document.addEventListener('DOMContentLoaded', function() {
   // Initialize Vanta.js globe background
-  VANTA.GLOBE({
-    el: "#vanta-bg",
-    mouseControls: true,
-    touchControls: true,
-    gyroControls: false,
-    minHeight: 200.00,
-    minWidth: 200.00,
-    scale: 1.00,
-    scaleMobile: 1.00,
-    color: 0xff5722,
-    color2: 0x111d40,
-    backgroundColor: 0xf8fafc,
-    size: 0.8
-  });
+  if (typeof VANTA !== 'undefined') {
+    VANTA.GLOBE({
+      el: "#vanta-bg",
+      mouseControls: true,
+      touchControls: true,
+      gyroControls: false,
+      minHeight: 200.00,
+      minWidth: 200.00,
+      scale: 1.00,
+      scaleMobile: 1.00,
+      color: 0xff5722,
+      color2: 0x111d40,
+      backgroundColor: 0xf8fafc,
+      size: 0.8
+    });
+  }
 
   // Initialize Feather Icons
   feather.replace();
@@ -1164,60 +1162,69 @@ document.addEventListener('DOMContentLoaded', function() {
   const closeMenuButton = document.getElementById('close-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
   
-  mobileMenuButton.addEventListener('click', function() {
-    mobileMenu.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
+  if (mobileMenuButton && mobileMenu) {
+    mobileMenuButton.addEventListener('click', function() {
+      mobileMenu.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
   
-  closeMenuButton.addEventListener('click', function() {
-    mobileMenu.classList.remove('open');
-    document.body.style.overflow = '';
-  });
-  
-  // Close mobile menu when a link is clicked
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', function() {
+  if (closeMenuButton && mobileMenu) {
+    closeMenuButton.addEventListener('click', function() {
       mobileMenu.classList.remove('open');
       document.body.style.overflow = '';
     });
-  });
+  }
+  
+  // Close mobile menu when a link is clicked
+  if (mobileMenu) {
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
   
   // Mission/Manifesto Slider
   const slider = document.querySelector('.mission-manifesto-slider');
   const dots = document.querySelectorAll('.slider-dot');
   const prevBtn = document.querySelector('.slider-nav.prev');
   const nextBtn = document.querySelector('.slider-nav.next');
-  let currentSlide = 0;
   
-  function goToSlide(slideIndex) {
-    currentSlide = slideIndex;
-    slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+  if (slider && dots.length > 0 && prevBtn && nextBtn) {
+    let currentSlide = 0;
     
-    // Update dots
+    function goToSlide(slideIndex) {
+      currentSlide = slideIndex;
+      slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+      
+      // Update dots
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+    }
+    
     dots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
+      dot.addEventListener('click', () => goToSlide(index));
     });
+    
+    prevBtn.addEventListener('click', () => {
+      const newSlide = currentSlide === 0 ? dots.length - 1 : currentSlide - 1;
+      goToSlide(newSlide);
+    });
+    
+    nextBtn.addEventListener('click', () => {
+      const newSlide = currentSlide === dots.length - 1 ? 0 : currentSlide + 1;
+      goToSlide(newSlide);
+    });
+    
+    // Auto-advance slides every 8 seconds
+    setInterval(() => {
+      const newSlide = currentSlide === dots.length - 1 ? 0 : currentSlide + 1;
+      goToSlide(newSlide);
+    }, 8000);
   }
-  
-  dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
-  });
-  
-  prevBtn.addEventListener('click', () => {
-    const newSlide = currentSlide === 0 ? dots.length - 1 : currentSlide - 1;
-    goToSlide(newSlide);
-  });
-  
-  nextBtn.addEventListener('click', () => {
-    const newSlide = currentSlide === dots.length - 1 ? 0 : currentSlide + 1;
-    goToSlide(newSlide);
-  });
-  
-  // Auto-advance slides every 8 seconds
-  setInterval(() => {
-    const newSlide = currentSlide === dots.length - 1 ? 0 : currentSlide + 1;
-    goToSlide(newSlide);
-  }, 8000);
   
   // Fade-in animation on scroll
   const fadeElements = document.querySelectorAll('.fade-in');
@@ -1253,40 +1260,48 @@ document.addEventListener('DOMContentLoaded', function() {
   // Update progress bar based on score
   function updateProgressBar(score) {
     const progressBar = document.getElementById('progress-bar');
-    const percentage = Math.min(score / 250 * 100, 100);
-    progressBar.style.width = `${percentage}%`;
+    if (progressBar) {
+      const percentage = Math.min(score / 250 * 100, 100);
+      progressBar.style.width = `${percentage}%`;
+    }
   }
   
   // Initialize progress bar
   updateProgressBar(75); // Example score
-  document.getElementById('score-display').textContent = '75';
+  const scoreDisplay = document.getElementById('score-display');
+  if (scoreDisplay) {
+    scoreDisplay.textContent = '75';
+  }
   
   // Form submission
-  document.getElementById('early-access-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
+  const earlyAccessForm = document.getElementById('early-access-form');
+  if (earlyAccessForm) {
+    earlyAccessForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
 
-    fetch(form.action, {
-      method: form.method,
-      body: data,
-      headers: {
-        'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        document.getElementById('form-success').classList.remove('hidden');
-        document.getElementById('form-error').classList.add('hidden');
-        form.reset();
-      } else {
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          document.getElementById('form-success').classList.remove('hidden');
+          document.getElementById('form-error').classList.add('hidden');
+          form.reset();
+        } else {
+          document.getElementById('form-error').classList.remove('hidden');
+          document.getElementById('form-success').classList.add('hidden');
+        }
+      }).catch(() => {
         document.getElementById('form-error').classList.remove('hidden');
         document.getElementById('form-success').classList.add('hidden');
-      }
-    }).catch(() => {
-      document.getElementById('form-error').classList.remove('hidden');
-      document.getElementById('form-success').classList.add('hidden');
+      });
     });
-  });
+  }
   
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
