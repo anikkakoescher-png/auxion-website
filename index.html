@@ -702,7 +702,7 @@
         </div>
         
         <!-- Progress dots -->
-        <div class="flex justify-center space-x-2 mb-8">
+        <div id="progress-dots" class="flex justify-center space-x-2 mb-8">
           <div class="w-3 h-3 rounded-full bg-brand-orange"></div>
           <div class="w-3 h-3 rounded-full bg-gray-300"></div>
           <div class="w-3 h-3 rounded-full bg-gray-300"></div>
@@ -711,32 +711,234 @@
         </div>
         
         <div id="quiz-content" class="mb-8">
-          <p class="text-xl font-semibold text-gray-800 mb-6">When implementing an AI solution, what is the most important human-centric consideration?</p>
-          
-          <div class="space-y-4">
-            <div class="quiz-option p-4 rounded-xl border-2 border-gray-200 hover-lift">
-              <p class="font-medium">Choosing the most powerful algorithm available.</p>
-            </div>
-            <div class="quiz-option p-4 rounded-xl border-2 border-gray-200 hover-lift">
-              <p class="font-medium">Ensuring data privacy and transparency for users.</p>
-            </div>
-            <div class="quiz-option p-4 rounded-xl border-2 border-gray-200 hover-lift">
-              <p class="font-medium">Minimizing the time to market.</p>
-            </div>
-            <div class="quiz-option p-4 rounded-xl border-2 border-gray-200 hover-lift">
-              <p class="font-medium">Maximizing the number of features in the application.</p>
-            </div>
-          </div>
+          <!-- Quiz content will be dynamically loaded here -->
         </div>
         
-        <button class="w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-all duration-300 hover-lift">
+        <button id="next-question-button" class="w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-brand-orange-dark transition-all duration-300 hover-lift hidden">
           Next Question <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+        </button>
+
+        <button id="restart-quiz-button" class="w-full bg-gray-600 text-white px-8 py-4 rounded-xl font-semibold shadow-lg hover:bg-gray-700 transition-all duration-300 hover-lift hidden">
+          Try Again <i data-feather="refresh-cw" class="ml-2 inline-block"></i>
         </button>
       </div>
     </div>
   </div>
 </section>
 
+<script>
+// Quiz data and functionality
+const quizQuestions = [
+  {
+    question: "When implementing an AI solution, what is the most important human-centric consideration?",
+    options: [
+      "Choosing the most powerful algorithm available.",
+      "Ensuring data privacy and transparency for users.",
+      "Minimizing the time to market.",
+      "Maximizing the number of features in the application."
+    ],
+    correctAnswer: 1,
+    points: 20
+  },
+  {
+    question: "What does 'explainable AI' (XAI) primarily aim to achieve?",
+    options: [
+      "To make AI models run faster.",
+      "To allow humans to understand and trust AI decisions.",
+      "To reduce the cost of AI development.",
+      "To automate more complex tasks."
+    ],
+    correctAnswer: 1,
+    points: 20
+  },
+  {
+    question: "Your toaster is now AI-enabled. It offers to 'optimize' your toast based on your daily mood data. What's your first thought?",
+    options: [
+      "Finally, a truly personalized breakfast!",
+      "How can a toaster even know my mood?",
+      "Wait, my toast preferences are now a data point?",
+      "Does this mean I can't just have normal, un-optimized toast anymore?"
+    ],
+    correctAnswer: 2,
+    points: 20
+  },
+  {
+    question: "An AI writes a poem about a squirrel. The poem is grammatically perfect but emotionally flat. What's missing?",
+    options: [
+      "A more advanced language model.",
+      "A larger training dataset of squirrel poems.",
+      "The raw, messy, and irrational experience of being human.",
+      "More rhyming words."
+    ],
+    correctAnswer: 2,
+    points: 20
+  },
+  {
+    question: "AI is often called a tool, not a replacement. Which of the following best describes this principle?",
+    options: [
+      "AI works best when it automates everything.",
+      "AI is just for crunching numbers and nothing else.",
+      "AI augments human creativity and problem-solving, like a powerful calculator for the mind.",
+      "AI is only useful if it can pass the Turing Test."
+    ],
+    correctAnswer: 2,
+    points: 20
+  }
+];
+
+let currentQuestionIndex = 0;
+let userScore = 0;
+let quizCompleted = false;
+
+const quizContent = document.getElementById('quiz-content');
+const quizProgress = document.getElementById('quiz-progress');
+const nextQuestionButton = document.getElementById('next-question-button');
+const restartQuizButton = document.getElementById('restart-quiz-button');
+const currentScoreDisplay = document.getElementById('current-score');
+const progressDots = document.getElementById('progress-dots');
+
+// Initialize the quiz
+function initializeQuiz() {
+  currentQuestionIndex = 0;
+  userScore = 0;
+  quizCompleted = false;
+  currentScoreDisplay.textContent = '0';
+  updateProgressDots();
+  renderQuizQuestion();
+}
+
+// Update progress dots
+function updateProgressDots() {
+  const dots = progressDots.querySelectorAll('.w-3');
+  dots.forEach((dot, index) => {
+    if (index <= currentQuestionIndex) {
+      dot.classList.remove('bg-gray-300');
+      dot.classList.add('bg-brand-orange');
+    } else {
+      dot.classList.remove('bg-brand-orange');
+      dot.classList.add('bg-gray-300');
+    }
+  });
+}
+
+// Render current question
+function renderQuizQuestion() {
+  const q = quizQuestions[currentQuestionIndex];
+  quizContent.innerHTML = `
+    <p class="text-xl font-semibold text-gray-800 mb-6">${q.question}</p>
+    <div class="space-y-4">
+      ${q.options.map((option, index) => `
+        <div class="quiz-option p-4 rounded-xl border-2 border-gray-200 hover:border-brand-orange bg-white shadow-sm hover:shadow-md transition-all duration-300 cursor-pointer" data-index="${index}">
+          <p class="font-medium">${String.fromCharCode(65 + index)}. ${option}</p>
+        </div>
+      `).join('')}
+    </div>
+  `;
+  
+  quizProgress.textContent = `Question ${currentQuestionIndex + 1} of ${quizQuestions.length}`;
+  nextQuestionButton.classList.add('hidden');
+  restartQuizButton.classList.add('hidden');
+  
+  // Add event listeners to options
+  document.querySelectorAll('.quiz-option').forEach(optionElement => {
+    optionElement.addEventListener('click', () => handleOptionClick(optionElement));
+  });
+}
+
+// Handle option selection
+function handleOptionClick(selectedElement) {
+  if (quizCompleted) return;
+  
+  const selectedIndex = parseInt(selectedElement.dataset.index, 10);
+  const q = quizQuestions[currentQuestionIndex];
+  
+  // Disable all options
+  document.querySelectorAll('.quiz-option').forEach(option => {
+    option.style.pointerEvents = 'none';
+  });
+  
+  // Show correct/incorrect states
+  document.querySelectorAll('.quiz-option').forEach(option => {
+    const index = parseInt(option.dataset.index, 10);
+    
+    if (index === q.correctAnswer) {
+      option.classList.add('correct');
+      option.classList.remove('hover:border-brand-orange');
+      option.innerHTML += '<p class="text-sm font-bold text-green-600 mt-2 flex items-center"><i data-feather="check" class="w-4 h-4 mr-1"></i> Correct answer</p>';
+    } else if (index === selectedIndex) {
+      option.classList.add('incorrect');
+      option.classList.remove('hover:border-brand-orange');
+      option.innerHTML += '<p class="text-sm font-bold text-red-600 mt-2 flex items-center"><i data-feather="x" class="w-4 h-4 mr-1"></i> Incorrect</p>';
+    }
+  });
+  
+  feather.replace();
+  
+  // Update score if correct
+  if (selectedIndex === q.correctAnswer) {
+    userScore += q.points;
+    currentScoreDisplay.textContent = userScore;
+    
+    // Add score animation
+    currentScoreDisplay.classList.add('scale-110');
+    setTimeout(() => {
+      currentScoreDisplay.classList.remove('scale-110');
+    }, 300);
+  }
+  
+  // Show next button or finish quiz
+  if (currentQuestionIndex < quizQuestions.length - 1) {
+    nextQuestionButton.textContent = "Next Question";
+    nextQuestionButton.classList.remove('hidden');
+  } else {
+    nextQuestionButton.textContent = "See Results";
+    nextQuestionButton.classList.remove('hidden');
+  }
+}
+
+// Show quiz results
+function showResults() {
+  let message = "";
+  let icon = "";
+  let level = "";
+  
+  if (userScore >= 80) {
+    message = "Congratulations! You're an AI innovator. Your human intelligence is a formidable match for any algorithm.";
+    icon = "award";
+    level = "AI Innovator";
+  } else if (userScore >= 60) {
+    message = "Solid score! You're on your way to becoming a true AI native. Keep exploring!";
+    icon = "trending-up";
+    level = "AI Enthusiast";
+  } else if (userScore >= 40) {
+    message = "Good understanding! You have the basics down and are ready to dive deeper into AI concepts.";
+    icon = "star";
+    level = "AI Explorer";
+  } else {
+    message = "Don't worry, even AI models have to start somewhere. The future of technology needs human champions like you!";
+    icon = "compass";
+    level = "AI Beginner";
+  }
+
+  quizContent.innerHTML = `
+    <div class="text-center py-4">
+      <i data-feather="${icon}" class="w-16 h-16 text-brand-orange mx-auto mb-4"></i>
+      <h3 class="text-2xl font-bold text-brand-blue mb-2">Quiz Complete!</h3>
+      <p class="text-lg text-gray-600 mb-4">Your Level: <span class="font-bold text-brand-orange">${level}</span></p>
+      <div class="bg-gradient-to-r from-brand-orange to-brand-blue p-1 rounded-full max-w-xs mx-auto mb-6">
+        <div class="bg-white rounded-full p-4">
+          <p class="text-3xl font-bold text-brand-blue">${userScore}%</p>
+          <p class="text-sm text-gray-600">Final Score</p>
+        </div>
+      </div>
+      <p class="text-gray-700 max-w-md mx-auto mb-6">${message}</p>
+      <div class="flex justify-center space-x-4 mt-6">
+        <button id="share-results" class="flex items-center px-4 py-2 bg-blue-100 text-blue-700 rounded-lg hover:bg-blue-200 transition-colors">
+          <i data-feather="share-2" class="w-4 h-4 mr-2"></i> Share Results
+        </button>
+      </div>
+    </div>
+  `
 <!-- Score Section -->
 <section class="section-white section-padding">
   <div class="grid-system">
@@ -1044,4 +1246,5 @@
 </script>
 </body>
 </html>
+
 
