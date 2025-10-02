@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
-  <link rel="icon" href="https://placehold.co/32x32/111d40/ff5722?text=A" type="image/x-icon">
+  <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,8 +15,11 @@
   <style>
     :root {
       --brand-blue: #111d40;
-      --brand-orange: #ff5722;
-      --brand-orange-dark: #e64a19;
+      --brand-coral: #d84545;
+      --brand-coral-dark: #c44545;
+      --brand-light: #f8fafc;
+      --brand-gray: #64748b;
+      --brand-success: #10b981;
     }
     
     body {
@@ -30,8 +33,8 @@
     
     .bg-brand-blue { background-color: var(--brand-blue); }
     .text-brand-blue { color: var(--brand-blue); }
-    .bg-brand-orange { background-color: var(--brand-orange); }
-    .text-brand-orange { color: var(--brand-orange); }
+    .bg-brand-coral { background-color: var(--brand-coral); }
+    .text-brand-coral { color: var(--brand-coral); }
     
     /* Enhanced Hero Section */
     .hero-gradient {
@@ -47,8 +50,8 @@
       right: 0;
       bottom: 0;
       opacity: 0.1;
-      background-image: radial-gradient(circle at 25% 25%, #ff5722 2px, transparent 2px),
-                        radial-gradient(circle at 75% 75%, #ff5722 2px, transparent 2px);
+      background-image: radial-gradient(circle at 25% 25%, #d84545 2px, transparent 2px),
+                        radial-gradient(circle at 75% 75%, #d84545 2px, transparent 2px);
       background-size: 50px 50px;
     }
     
@@ -107,7 +110,7 @@
       right: -2px;
       bottom: -2px;
       border-radius: 1rem;
-      background: linear-gradient(45deg, #ff5722, #111d40);
+      background: linear-gradient(45deg, #d84545, #111d40);
       z-index: -1;
       opacity: 0;
       transition: opacity 0.3s ease;
@@ -121,7 +124,7 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #ff5722, #ff8a65);
+      background: linear-gradient(135deg, #d84545, #e57373);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -161,7 +164,7 @@
     
     .bridge-connector {
       font-size: 2rem;
-      color: var(--brand-orange);
+      color: var(--brand-coral);
       font-weight: bold;
     }
     
@@ -185,20 +188,20 @@
     
     .pathway-card:hover {
       transform: translateY(-5px);
-      border-color: var(--brand-orange);
-      box-shadow: 0 8px 30px rgba(255, 87, 34, 0.15);
+      border-color: var(--brand-coral);
+      box-shadow: 0 8px 30px rgba(216, 69, 69, 0.15);
     }
     
     .pathway-icon {
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: rgba(255, 87, 34, 0.1);
+      background: rgba(216, 69, 69, 0.1);
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 1rem;
-      color: var(--brand-orange);
+      color: var(--brand-coral);
     }
     
     /* Progress indicators */
@@ -218,7 +221,7 @@
     }
     
     .progress-dot.active {
-      background-color: var(--brand-orange);
+      background-color: var(--brand-coral);
       width: 1.5rem;
       border-radius: 0.25rem;
     }
@@ -243,7 +246,7 @@
     }
     
     .ai-gradient-text {
-      background: linear-gradient(135deg, #ff5722 0%, #111d40 100%);
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
@@ -264,6 +267,29 @@
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+    
+    /* Animation classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+    
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    }
   </style>
 </head>
 <body class="bg-white">
@@ -274,10 +300,10 @@
     <div class="flex justify-between items-center">
       <div class="text-2xl font-bold text-brand-blue font-orbitron">AUXION</div>
       <div class="hidden md:flex space-x-8">
-        <a href="#ecosystem" class="text-gray-700 hover:text-brand-orange transition-colors duration-300 font-medium">Ecosystem</a>
-        <a href="#hub" class="text-gray-700 hover:text-brand-orange transition-colors duration-300 font-medium">Action Hub</a>
-        <a href="#collaborate" class="text-gray-700 hover:text-brand-orange transition-colors duration-300 font-medium">Collaborate</a>
-        <a href="#join" class="text-gray-700 hover:text-brand-orange transition-colors duration-300 font-medium">Join</a>
+        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Ecosystem</a>
+        <a href="#hub" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Action Hub</a>
+        <a href="#collaborate" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Collaborate</a>
+        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Join</a>
       </div>
       <button class="md:hidden text-gray-600">
         <i data-feather="menu"></i>
@@ -293,23 +319,23 @@
     <!-- Vienna Positioning -->
     <div class="mb-8">
       <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium">
-        Vienna's Home for Responsible AI Innovation
+        🏛️ Vienna's Home for Responsible AI
       </span>
     </div>
     
     <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-6 font-orbitron">
       <span class="ai-gradient-text">People.</span>
       <span class="ai-gradient-text">Change.</span>
-      <span class="text-brand-orange">Technology.</span>
+      <span class="text-brand-coral">Technology.</span>
       <span class="text-white">Together.</span>
     </h1>
     
     <p class="text-xl md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto">
-      Where diverse voices unite to shape the future of responsible AI through collaboration and action
+      Vienna's collaborative hub where diverse voices unite to transform AI awareness into agency through collaboration and action
     </p>
     
-    <a href="#join" class="inline-block bg-brand-orange hover:bg-brand-orange-dark text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse">
-      Join Our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+    <a href="#join" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-10 py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse">
+      Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
     </a>
   </div>
 </section>
@@ -318,10 +344,10 @@
 <section id="ecosystem" class="section-padding bg-white">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Our Living Ecosystem</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-orange to-brand-blue mx-auto mb-8"></div>
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Auxion Ecosystem</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8"></div>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Bringing together Vienna's diverse AI community to create meaningful impact
+        Creating meaningful impact by bringing together Vienna's diverse AI voices from academia, business, research, and activism
       </p>
     </div>
     
@@ -348,7 +374,7 @@
           <i data-feather="briefcase"></i>
         </div>
         <h3 class="text-lg font-semibold text-brand-blue mb-2">Industry</h3>
-        <p class="text-gray-600 text-sm">Leading responsible AI implementation</p>
+        <p class="text-gray-600 text-sm">Leading people-first AI adoption</p>
       </div>
       
       <div class="ecosystem-node">
@@ -367,7 +393,7 @@
           <i data-feather="map-pin"></i>
         </div>
         <h3 class="text-xl font-semibold text-brand-blue mb-2">Vienna Rooted</h3>
-        <p class="text-gray-600">At the heart of European AI ethics leadership</p>
+        <p class="text-gray-600">At the heart of European Digital Humanism</p>
       </div>
       
       <div class="bridge-connector">⟷</div>
@@ -377,7 +403,174 @@
           <i data-feather="globe"></i>
         </div>
         <h3 class="text-xl font-semibold text-brand-blue mb-2">Global Impact</h3>
-        <p class="text-gray-600">Connecting local insights with worldwide implementation</p>
+        <p class="text-gray-600">Local solutions meeting worldwide challenges</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Enhanced Action Hub Section -->
+<section id="hub" class="section-padding bg-white">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Action Hub</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8"></div>
+      <h3 class="text-2xl md:text-3xl font-semibold text-brand-coral mb-4">From Awareness to Agency</h3>
+      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Resources and tools to turn AI principles into collaborative action
+      </p>
+    </div>
+    
+    <!-- Blog Articles Section -->
+    <div class="mb-16">
+      <h3 class="text-3xl font-bold text-brand-blue mb-8 text-center">Knowledge Hub</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Article 1 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                 alt="AI is not happening to us" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
+            <p class="text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+            <a href="https://open.substack.com/pub/auxion/p/ai-has-no-moral-compass-thankfully?r=5yddq5&utm_campaign=post&utm_medium=web" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 2 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                 alt="AGI: Are you ready?" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
+            <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+            <a href="https://open.substack.com/pub/auxion/p/agi-are-you-ready?r=5yddq5&utm_campaign=post&utm_medium=web" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 3 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                 alt="Digital Humanism in Vienna" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
+            <p class="text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+            <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 4 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
+                 alt="The true AI challenge" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
+            <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 5 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
+                 alt="Key Principles for Human-Centered AI" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
+            <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 6 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
+                 alt="How can people and AI work together" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
+            <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Action Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Learn Card -->
+      <div class="card">
+        <div class="h-48 bg-gradient-to-br from-blue-50 to-blue-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="book-open" class="w-16 h-16 text-brand-blue"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">Learn & Discover</h3>
+          <p class="text-gray-600 mb-4">Access curated resources, research papers, and foundational knowledge about responsible AI</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Connect Card -->
+      <div class="card">
+        <div class="h-48 bg-gradient-to-br from-green-50 to-green-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="users" class="w-16 h-16 text-brand-blue"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
+          <p class="text-gray-600 mb-4">Join discussions, find partners, and participate in Vienna's AI community events</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+      
+      <!-- Act Card -->
+      <div class="card">
+        <div class="h-48 bg-gradient-to-br from-orange-50 to-orange-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="target" class="w-16 h-16 text-brand-blue"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="text-xl font-semibold text-brand-blue mb-3">Act & Implement</h3>
+          <p class="text-gray-600 mb-4">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -388,7 +581,7 @@
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-16">
       <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Your Collaboration Pathway</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-orange to-brand-blue mx-auto mb-8"></div>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8"></div>
       <p class="text-xl text-gray-600 max-w-2xl mx-auto">
         Join our ecosystem and discover meaningful ways to contribute and grow
       </p>
@@ -404,19 +597,19 @@
         <p class="text-gray-600 mb-4">Build your career in responsible AI through hands-on experience and mentorship</p>
         <div class="space-y-2 text-sm text-gray-500">
           <div class="flex items-center">
-            <i data-feather="book-open" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="book-open" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Learning Resources</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="award" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="award" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Project Experience</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="users" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="users" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Industry Connections</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-orange text-white py-3 rounded-xl font-semibold hover:bg-brand-orange-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
           Start Learning Path
         </button>
       </div>
@@ -430,19 +623,19 @@
         <p class="text-gray-600 mb-4">Transform academic insights into real-world impact through collaboration</p>
         <div class="space-y-2 text-sm text-gray-500">
           <div class="flex items-center">
-            <i data-feather="database" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="database" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Research Partnerships</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="trending-up" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="trending-up" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Impact Measurement</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="globe" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="globe" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Global Network</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-orange text-white py-3 rounded-xl font-semibold hover:bg-brand-orange-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
           Explore Collaboration
         </button>
       </div>
@@ -456,78 +649,21 @@
         <p class="text-gray-600 mb-4">Drive innovation while shaping responsible AI practices across your organization</p>
         <div class="space-y-2 text-sm text-gray-500">
           <div class="flex items-center">
-            <i data-feather="tool" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="tool" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Implementation Guides</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="users" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="users" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Talent Access</span>
           </div>
           <div class="flex items-center">
-            <i data-feather="target" class="w-4 h-4 mr-2 text-brand-orange"></i>
+            <i data-feather="target" class="w-4 h-4 mr-2 text-brand-coral"></i>
             <span>Strategic Partnerships</span>
           </div>
         </div>
-        <button class="w-full mt-4 bg-brand-orange text-white py-3 rounded-xl font-semibold hover:bg-brand-orange-dark transition-colors">
+        <button class="w-full mt-4 bg-brand-coral text-white py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
           Get Implementation Guide
         </button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Enhanced Action Hub Section -->
-<section id="hub" class="section-padding bg-white">
-  <div class="max-w-7xl mx-auto px-4">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Action Hub</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-orange to-brand-blue mx-auto mb-8"></div>
-      <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-        Resources and tools to turn AI principles into collaborative action
-      </p>
-    </div>
-    
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <!-- Learn Card -->
-      <div class="card">
-        <div class="h-48 bg-gradient-to-br from-blue-50 to-blue-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="book-open" class="w-16 h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">Learn & Discover</h3>
-          <p class="text-gray-600 mb-4">Access curated resources, research papers, and foundational knowledge about responsible AI</p>
-          <a href="#" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300 group">
-            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Connect Card -->
-      <div class="card">
-        <div class="h-48 bg-gradient-to-br from-green-50 to-green-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="users" class="w-16 h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
-          <p class="text-gray-600 mb-4">Join discussions, find partners, and participate in Vienna's AI community events</p>
-          <a href="#" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300 group">
-            Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Act Card -->
-      <div class="card">
-        <div class="h-48 bg-gradient-to-br from-orange-50 to-orange-100 rounded-t-xl flex items-center justify-center">
-          <i data-feather="target" class="w-16 h-16 text-brand-blue"></i>
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">Act & Implement</h3>
-          <p class="text-gray-600 mb-4">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
-          <a href="#" class="inline-flex items-center text-brand-orange hover:text-brand-orange-dark font-medium transition-colors duration-300 group">
-            See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
-        </div>
       </div>
     </div>
   </div>
@@ -537,7 +673,7 @@
 <section id="join" class="section-padding bg-brand-blue text-white">
   <div class="max-w-4xl mx-auto px-4 text-center">
     <h2 class="text-4xl md:text-5xl font-bold mb-6 font-orbitron">Ready to Join Our Ecosystem?</h2>
-    <div class="w-20 h-1 bg-gradient-to-r from-brand-orange to-white mx-auto mb-8"></div>
+    <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-8"></div>
     
     <p class="text-xl text-gray-200 mb-10 max-w-2xl mx-auto">
       Become part of Vienna's premier collaborative hub for responsible AI innovation
@@ -548,7 +684,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
-            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-all duration-300">
+            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
               <option value="">Select your role</option>
               <option value="student">Student / Learner</option>
               <option value="researcher">Researcher / Academic</option>
@@ -560,7 +696,7 @@
           
           <div>
             <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
-            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-all duration-300">
+            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
               <option value="">Select interest area</option>
               <option value="ethics">AI Ethics & Governance</option>
               <option value="technical">Technical Development</option>
@@ -574,11 +710,11 @@
         <div>
           <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
           <input type="email" placeholder="Enter your email" required
-              class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-orange outline-none transition-all duration-300">
+              class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
         </div>
         
         <button type="submit"
-            class="w-full bg-brand-orange text-white px-8 py-4 rounded-xl font-semibold shadow-2xl hover:bg-brand-orange-dark transition-all duration-300 transform hover:scale-105">
+            class="w-full bg-brand-coral text-white px-8 py-4 rounded-xl font-semibold shadow-2xl hover:bg-brand-coral-dark transition-all duration-300 transform hover:scale-105">
             Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
         </button>
       </form>
@@ -601,19 +737,19 @@
     </div>
     
     <div class="flex justify-center space-x-6 mb-8">
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
         <i data-feather="linkedin" class="w-6 h-6"></i>
       </a>
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
         <i data-feather="twitter" class="w-6 h-6"></i>
       </a>
-      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-orange hover:text-white transition-all duration-300 transform hover:scale-110">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
         <i data-feather="mail" class="w-6 h-6"></i>
       </a>
     </div>
     
     <div class="max-w-md mx-auto mb-8">
-      <p class="mb-2">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-orange transition-colors duration-300">info@auxion.io</a></p>
+      <p class="mb-2">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-coral transition-colors duration-300">info@auxion.io</a></p>
       <p class="text-sm">Vienna, Austria</p>
     </div>
     
@@ -663,6 +799,12 @@
       node.addEventListener('mouseleave', function() {
         this.style.transform = 'translateY(0) scale(1)';
       });
+    });
+    
+    // Add staggered animation to cards
+    const cards = document.querySelectorAll('.fade-in');
+    cards.forEach((card, index) => {
+      card.style.animationDelay = `${index * 0.1}s`;
     });
   });
 </script>
