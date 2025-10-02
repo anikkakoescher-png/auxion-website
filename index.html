@@ -223,14 +223,18 @@
     .stagger-animate > *:nth-child(4) { animation-delay: 0.4s; }
     .stagger-animate > *:nth-child(5) { animation-delay: 0.5s; }
 
-    /* Enhanced Hero Section - Reduced Height */
+    /* RESTORED: Original Hero Section Height */
     .hero-gradient {
       background: linear-gradient(135deg, #111d40 0%, #1a2a5a 100%);
       position: relative;
       overflow: hidden;
-      min-height: 70vh;
-      display: flex;
-      align-items: center;
+      padding: 6rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .hero-gradient {
+        padding: 10rem 0;
+      }
     }
     
     .hero-pattern {
@@ -506,14 +510,32 @@
         0 1px 4px rgba(0, 0, 0, 0.05);
     }
     
-    /* === SOCIAL FEED STYLES - More Compact === */
+    /* === SOCIAL FEED STYLES - Instagram Grid === */
+    .instagram-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1rem;
+    }
+    
+    @media (min-width: 768px) {
+      .instagram-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (min-width: 1024px) {
+      .instagram-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
     .feed-item {
       background: white;
       border-radius: 14px;
-      margin-bottom: 0.75rem;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
       overflow: hidden;
       transition: all 0.3s ease;
+      height: fit-content;
     }
 
     .feed-item:hover {
@@ -671,9 +693,90 @@
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
     
-    /* === AWARENESS AGENCY SECTION === */
+    /* === AWARENESS AGENCY SECTION - OPTIMIZED === */
     .awareness-agency {
       background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+      padding: 2rem 0 !important;
+    }
+    
+    /* NEW: Progress Journey Styles */
+    .progress-journey {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .progress-journey::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d84545, #111d40);
+      z-index: 1;
+    }
+    
+    .progress-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+      flex: 1;
+    }
+    
+    .step-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: white;
+      border: 3px solid #e2e8f0;
+      transition: all 0.3s ease;
+      margin-bottom: 0.5rem;
+    }
+    
+    .progress-step.active .step-icon {
+      background: var(--brand-coral);
+      border-color: var(--brand-coral);
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .progress-step.completed .step-icon {
+      background: var(--brand-blue);
+      border-color: var(--brand-blue);
+      color: white;
+    }
+    
+    .step-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-align: center;
+      color: #64748b;
+      transition: all 0.3s ease;
+    }
+    
+    .progress-step.active .step-label {
+      color: var(--brand-coral);
+      font-weight: 700;
+    }
+    
+    .progress-step.completed .step-label {
+      color: var(--brand-blue);
+    }
+    
+    .step-description {
+      font-size: 0.7rem;
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 0.25rem;
+      max-width: 120px;
     }
     
     /* === FIXED MEDIA QUERIES === */
@@ -736,9 +839,30 @@
         justify-content: center !important;
       }
       
-      /* Reduce hero height on mobile */
-      .hero-gradient {
-        min-height: 60vh;
+      /* Progress journey mobile */
+      .progress-journey {
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: flex-start;
+      }
+      
+      .progress-journey::before {
+        display: none;
+      }
+      
+      .progress-step {
+        flex-direction: row;
+        gap: 1rem;
+        width: 100%;
+      }
+      
+      .step-content {
+        text-align: left;
+      }
+      
+      .step-description {
+        max-width: none;
+        text-align: left;
       }
     }
     
@@ -889,7 +1013,7 @@
 
 <!-- App Content Area -->
 <main class="app-content">
-  <!-- Enhanced Hero Section with Reduced Height -->
+  <!-- RESTORED: Original Hero Section Height -->
   <section class="hero-gradient text-white overflow-hidden" id="home">
     <div class="hero-pattern"></div>
     
@@ -900,35 +1024,35 @@
     
     <div class="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
       <!-- Vienna Positioning -->
-      <div class="mb-6 animate-fade-in-up">
+      <div class="mb-8 animate-fade-in-up">
         <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction animate-hologram">
           <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
           Vienna's Home for Responsible AI
         </span>
       </div>
       
-      <h1 class="text-3xl md:text-6xl font-bold leading-tight mb-4 font-orbitron mobile-heading stagger-animate">
+      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
         <span class="text-white">People.</span>
         <span class="text-white">Change.</span>
         <span class="text-brand-coral brand-glow animate-text-glow">Technology.</span>
         <span class="text-white">Together.</span>
       </h1>
       
-      <p class="text-lg md:text-xl text-gray-200 mb-6 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
+      <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
         Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
       </p>
       
-      <div class="flex flex-col md:flex-row gap-3 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
-        <a href="#join" class="cta-modern text-white font-semibold px-6 py-3 md:px-8 md:py-4 rounded-xl shadow-xl mobile-full-width md:w-auto focus-brand">
+      <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
+        <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
           Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
         </a>
-        <a href="#value" class="cta-secondary px-5 py-3 md:px-6 md:py-4 rounded-xl font-semibold mobile-full-width md:w-auto focus-brand">
+        <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
           Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
         </a>
       </div>
       
       <!-- NEW: Dynamic Trust indicators -->
-      <div class="mt-8 flex flex-wrap justify-center gap-4 md:gap-8 animate-fade-in-up" style="animation-delay: 0.7s">
+      <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
         <div class="flex items-center gap-2 text-gray-300">
           <i data-feather="users" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
           <span class="text-sm">
@@ -948,7 +1072,7 @@
       </div>
       
       <!-- Scroll Indicator -->
-      <div class="mt-8 animate-bounce">
+      <div class="mt-12 animate-bounce">
         <i data-feather="chevron-down" class="w-6 h-6 text-gray-300 mx-auto"></i>
       </div>
     </div>
@@ -958,9 +1082,9 @@
   <section id="value" class="section-padding bg-white mobile-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-2xl md:text-4xl font-bold text-brand-blue mb-3 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-4 md:mb-6 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-base md:text-lg text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
           We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility.
         </p>
       </div>
@@ -1038,92 +1162,79 @@
     </div>
   </section>
 
-  <!-- NEW: Awareness Agency Section -->
-  <section id="awareness" class="section-padding awareness-agency mobile-section">
+  <!-- OPTIMIZED: Awareness to Agency Section with Progress Journey -->
+  <section id="awareness" class="awareness-agency mobile-section">
     <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
-      <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
       
-      <p class="text-base md:text-lg text-gray-600 mb-8 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-        Vienna's premier collaborative hub for responsible AI Innovation
+      <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        Your journey to responsible AI mastery through Vienna's premier collaborative hub
       </p>
 
-      <!-- Desktop Awareness Cards -->
-      <div class="desktop-only grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto stagger-animate">
-        <div class="glass-card p-6 text-left">
-          <div class="w-14 h-14 bg-brand-coral rounded-xl flex items-center justify-center mb-4 animate-float">
-            <i data-feather="eye" class="text-white w-7 h-7"></i>
+      <!-- Progress Journey - 5 Steps -->
+      <div class="progress-journey stagger-animate mb-8">
+        <!-- Step 1: Awareness -->
+        <div class="progress-step active">
+          <div class="step-icon">
+            <i data-feather="eye" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-xl font-bold text-brand-blue mb-3">Awareness</h3>
-          <p class="text-gray-600 mb-4 text-sm">Understand the AI landscape, opportunities and ethical considerations through curated resources and expert insights.</p>
-          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group text-sm">
-            Explore Resources <i data-feather="arrow-right" class="ml-2 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
+          <div class="step-content">
+            <div class="step-label">Awareness</div>
+            <div class="step-description">Understand AI landscape</div>
+          </div>
         </div>
         
-        <div class="glass-card p-6 text-left">
-          <div class="w-14 h-14 bg-brand-blue rounded-xl flex items-center justify-center mb-4 animate-float" style="animation-delay: 1s">
-            <i data-feather="zap" class="text-white w-7 h-7"></i>
+        <!-- Step 2: Understanding -->
+        <div class="progress-step completed">
+          <div class="step-icon">
+            <i data-feather="book-open" class="w-5 h-5"></i>
           </div>
-          <h3 class="text-xl font-bold text-brand-blue mb-3">Agency</h3>
-          <p class="text-gray-600 mb-4 text-sm">Transform knowledge into action through collaborative projects, community initiatives and real-world implementations.</p>
-          <a href="#" class="text-brand-coral font-semibold hover:text-brand-coral-dark transition-colors group text-sm">
-            Take Action <i data-feather="arrow-right" class="ml-2 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
-          </a>
+          <div class="step-content">
+            <div class="step-label">Understanding</div>
+            <div class="step-description">Deepen knowledge</div>
+          </div>
+        </div>
+        
+        <!-- Step 3: Engagement -->
+        <div class="progress-step">
+          <div class="step-icon">
+            <i data-feather="users" class="w-5 h-5"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Engagement</div>
+            <div class="step-description">Join discussions</div>
+          </div>
+        </div>
+        
+        <!-- Step 4: Application -->
+        <div class="progress-step">
+          <div class="step-icon">
+            <i data-feather="zap" class="w-5 h-5"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Application</div>
+            <div class="step-description">Implement solutions</div>
+          </div>
+        </div>
+        
+        <!-- Step 5: Agency -->
+        <div class="progress-step">
+          <div class="step-icon">
+            <i data-feather="award" class="w-5 h-5"></i>
+          </div>
+          <div class="step-content">
+            <div class="step-label">Agency</div>
+            <div class="step-description">Drive change</div>
+          </div>
         </div>
       </div>
 
-      <!-- Mobile Expandable Cards -->
-      <div class="mobile-only space-y-3 stagger-animate">
-        <div class="expandable-card glass-card">
-          <div class="card-preview">
-            <button class="expand-trigger" data-expand="awareness">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-brand-coral rounded-lg flex items-center justify-center">
-                  <i data-feather="eye" class="text-white"></i>
-                </div>
-                <div class="text-left">
-                  <h3 class="font-bold text-brand-blue">Awareness</h3>
-                  <p class="text-xs text-gray-600">Understand the AI landscape</p>
-                </div>
-              </div>
-              <i data-feather="chevron-down" class="expand-icon text-gray-400 transition-transform duration-300"></i>
-            </button>
-          </div>
-          <div class="card-details" id="awareness-details">
-            <div class="p-3 border-t border-gray-100">
-              <p class="text-gray-600 mb-3 text-sm">Access curated resources, research papers, and foundational knowledge about responsible AI development and ethical considerations.</p>
-              <a href="#" class="text-brand-coral font-semibold text-xs group">
-                Explore Resources <i data-feather="arrow-right" class="ml-1 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-        
-        <div class="expandable-card glass-card">
-          <div class="card-preview">
-            <button class="expand-trigger" data-expand="agency">
-              <div class="flex items-center gap-3">
-                <div class="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center">
-                  <i data-feather="zap" class="text-white"></i>
-                </div>
-                <div class="text-left">
-                  <h3 class="font-bold text-brand-blue">Agency</h3>
-                  <p class="text-xs text-gray-600">Transform knowledge into action</p>
-                </div>
-              </div>
-              <i data-feather="chevron-down" class="expand-icon text-gray-400 transition-transform duration-300"></i>
-            </button>
-          </div>
-          <div class="card-details" id="agency-details">
-            <div class="p-3 border-t border-gray-100">
-              <p class="text-gray-600 mb-3 text-sm">Participate in collaborative projects, community initiatives and real-world implementations that create meaningful impact.</p>
-              <a href="#" class="text-brand-coral font-semibold text-xs group">
-                Take Action <i data-feather="arrow-right" class="ml-1 w-3 h-3 transition-transform duration-300 group-hover:translate-x-1"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+      <!-- Call to Action -->
+      <div class="animate-fade-in-up" style="animation-delay: 0.5s">
+        <a href="#join" class="cta-modern text-white font-semibold px-6 py-3 rounded-xl inline-flex items-center">
+          Start Your Journey <i data-feather="arrow-right" class="ml-2"></i>
+        </a>
       </div>
     </div>
   </section>
@@ -1132,9 +1243,9 @@
   <section id="ecosystem" class="section-padding bg-white mobile-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-2xl md:text-4xl font-bold text-brand-blue mb-3 font-orbitron mobile-heading animate-fade-in-up">Auxion Ecosystem</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-4 md:mb-6 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Auxion Ecosystem</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
           Creating meaningful impact by bringing together Vienna's diverse AI voices
         </p>
       </div>
@@ -1221,16 +1332,16 @@
     </div>
   </section>
 
-  <!-- Social Media Style Insights Feed -->
+  <!-- ENHANCED: Instagram-Style Insights Feed -->
   <section id="insights" class="section-padding bg-gray-50 mobile-section">
-    <div class="max-w-2xl mx-auto px-4">
-      <div class="text-center mb-6">
-        <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mb-3 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
-        <p class="text-gray-600 mobile-body text-sm animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
+        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
       </div>
 
-      <!-- Social Feed -->
-      <div class="space-y-3 stagger-animate">
+      <!-- Instagram Grid Feed -->
+      <div class="instagram-grid stagger-animate">
         <!-- Feed Item 1 -->
         <div class="feed-item glass-card">
           <div class="feed-header">
@@ -1359,8 +1470,8 @@
       </div>
 
       <!-- Load More Button -->
-      <div class="text-center mt-6 animate-fade-in-up" style="animation-delay: 0.4s">
-        <button class="cta-secondary px-5 py-2 rounded-lg font-semibold transition-all duration-300 text-sm">
+      <div class="text-center mt-8 animate-fade-in-up" style="animation-delay: 0.4s">
+        <button class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
           Load More Insights
         </button>
       </div>
@@ -1371,9 +1482,9 @@
   <section id="testimonials" class="section-padding trust-signals mobile-section">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-4xl font-bold text-brand-blue mb-3 font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
-        <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-4 md:mb-6 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
           Hear from Vienna's AI community about their experiences with Auxion
         </p>
       </div>
@@ -1430,19 +1541,19 @@
   <!-- Join Ecosystem Section -->
   <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
     <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-2xl md:text-4xl font-bold mb-4 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
-      <div class="w-16 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-4 md:mb-6 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+      <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
       
-      <p class="text-base md:text-lg text-gray-200 mb-6 md:mb-8 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+      <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
         Become part of Vienna's premier collaborative hub for responsible AI innovation
       </p>
 
-      <div class="glass-card bg-white/10 backdrop-blur-sm rounded-xl p-5 md:p-6 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
-        <form class="space-y-4">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+      <div class="glass-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+        <form class="space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <div>
-              <label class="block text-left text-gray-200 mb-1 font-medium text-sm">Your Role</label>
-              <select class="w-full px-3 py-2 rounded-lg text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand text-sm">
+              <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
+              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
                 <option value="">Select your role</option>
                 <option value="student">Student / Learner</option>
                 <option value="researcher">Researcher / Academic</option>
@@ -1453,8 +1564,8 @@
             </div>
             
             <div>
-              <label class="block text-left text-gray-200 mb-1 font-medium text-sm">Primary Interest</label>
-              <select class="w-full px-3 py-2 rounded-lg text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand text-sm">
+              <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
+              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
                 <option value="">Select interest area</option>
                 <option value="ethics">AI Ethics & Governance</option>
                 <option value="technical">Technical Development</option>
@@ -1466,18 +1577,18 @@
           </div>
           
           <div>
-            <label class="block text-left text-gray-200 mb-1 font-medium text-sm">Email Address</label>
+            <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
             <input type="email" placeholder="Enter your email" required
-                class="w-full px-3 py-2 rounded-lg text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand text-sm">
+                class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
           </div>
           
           <button type="submit"
-              class="w-full cta-modern text-white px-5 py-3 md:px-6 md:py-3 rounded-lg font-semibold focus-brand text-sm">
+              class="w-full cta-modern text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold focus-brand">
               Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
           </button>
         </form>
         
-        <p class="text-gray-300 text-xs mt-4 mobile-body">
+        <p class="text-gray-300 text-sm mt-6 mobile-body">
           By joining, you become part of Vienna's collaborative network working towards responsible AI innovation
         </p>
       </div>
@@ -1488,8 +1599,8 @@
   <section class="section-padding trust-signals mobile-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8">
-        <h2 class="text-2xl md:text-3xl font-bold text-brand-blue mb-3 font-orbitron mobile-heading animate-fade-in-up">Trusted by Vienna's AI Community</h2>
-        <p class="text-gray-600 mobile-body text-sm animate-fade-in-up" style="animation-delay: 0.2s">Partners and supporters of our mission</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Trusted by Vienna's AI Community</h2>
+        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Partners and supporters of our mission</p>
       </div>
       
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center opacity-70 stagger-animate">
