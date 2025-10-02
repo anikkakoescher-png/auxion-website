@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Auxion - From Awareness to Agency</title>
+  <title>Auxion - Vienna's Collaborative Hub for Responsible AI</title>
+  <link rel="icon" href="https://placehold.co/32x32/111d40/d84545?text=A" type="image/x-icon">
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,8 @@
       --brand-coral: #d84545;
       --brand-coral-dark: #c44545;
       --brand-light: #f8fafc;
+      --brand-gray: #64748b;
+      --brand-success: #10b981;
     }
     
     body {
@@ -52,35 +55,123 @@
       background-size: 50px 50px;
     }
     
-    /* Journey Visualization */
-    .journey-container {
+    /* Navigation */
+    .nav-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
+    
+    .nav-container.scrolled {
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* === MOBILE NAVIGATION === */
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(0, 0, 0, 0.08);
+      z-index: 100;
+      padding: 0.5rem 0;
+    }
+    
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+      border-radius: 0.75rem;
+      transition: all 0.3s ease;
+      flex: 1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+    .nav-item.active {
+      background: rgba(216, 69, 69, 0.1);
+      color: var(--brand-coral);
+    }
+    
+    .nav-icon {
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-bottom: 0.25rem;
+    }
+    
+    .nav-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+    }
+    
+    .tab-content {
+      display: none;
+      padding-bottom: 5rem;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: white;
+      z-index: 40;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.open {
+      transform: translateX(0);
+    }
+    
+    /* === ANIMATED BUBBLE JOURNEY === */
+    .journey-bubbles {
       position: relative;
       max-width: 1000px;
       margin: 0 auto;
       padding: 3rem 0;
+      height: 400px;
     }
     
-    .journey-path {
+    .bubble-path {
       position: absolute;
       top: 50%;
-      left: 0;
-      right: 0;
+      left: 5%;
+      right: 5%;
       height: 4px;
       background: linear-gradient(90deg, #d84545, #111d40);
       transform: translateY(-50%);
       z-index: 1;
     }
     
-    .journey-step {
-      position: relative;
+    .journey-bubble {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
       z-index: 2;
       text-align: center;
-      transition: all 0.4s ease;
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
     }
     
-    .step-indicator {
-      width: 60px;
-      height: 60px;
+    .bubble {
+      width: 80px;
+      height: 80px;
       border-radius: 50%;
       background: white;
       border: 4px solid #e5e7eb;
@@ -90,194 +181,336 @@
       margin: 0 auto 1rem;
       font-weight: bold;
       color: #9ca3af;
-      transition: all 0.4s ease;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
     }
     
-    .journey-step.active .step-indicator {
+    .bubble::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, #d84545, #111d40, #d84545);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    .journey-bubble.active .bubble {
+      width: 120px;
+      height: 120px;
       border-color: var(--brand-coral);
       background: var(--brand-coral);
       color: white;
       transform: scale(1.1);
     }
     
-    .journey-step.completed .step-indicator {
+    .journey-bubble.active .bubble::before {
+      opacity: 1;
+    }
+    
+    .journey-bubble.completed .bubble {
       border-color: var(--brand-coral);
       background: var(--brand-coral);
       color: white;
     }
     
-    .step-content {
+    .bubble-content {
       opacity: 0.6;
       transform: translateY(10px);
       transition: all 0.4s ease;
+      max-width: 150px;
     }
     
-    .journey-step.active .step-content {
+    .journey-bubble.active .bubble-content {
       opacity: 1;
       transform: translateY(0);
     }
     
-    .journey-step.completed .step-content {
+    .journey-bubble.completed .bubble-content {
       opacity: 1;
     }
     
-    /* Dynamic Headlines */
-    .rotating-text-container {
-      height: 60px;
-      position: relative;
-      overflow: hidden;
+    /* Bubble positions */
+    .bubble-1 { left: 10%; }
+    .bubble-2 { left: 30%; }
+    .bubble-3 { left: 50%; }
+    .bubble-4 { left: 70%; }
+    .bubble-5 { left: 90%; }
+    
+    /* Dynamic connection lines */
+    .bubble-connector {
+      position: absolute;
+      top: 50%;
+      height: 4px;
+      background: linear-gradient(90deg, #d84545, #111d40);
+      z-index: 1;
+      transition: all 0.6s ease;
+      transform-origin: left center;
+    }
+    
+    /* === SWIPEABLE SECTIONS === */
+    .swipe-container {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: 0 1rem;
+      margin: 0 -1rem;
+    }
+    
+    .swipe-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .swipe-section {
+      scroll-snap-align: start;
+      flex: 0 0 85%;
+    }
+    
+    /* === PROGRESS INDICATORS === */
+    .progress-dots {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
       margin: 1rem 0;
     }
     
-    .rotating-text {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
-      font-size: 1.5rem;
-      font-weight: 600;
-      color: var(--brand-coral);
-    }
-    
-    .rotating-text.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    
-    /* Progress Indicators */
-    .progress-tracker {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 2rem;
-      margin: 2rem 0;
-    }
-    
-    .progress-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      opacity: 0.5;
-      transition: all 0.3s ease;
-    }
-    
-    .progress-item.active {
-      opacity: 1;
-      color: var(--brand-coral);
-    }
-    
     .progress-dot {
-      width: 12px;
-      height: 12px;
+      width: 0.5rem;
+      height: 0.5rem;
       border-radius: 50%;
-      background: #e5e7eb;
+      background-color: #e5e7eb;
       transition: all 0.3s ease;
     }
     
-    .progress-item.active .progress-dot {
-      background: var(--brand-coral);
-      transform: scale(1.2);
+    .progress-dot.active {
+      background-color: var(--brand-coral);
+      width: 1.5rem;
+      border-radius: 0.25rem;
     }
     
-    /* Enhanced Action Cards */
-    .action-card {
-      position: relative;
+    /* === MOBILE ACTION CARDS === */
+    .action-card-mobile {
       background: white;
-      border-radius: 1.5rem;
-      padding: 2rem;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
-      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      height: 100%;
+      border-radius: 1rem;
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid var(--brand-coral);
     }
     
-    .action-card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 25px 50px rgba(216, 69, 69, 0.15);
-    }
-    
-    .action-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: linear-gradient(90deg, var(--brand-coral), var(--brand-blue));
-      border-radius: 1.5rem 1.5rem 0 0;
-    }
-    
-    .card-icon {
-      width: 80px;
-      height: 80px;
+    .card-icon-mobile {
+      width: 3rem;
+      height: 3rem;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 2rem;
+      margin-bottom: 1rem;
       color: white;
-      transition: all 0.4s ease;
+      font-size: 1.25rem;
     }
     
-    .action-card:hover .card-icon {
-      transform: scale(1.1) rotate(5deg);
-    }
-    
-    .card-learn .card-icon {
+    .card-learn-mobile .card-icon-mobile {
       background: linear-gradient(135deg, #4f46e5, #7c3aed);
     }
     
-    .card-connect .card-icon {
+    .card-connect-mobile .card-icon-mobile {
       background: linear-gradient(135deg, #059669, #0d9488);
     }
     
-    .card-act .card-icon {
+    .card-act-mobile .card-icon-mobile {
       background: linear-gradient(135deg, #ea580c, #dc2626);
     }
     
-    /* Optimized Articles */
-    .article-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
+    /* === FLOATING ACTION BUTTON === */
+    .fab {
+      position: fixed;
+      bottom: 5.5rem;
+      right: 1rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 50%;
+      background: var(--brand-coral);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(216, 69, 69, 0.3);
+      z-index: 90;
+      transition: all 0.3s ease;
     }
     
-    .article-card {
+    .fab:active {
+      transform: scale(0.95);
+    }
+    
+    /* === BOTTOM SHEET MODAL === */
+    .bottom-sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      border-radius: 1.5rem 1.5rem 0 0;
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .bottom-sheet.open {
+      transform: translateY(0);
+    }
+    
+    .sheet-handle {
+      width: 3rem;
+      height: 0.25rem;
+      background: #e5e7eb;
+      border-radius: 0.125rem;
+      margin: 0.75rem auto;
+    }
+    
+    /* === GESTURE HINTS === */
+    .swipe-hint {
+      position: absolute;
+      bottom: 1rem;
+      left: 0;
+      right: 0;
+      text-align: center;
+      color: var(--brand-coral);
+      font-size: 0.875rem;
+      opacity: 0.7;
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; }
+      50% { opacity: 1; }
+    }
+    
+    /* Ecosystem Visualization */
+    .ecosystem-grid {
+      display: grid;
+      grid-template-columns: repeat(1, 1fr);
+      gap: 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    @media (min-width: 768px) {
+      .ecosystem-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2rem;
+      }
+    }
+    
+    .ecosystem-node {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      border-radius: 1.5rem;
+      background: white;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+    
+    @media (min-width: 768px) {
+      .ecosystem-node {
+        padding: 2rem 1rem;
+      }
+    }
+    
+    .ecosystem-node:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    }
+    
+    .node-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #d84545, #e57373);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      color: white;
+      font-size: 1.75rem;
+    }
+    
+    /* Vienna Bridge */
+    .vienna-bridge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .vienna-bridge {
+        flex-direction: row;
+        gap: 2rem;
+      }
+    }
+    
+    /* Card styles */
+    .card {
       background: white;
       border-radius: 1.5rem;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
       transition: all 0.3s ease;
       border: 1px solid rgba(0, 0, 0, 0.05);
     }
     
-    .article-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
     }
     
-    .article-image {
-      height: 200px;
-      width: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
+    /* Utility classes */
+    .text-balance {
+      text-wrap: balance;
     }
     
-    .article-card:hover .article-image {
-      transform: scale(1.05);
+    .ai-gradient-text {
+      background: linear-gradient(135deg, #d84545 0%, #111d40 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     
-    /* Smooth animations */
+    /* Section spacing */
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    @media (min-width: 768px) {
+      .section-padding {
+        padding: 5rem 0;
+      }
+    }
+    
+    /* CTA Animation */
+    .cta-pulse {
+      animation: pulse 2s infinite;
+    }
+    
+    /* Animation classes */
     .fade-in {
       opacity: 0;
-      transform: translateY(30px);
-      animation: fadeInUp 0.8s ease forwards;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
     }
     
     @keyframes fadeInUp {
@@ -287,26 +520,139 @@
       }
     }
     
-    .stagger-delay-1 { animation-delay: 0.1s; }
-    .stagger-delay-2 { animation-delay: 0.2s; }
-    .stagger-delay-3 { animation-delay: 0.3s; }
-    .stagger-delay-4 { animation-delay: 0.4s; }
-    
-    /* Performance optimizations */
-    .will-change-transform {
-      will-change: transform;
+    .floating-element {
+      animation: float 6s ease-in-out infinite;
     }
     
-    .reduce-motion {
-      animation: none;
-      transition: none;
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    /* Mobile optimizations */
+    .mobile-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .mobile-full-width {
+      width: 100%;
+    }
+    
+    .mobile-text-center {
+      text-align: center;
+    }
+    
+    /* Enhanced typography for mobile */
+    @media (max-width: 767px) {
+      .mobile-heading {
+        font-size: 2.5rem;
+        line-height: 1.2;
+      }
+      
+      .mobile-subheading {
+        font-size: 1.25rem;
+        line-height: 1.4;
+      }
+      
+      .mobile-body {
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .mobile-section {
+        padding: 2rem 0;
+      }
+      
+      .mobile-card {
+        margin-bottom: 1.5rem;
+        border-radius: 1rem;
+      }
+    }
+    
+    /* Desktop styles hidden on mobile */
+    @media (min-width: 768px) {
+      .mobile-only {
+        display: none;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .desktop-only {
+        display: none;
+      }
     }
   </style>
 </head>
 <body class="bg-white">
 
+<!-- Desktop Navigation -->
+<nav class="nav-container desktop-only">
+  <div class="max-w-7xl mx-auto px-6 py-4">
+    <div class="flex justify-between items-center">
+      <div class="text-2xl font-bold text-brand-blue font-orbitron">AUXION</div>
+      <div class="hidden md:flex space-x-8">
+        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Ecosystem</a>
+        <a href="#hub" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Action Hub</a>
+        <a href="#journey" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Journey</a>
+        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium">Join</a>
+      </div>
+      <button class="md:hidden text-gray-600" id="mobile-menu-button">
+        <i data-feather="menu"></i>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Navigation -->
+<nav class="bottom-nav mobile-only">
+  <div class="flex justify-around">
+    <a href="#ecosystem" class="nav-item active" data-tab="ecosystem">
+      <i data-feather="grid" class="nav-icon"></i>
+      <span class="nav-label">Ecosystem</span>
+    </a>
+    <a href="#hub" class="nav-item" data-tab="hub">
+      <i data-feather="target" class="nav-icon"></i>
+      <span class="nav-label">Action Hub</span>
+    </a>
+    <a href="#journey" class="nav-item" data-tab="journey">
+      <i data-feather="compass" class="nav-icon"></i>
+      <span class="nav-label">Journey</span>
+    </a>
+    <a href="#join" class="nav-item" data-tab="join">
+      <i data-feather="user-plus" class="nav-icon"></i>
+      <span class="nav-label">Join</span>
+    </a>
+  </div>
+</nav>
+
+<!-- Floating Action Button -->
+<div class="fab mobile-only touch-target">
+  <i data-feather="plus"></i>
+</div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="p-6">
+    <div class="flex justify-between items-center mb-8">
+      <div class="text-2xl font-bold text-brand-blue font-orbitron">AUXION</div>
+      <button class="text-gray-600" id="close-menu-button">
+        <i data-feather="x"></i>
+      </button>
+    </div>
+    <div class="mobile-stack">
+      <a href="#ecosystem" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Ecosystem</a>
+      <a href="#hub" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Action Hub</a>
+      <a href="#journey" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Journey</a>
+      <a href="#join" class="text-2xl font-medium text-gray-700 py-4 border-b border-gray-100">Join</a>
+    </div>
+  </div>
+</div>
+
 <!-- Enhanced Hero Section -->
-<section class="hero-gradient text-white py-20 md:py-32 overflow-hidden">
+<section class="hero-gradient text-white py-16 md:py-32 overflow-hidden">
   <div class="hero-pattern"></div>
   <div class="relative z-10 text-center px-4 max-w-6xl mx-auto">
     <!-- Vienna Positioning -->
@@ -316,381 +662,709 @@
       </span>
     </div>
     
-    <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron">
+    <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading">
       <span class="text-white">People.</span>
       <span class="text-white">Change.</span>
       <span class="text-brand-coral">Technology.</span>
       <span class="text-white">Together.</span>
     </h1>
     
-    <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto">
+    <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading">
       Auxion collaborative hub where diverse voices unite to transform AI awareness into agency through collaboration and action
     </p>
     
-    <!-- Dynamic Headlines -->
-    <div class="rotating-text-container">
-      <div class="rotating-text active" data-text="1">From Awareness to Agency</div>
-      <div class="rotating-text" data-text="2">From Connection to Collaboration</div>
-      <div class="rotating-text" data-text="3">From Ideas to Impact</div>
-      <div class="rotating-text" data-text="4">From Vienna to the World</div>
-    </div>
-    
-    <a href="#journey" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl">
-      Start Your Journey <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+    <a href="#join" class="inline-block bg-brand-coral hover:bg-brand-coral-dark text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl transition-all duration-300 transform hover:scale-105 shadow-2xl cta-pulse mobile-full-width md:w-auto">
+      Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
     </a>
   </div>
 </section>
 
-<!-- Interactive Journey Visualization -->
-<section id="journey" class="py-16 md:py-24 bg-white">
+<!-- Ecosystem Visualization Section -->
+<section id="ecosystem" class="section-padding bg-white mobile-section">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Your Journey to Agency</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6"></div>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
-        Follow the pathway from awareness to meaningful action and impact
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Auxion Ecosystem</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
+      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
+        Creating meaningful impact by bringing together Vienna's diverse AI voices from academia, business, research and activism
       </p>
     </div>
     
-    <!-- Progress Tracker -->
-    <div class="progress-tracker">
-      <div class="progress-item active" data-step="1">
-        <div class="progress-dot"></div>
-        <span class="font-medium">Awareness</span>
+    <!-- Ecosystem Grid -->
+    <div class="ecosystem-grid">
+      <div class="ecosystem-node mobile-card">
+        <div class="node-icon floating-element">
+          <i data-feather="users"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Students</h3>
+        <p class="text-gray-600 text-sm mobile-body">Emerging leaders shaping tomorrow's AI landscape</p>
       </div>
-      <div class="progress-item" data-step="2">
-        <div class="progress-dot"></div>
-        <span class="font-medium">Connection</span>
+      
+      <div class="ecosystem-node mobile-card">
+        <div class="node-icon floating-element">
+          <i data-feather="book"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Researchers</h3>
+        <p class="text-gray-600 text-sm mobile-body">Pioneering ethical AI research and innovation</p>
       </div>
-      <div class="progress-item" data-step="3">
-        <div class="progress-dot"></div>
-        <span class="font-medium">Collaboration</span>
+      
+      <div class="ecosystem-node mobile-card">
+        <div class="node-icon floating-element">
+          <i data-feather="briefcase"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Industry</h3>
+        <p class="text-gray-600 text-sm mobile-body">Leading people-first AI adoption</p>
       </div>
-      <div class="progress-item" data-step="4">
-        <div class="progress-dot"></div>
-        <span class="font-medium">Action</span>
-      </div>
-      <div class="progress-item" data-step="5">
-        <div class="progress-dot"></div>
-        <span class="font-medium">Impact</span>
+      
+      <div class="ecosystem-node mobile-card">
+        <div class="node-icon floating-element">
+          <i data-feather="heart"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Activists</h3>
+        <p class="text-gray-600 text-sm mobile-body">Advocating for ethical AI practices</p>
       </div>
     </div>
     
-    <!-- Journey Path -->
-    <div class="journey-container">
-      <div class="journey-path"></div>
+    <!-- Vienna Global Bridge -->
+    <div class="vienna-bridge mt-12 md:mt-16">
+      <div class="bridge-node">
+        <div class="bridge-icon floating-element">
+          <i data-feather="map-pin"></i>
+        </div>
+        <h3 class="text-xl font-semibold text-brand-blue mb-2">Vienna Rooted</h3>
+        <p class="text-gray-600 mobile-body">At the heart of European Digital Humanism</p>
+      </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
-        <!-- Step 1: Awareness -->
-        <div class="journey-step active" data-step="1">
-          <div class="step-indicator">1</div>
-          <div class="step-content">
-            <h3 class="font-semibold text-brand-blue mb-2">Awareness</h3>
-            <p class="text-sm text-gray-600">Understand the AI landscape and its implications</p>
-          </div>
+      <div class="bridge-connector">⟷</div>
+      
+      <div class="bridge-node">
+        <div class="bridge-icon floating-element">
+          <i data-feather="globe"></i>
         </div>
-        
-        <!-- Step 2: Connection -->
-        <div class="journey-step" data-step="2">
-          <div class="step-indicator">2</div>
-          <div class="step-content">
-            <h3 class="font-semibold text-brand-blue mb-2">Connection</h3>
-            <p class="text-sm text-gray-600">Join Vienna's diverse AI community</p>
-          </div>
-        </div>
-        
-        <!-- Step 3: Collaboration -->
-        <div class="journey-step" data-step="3">
-          <div class="step-indicator">3</div>
-          <div class="step-content">
-            <h3 class="font-semibold text-brand-blue mb-2">Collaboration</h3>
-            <p class="text-sm text-gray-600">Work together across disciplines</p>
-          </div>
-        </div>
-        
-        <!-- Step 4: Action -->
-        <div class="journey-step" data-step="4">
-          <div class="step-indicator">4</div>
-          <div class="step-content">
-            <h3 class="font-semibold text-brand-blue mb-2">Action</h3>
-            <p class="text-sm text-gray-600">Implement real-world solutions</p>
-          </div>
-        </div>
-        
-        <!-- Step 5: Impact -->
-        <div class="journey-step" data-step="5">
-          <div class="step-indicator">5</div>
-          <div class="step-content">
-            <h3 class="font-semibold text-brand-blue mb-2">Impact</h3>
-            <p class="text-sm text-gray-600">Create meaningful change</p>
-          </div>
-        </div>
+        <h3 class="text-xl font-semibold text-brand-blue mb-2">Global Impact</h3>
+        <p class="text-gray-600 mobile-body">Local solutions meeting worldwide challenges</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Enhanced Action Hub -->
-<section class="py-16 md:py-24 bg-gray-50">
+<!-- Enhanced Action Hub Section -->
+<section id="hub" class="section-padding bg-white mobile-section">
   <div class="max-w-7xl mx-auto px-4">
     <div class="text-center mb-12 md:mb-16">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron">Action Hub</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6"></div>
-      <h3 class="text-xl md:text-3xl font-semibold text-brand-coral mb-4">From Awareness to Agency</h3>
-      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">Action Hub</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
+      <h3 class="text-xl md:text-3xl font-semibold text-brand-coral mb-4 mobile-subheading">From Awareness to Agency</h3>
+      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
         Resources and tools to turn AI principles into collaborative action
       </p>
     </div>
     
-    <!-- Action Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+    <!-- Desktop Action Cards -->
+    <div class="desktop-only grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
       <!-- Learn Card -->
-      <div class="action-card card-learn fade-in will-change-transform">
-        <div class="card-icon">
-          <i data-feather="book-open"></i>
+      <div class="card gradient-border">
+        <div class="h-40 md:h-48 bg-gradient-to-br from-blue-50 to-blue-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="book-open" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
         </div>
-        <h3 class="text-xl font-bold text-brand-blue mb-4">Learn & Discover</h3>
-        <p class="text-gray-600 mb-6">Access curated resources, research papers and foundational knowledge about responsible AI</p>
-        <div class="flex items-center justify-between">
-          <a href="#" class="text-brand-coral hover:text-brand-coral-dark font-semibold transition-colors duration-300">
-            Explore Resources
+        <div class="p-5 md:p-6">
+          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Learn & Discover</h3>
+          <p class="text-gray-600 mb-4 mobile-body">Access curated resources, research papers and foundational knowledge about responsible AI</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            Explore Resources <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
-          <div class="text-sm text-gray-500">12 new articles</div>
         </div>
       </div>
       
       <!-- Connect Card -->
-      <div class="action-card card-connect fade-in stagger-delay-1 will-change-transform">
-        <div class="card-icon">
-          <i data-feather="users"></i>
+      <div class="card gradient-border">
+        <div class="h-40 md:h-48 bg-gradient-to-br from-green-50 to-green-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="users" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
         </div>
-        <h3 class="text-xl font-bold text-brand-blue mb-4">Connect & Collaborate</h3>
-        <p class="text-gray-600 mb-6">Join discussions, find partners and participate in Vienna's AI community events</p>
-        <div class="flex items-center justify-between">
-          <a href="#" class="text-brand-coral hover:text-brand-coral-dark font-semibold transition-colors duration-300">
-            Join Community
+        <div class="p-5 md:p-6">
+          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Connect & Collaborate</h3>
+          <p class="text-gray-600 mb-4 mobile-body">Join discussions, find partners and participate in Vienna's AI community events</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            Join Community <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
           </a>
-          <div class="text-sm text-gray-500">3 events this week</div>
         </div>
       </div>
       
       <!-- Act Card -->
-      <div class="action-card card-act fade-in stagger-delay-2 will-change-transform">
-        <div class="card-icon">
+      <div class="card gradient-border">
+        <div class="h-40 md:h-48 bg-gradient-to-br from-orange-50 to-orange-100 rounded-t-xl flex items-center justify-center">
+          <i data-feather="target" class="w-12 h-12 md:w-16 md:h-16 text-brand-blue"></i>
+        </div>
+        <div class="p-5 md:p-6">
+          <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Act & Implement</h3>
+          <p class="text-gray-600 mb-4 mobile-body">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
+          <a href="#" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+            See Projects <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Mobile Action Cards -->
+    <div class="mobile-only space-y-4 mb-8">
+      <div class="action-card-mobile card-learn-mobile">
+        <div class="card-icon-mobile">
+          <i data-feather="book-open"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Learn & Discover</h3>
+        <p class="text-gray-600 mb-3 mobile-body">Access curated resources and foundational knowledge about responsible AI</p>
+        <a href="#" class="text-brand-coral text-sm font-medium">Explore Resources →</a>
+      </div>
+      
+      <div class="action-card-mobile card-connect-mobile">
+        <div class="card-icon-mobile">
+          <i data-feather="users"></i>
+        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Connect & Collaborate</h3>
+        <p class="text-gray-600 mb-3 mobile-body">Join Vienna's AI community events and discussions</p>
+        <a href="#" class="text-brand-coral text-sm font-medium">Join Community →</a>
+      </div>
+      
+      <div class="action-card-mobile card-act-mobile">
+        <div class="card-icon-mobile">
           <i data-feather="target"></i>
         </div>
-        <h3 class="text-xl font-bold text-brand-blue mb-4">Act & Implement</h3>
-        <p class="text-gray-600 mb-6">Participate in projects, initiatives, and co-create solutions for real-world challenges</p>
-        <div class="flex items-center justify-between">
-          <a href="#" class="text-brand-coral hover:text-brand-coral-dark font-semibold transition-colors duration-300">
-            See Projects
-          </a>
-          <div class="text-sm text-gray-500">8 active projects</div>
-        </div>
+        <h3 class="text-lg font-semibold text-brand-blue mb-2">Act & Implement</h3>
+        <p class="text-gray-600 mb-3 mobile-body">Participate in projects and co-create solutions</p>
+        <a href="#" class="text-brand-coral text-sm font-medium">See Projects →</a>
       </div>
     </div>
     
-    <!-- Latest Insights -->
-    <div class="text-center mb-8">
-      <h3 class="text-2xl md:text-3xl font-bold text-brand-blue mb-4">Latest Insights</h3>
-      <p class="text-gray-600 max-w-2xl mx-auto">Stay updated with the latest thoughts on responsible AI and digital humanism</p>
-    </div>
-    
-    <!-- Articles Grid -->
-    <div class="article-grid">
-      <!-- Article 1 -->
-      <div class="article-card fade-in stagger-delay-3 will-change-transform">
-        <div class="overflow-hidden">
-          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
-               alt="AI is not happening to us" 
-               class="article-image">
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
-          <p class="text-gray-600 mb-4">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
-          <div class="flex items-center justify-between">
+    <!-- Blog Articles Section -->
+    <div class="mb-12 md:mb-16">
+      <h3 class="text-2xl md:text-3xl font-bold text-brand-blue mb-8 text-center mobile-heading">Latest Insights</h3>
+      
+      <!-- Desktop Articles Grid -->
+      <div class="desktop-only grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Article 1 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                 alt="AI is not happening to us" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-5 md:p-6">
+            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">AI is not happening to us. It's happening through us.</h3>
+            <p class="text-gray-600 mb-4 mobile-body">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
             <a href="https://open.substack.com/pub/auxion/p/ai-has-no-moral-compass-thankfully?r=5yddq5&utm_campaign=post&utm_medium=web" 
-               target="_blank" class="text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300">
-              Read More
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
             </a>
-            <span class="text-sm text-gray-500">5 min read</span>
           </div>
         </div>
-      </div>
-      
-      <!-- Article 2 -->
-      <div class="article-card fade-in stagger-delay-4 will-change-transform">
-        <div class="overflow-hidden">
-          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
-               alt="AGI: Are you ready?" 
-               class="article-image">
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
-          <p class="text-gray-600 mb-4">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
-          <div class="flex items-center justify-between">
+        
+        <!-- Article 2 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                 alt="AGI: Are you ready?" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-5 md:p-6">
+            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">AGI: Are you ready?</h3>
+            <p class="text-gray-600 mb-4 mobile-body">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
             <a href="https://open.substack.com/pub/auxion/p/agi-are-you-ready?r=5yddq5&utm_campaign=post&utm_medium=web" 
-               target="_blank" class="text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300">
-              Read More
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
             </a>
-            <span class="text-sm text-gray-500">7 min read</span>
+          </div>
+        </div>
+        
+        <!-- Article 3 -->
+        <div class="card fade-in hover-lift">
+          <div class="h-40 md:h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                 alt="Digital Humanism in Vienna" 
+                 class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+          </div>
+          <div class="p-5 md:p-6">
+            <h3 class="text-lg md:text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
+            <p class="text-gray-600 mb-4 mobile-body">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+            <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
           </div>
         </div>
       </div>
       
-      <!-- Article 3 -->
-      <div class="article-card fade-in will-change-transform">
-        <div class="overflow-hidden">
-          <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
-               alt="Digital Humanism in Vienna" 
-               class="article-image">
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-semibold text-brand-blue mb-3">Digital Humanism in Vienna</h3>
-          <p class="text-gray-600 mb-4">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
-          <div class="flex items-center justify-between">
-            <a href="https://open.substack.com/pub/auxion/p/digital-humanism-in-vienna-building?r=5yddq5&utm_campaign=post&utm_medium=web&showWelcomeOnShare=true" 
-               target="_blank" class="text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300">
-              Read More
-            </a>
-            <span class="text-sm text-gray-500">6 min read</span>
+      <!-- Mobile Articles Swipe -->
+      <div class="mobile-only">
+        <div class="swipe-container flex overflow-x-auto pb-4 -mx-4 px-4">
+          <div class="swipe-section pr-4">
+            <div class="card">
+              <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                     alt="AI is not happening to us" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
+                <p class="text-sm text-gray-600 mb-3">From awareness to agency. Today, responsibility cannot be outsourced.</p>
+                <a href="#" class="text-brand-coral text-sm font-medium">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swipe-section pr-4">
+            <div class="card">
+              <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                     alt="AGI: Are you ready?" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold text-brand-blue mb-2">AGI: Are you ready?</h3>
+                <p class="text-sm text-gray-600 mb-3">On digital humanism and why the AGI conversation matters now.</p>
+                <a href="#" class="text-brand-coral text-sm font-medium">Read More</a>
+              </div>
+            </div>
+          </div>
+          
+          <div class="swipe-section">
+            <div class="card">
+              <div class="h-48 bg-gray-200 rounded-t-xl overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                     alt="Digital Humanism in Vienna" 
+                     class="w-full h-full object-cover">
+              </div>
+              <div class="p-4">
+                <h3 class="font-semibold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
+                <p class="text-sm text-gray-600 mb-3">The most important AI discussion isn't in Silicon Valley.</p>
+                <a href="#" class="text-brand-coral text-sm font-medium">Read More</a>
+              </div>
+            </div>
           </div>
         </div>
+        
+        <div class="progress-dots">
+          <div class="progress-dot active"></div>
+          <div class="progress-dot"></div>
+          <div class="progress-dot"></div>
+        </div>
+        
+        <div class="swipe-hint">Swipe to explore more insights</div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- Animated Bubble Journey Section -->
+<section id="journey" class="section-padding bg-gray-50 mobile-section">
+  <div class="max-w-7xl mx-auto px-4">
+    <div class="text-center mb-12 md:mb-16">
+      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading">From Awareness to Agency</h2>
+      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8"></div>
+      <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body">
+        Follow your transformation journey through our collaborative ecosystem
+      </p>
+    </div>
+    
+    <!-- Animated Bubble Journey -->
+    <div class="journey-bubbles">
+      <div class="bubble-path"></div>
+      
+      <!-- Bubble 1: Awareness -->
+      <div class="journey-bubble bubble-1 active" data-step="1">
+        <div class="bubble">
+          <span>1</span>
+        </div>
+        <div class="bubble-content">
+          <h3 class="font-semibold text-brand-blue mb-1">Awareness</h3>
+          <p class="text-sm text-gray-600">Understand AI landscape</p>
+        </div>
+      </div>
+      
+      <!-- Bubble 2: Connection -->
+      <div class="journey-bubble bubble-2" data-step="2">
+        <div class="bubble">
+          <span>2</span>
+        </div>
+        <div class="bubble-content">
+          <h3 class="font-semibold text-brand-blue mb-1">Connection</h3>
+          <p class="text-sm text-gray-600">Join the community</p>
+        </div>
+      </div>
+      
+      <!-- Bubble 3: Collaboration -->
+      <div class="journey-bubble bubble-3" data-step="3">
+        <div class="bubble">
+          <span>3</span>
+        </div>
+        <div class="bubble-content">
+          <h3 class="font-semibold text-brand-blue mb-1">Collaboration</h3>
+          <p class="text-sm text-gray-600">Work across disciplines</p>
+        </div>
+      </div>
+      
+      <!-- Bubble 4: Action -->
+      <div class="journey-bubble bubble-4" data-step="4">
+        <div class="bubble">
+          <span>4</span>
+        </div>
+        <div class="bubble-content">
+          <h3 class="font-semibold text-brand-blue mb-1">Action</h3>
+          <p class="text-sm text-gray-600">Implement solutions</p>
+        </div>
+      </div>
+      
+      <!-- Bubble 5: Impact -->
+      <div class="journey-bubble bubble-5" data-step="5">
+        <div class="bubble">
+          <span>5</span>
+        </div>
+        <div class="bubble-content">
+          <h3 class="font-semibold text-brand-blue mb-1">Impact</h3>
+          <p class="text-sm text-gray-600">Create meaningful change</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Journey Description -->
+    <div class="max-w-3xl mx-auto mt-16 text-center">
+      <div class="bg-white rounded-2xl p-8 shadow-lg">
+        <h3 class="text-2xl font-bold text-brand-coral mb-4" id="journey-title">Start Your Journey with Awareness</h3>
+        <p class="text-gray-600 mb-6" id="journey-description">
+          Begin by understanding the current AI landscape, its opportunities, and challenges. Discover how responsible AI can transform industries and society while maintaining human-centric values.
+        </p>
+        <button class="bg-brand-coral text-white px-8 py-3 rounded-xl font-semibold hover:bg-brand-coral-dark transition-colors">
+          Explore Awareness Resources
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Join Ecosystem Section -->
+<section id="join" class="section-padding bg-brand-blue text-white mobile-section">
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading">Ready to Join?</h2>
+    <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8"></div>
+    
+    <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body">
+      Become part of Vienna's premier collaborative hub for responsible AI innovation
+    </p>
+
+    <div class="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto">
+      <form class="space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          <div>
+            <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
+            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
+              <option value="">Select your role</option>
+              <option value="student">Student / Learner</option>
+              <option value="researcher">Researcher / Academic</option>
+              <option value="industry">Industry Professional</option>
+              <option value="activist">Activist / Advocate</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
+            <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
+              <option value="">Select interest area</option>
+              <option value="ethics">AI Ethics & Governance</option>
+              <option value="technical">Technical Development</option>
+              <option value="policy">Policy & Regulation</option>
+              <option value="education">Education & Awareness</option>
+              <option value="research">Research Collaboration</option>
+            </select>
+          </div>
+        </div>
+        
+        <div>
+          <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
+          <input type="email" placeholder="Enter your email" required
+              class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300">
+        </div>
+        
+        <button type="submit"
+            class="w-full bg-brand-coral text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold shadow-2xl hover:bg-brand-coral-dark transition-all duration-300 transform hover:scale-105">
+            Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
+        </button>
+      </form>
+      
+      <p class="text-gray-300 text-sm mt-6 mobile-body">
+        By joining, you become part of Vienna's collaborative network working towards responsible AI innovation
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-12 md:py-16 bg-gray-900 text-gray-400">
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <div class="mb-8">
+      <h3 class="text-2xl font-bold text-white mb-4 font-orbitron">AUXION</h3>
+      <p class="text-gray-400 max-w-md mx-auto mobile-body">
+        Vienna's collaborative hub where diverse voices shape the future of responsible AI
+      </p>
+    </div>
+    
+    <div class="flex justify-center space-x-4 md:space-x-6 mb-8">
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+        <i data-feather="linkedin" class="w-5 h-5 md:w-6 md:h-6"></i>
+      </a>
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+        <i data-feather="twitter" class="w-5 h-5 md:w-6 md:h-6"></i>
+      </a>
+      <a href="#" class="p-3 bg-gray-800 rounded-2xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110">
+        <i data-feather="mail" class="w-5 h-5 md:w-6 md:h-6"></i>
+      </a>
+    </div>
+    
+    <div class="max-w-md mx-auto mb-8">
+      <p class="mb-2 mobile-body">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-coral transition-colors duration-300">info@auxion.io</a></p>
+      <p class="text-sm mobile-body">Vienna, Austria</p>
+    </div>
+    
+    <p class="text-sm mobile-body">&copy; 2025 Auxion. Vienna's Home for Responsible AI Innovation.</p>
+  </div>
+</footer>
+
+<!-- Bottom Sheet Modal -->
+<div class="bottom-sheet mobile-only" id="action-sheet">
+  <div class="sheet-handle"></div>
+  <div class="p-6">
+    <h3 class="text-xl font-bold text-brand-blue mb-4">Quick Actions</h3>
+    <div class="space-y-3">
+      <button class="w-full text-left p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+        <div class="flex items-center">
+          <i data-feather="book-open" class="text-brand-coral mr-3"></i>
+          <span>Read Latest Articles</span>
+        </div>
+      </button>
+      <button class="w-full text-left p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+        <div class="flex items-center">
+          <i data-feather="calendar" class="text-brand-coral mr-3"></i>
+          <span>View Upcoming Events</span>
+        </div>
+      </button>
+      <button class="w-full text-left p-4 rounded-xl bg-gray-50 hover:bg-gray-100 transition-colors">
+        <div class="flex items-center">
+          <i data-feather="users" class="text-brand-coral mr-3"></i>
+          <span>Join Community</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
     feather.replace();
     
-    // Performance: Check for reduced motion preference
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduceMotion) {
-      document.body.classList.add('reduce-motion');
-    }
+    // Mobile menu functionality
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
     
-    // Dynamic Headlines Rotation
-    const rotatingTexts = document.querySelectorAll('.rotating-text');
-    let currentTextIndex = 0;
-    
-    function rotateText() {
-      if (reduceMotion) return;
-      
-      rotatingTexts.forEach(text => text.classList.remove('active'));
-      rotatingTexts[currentTextIndex].classList.add('active');
-      
-      currentTextIndex = (currentTextIndex + 1) % rotatingTexts.length;
-    }
-    
-    // Start rotation after 3 seconds, then every 4 seconds
-    setTimeout(() => {
-      setInterval(rotateText, 4000);
-    }, 3000);
-    
-    // Interactive Journey
-    const journeySteps = document.querySelectorAll('.journey-step');
-    const progressItems = document.querySelectorAll('.progress-item');
-    
-    function setActiveStep(stepNumber) {
-      // Update journey steps
-      journeySteps.forEach(step => {
-        const stepNum = parseInt(step.dataset.step);
-        step.classList.remove('active', 'completed');
-        
-        if (stepNum < stepNumber) {
-          step.classList.add('completed');
-        } else if (stepNum === stepNumber) {
-          step.classList.add('active');
-        }
+    if (mobileMenuButton && closeMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.add('open');
       });
       
-      // Update progress tracker
-      progressItems.forEach(item => {
-        const itemStep = parseInt(item.dataset.step);
-        item.classList.remove('active');
-        
-        if (itemStep === stepNumber) {
-          item.classList.add('active');
-        }
+      closeMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.remove('open');
+      });
+      
+      // Close menu when clicking on a link
+      const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+      mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          mobileMenu.classList.remove('open');
+        });
       });
     }
     
-    // Add click handlers to journey steps
-    journeySteps.forEach(step => {
-      step.addEventListener('click', function() {
-        const stepNumber = parseInt(this.dataset.step);
-        setActiveStep(stepNumber);
-      });
-    });
+    // Mobile Navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    const tabContents = document.querySelectorAll('.tab-content');
     
-    // Add click handlers to progress items
-    progressItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const stepNumber = parseInt(this.dataset.step);
-        setActiveStep(stepNumber);
-      });
-    });
-    
-    // Initialize first step
-    setActiveStep(1);
-    
-    // Auto-advance journey (optional)
-    let currentStep = 1;
-    const maxSteps = 5;
-    
-    function autoAdvanceJourney() {
-      if (reduceMotion) return;
-      
-      currentStep = currentStep % maxSteps + 1;
-      setActiveStep(currentStep);
-    }
-    
-    // Auto-advance every 5 seconds if not interacting
-    let journeyInterval = setInterval(autoAdvanceJourney, 5000);
-    
-    // Pause auto-advance on interaction
-    const journeyContainer = document.querySelector('.journey-container');
-    journeyContainer.addEventListener('mouseenter', () => {
-      clearInterval(journeyInterval);
-    });
-    
-    journeyContainer.addEventListener('mouseleave', () => {
-      journeyInterval = setInterval(autoAdvanceJourney, 5000);
-    });
-    
-    // Smooth scroll for navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    navItems.forEach(item => {
+      item.addEventListener('click', function(e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+        
+        // Remove active class from all items
+        navItems.forEach(navItem => navItem.classList.remove('active'));
+        tabContents.forEach(tab => tab.classList.remove('active'));
+        
+        // Add active class to clicked item
+        this.classList.add('active');
+        
+        // Show corresponding tab content
+        const tabId = this.getAttribute('data-tab');
+        document.getElementById(tabId).classList.add('active');
+        
+        // Smooth scroll to section
+        const targetElement = document.getElementById(tabId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 80,
+            behavior: 'smooth'
           });
         }
       });
     });
     
-    // Add intersection observer for fade-in animations
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
+    // Animated Bubble Journey
+    const journeyBubbles = document.querySelectorAll('.journey-bubble');
+    const journeyTitle = document.getElementById('journey-title');
+    const journeyDescription = document.getElementById('journey-description');
+    
+    const journeyData = {
+      1: {
+        title: "Start Your Journey with Awareness",
+        description: "Begin by understanding the current AI landscape, its opportunities, and challenges. Discover how responsible AI can transform industries and society while maintaining human-centric values.",
+        button: "Explore Awareness Resources"
+      },
+      2: {
+        title: "Connect with Vienna's AI Community",
+        description: "Join diverse voices from academia, industry, and activism. Build meaningful relationships and find collaborators who share your vision for responsible AI innovation.",
+        button: "Join Community Events"
+      },
+      3: {
+        title: "Collaborate Across Disciplines",
+        description: "Work together on projects that bridge technical expertise with ethical considerations. Co-create solutions that address real-world challenges through interdisciplinary collaboration.",
+        button: "Explore Collaboration Opportunities"
+      },
+      4: {
+        title: "Take Action on Meaningful Projects",
+        description: "Transform ideas into tangible impact. Participate in initiatives that implement responsible AI practices and create positive change in Vienna and beyond.",
+        button: "View Active Projects"
+      },
+      5: {
+        title: "Create Lasting Impact",
+        description: "See your contributions make a difference. Track the real-world outcomes of collaborative efforts and continue shaping the future of responsible AI.",
+        button: "See Our Impact Stories"
+      }
     };
     
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.style.animationPlayState = 'running';
+    function setActiveBubble(stepNumber) {
+      // Update bubbles
+      journeyBubbles.forEach(bubble => {
+        const bubbleStep = parseInt(bubble.dataset.step);
+        bubble.classList.remove('active', 'completed');
+        
+        if (bubbleStep < stepNumber) {
+          bubble.classList.add('completed');
+        } else if (bubbleStep === stepNumber) {
+          bubble.classList.add('active');
         }
       });
-    }, observerOptions);
+      
+      // Update journey description
+      if (journeyData[stepNumber]) {
+        journeyTitle.textContent = journeyData[stepNumber].title;
+        journeyDescription.textContent = journeyData[stepNumber].description;
+      }
+    }
     
-    // Observe all fade-in elements
-    document.querySelectorAll('.fade-in').forEach(el => {
-      observer.observe(el);
+    // Add click handlers to bubbles
+    journeyBubbles.forEach(bubble => {
+      bubble.addEventListener('click', function() {
+        const stepNumber = parseInt(this.dataset.step);
+        setActiveBubble(stepNumber);
+      });
+    });
+    
+    // Auto-advance journey
+    let currentBubble = 1;
+    const maxBubbles = 5;
+    
+    function autoAdvanceJourney() {
+      currentBubble = currentBubble % maxBubbles + 1;
+      setActiveBubble(currentBubble);
+    }
+    
+    // Auto-advance every 6 seconds
+    let journeyInterval = setInterval(autoAdvanceJourney, 6000);
+    
+    // Pause auto-advance on interaction
+    const journeyContainer = document.querySelector('.journey-bubbles');
+    journeyContainer.addEventListener('mouseenter', () => {
+      clearInterval(journeyInterval);
+    });
+    
+    journeyContainer.addEventListener('mouseleave', () => {
+      journeyInterval = setInterval(autoAdvanceJourney, 6000);
+    });
+    
+    // Initialize first bubble
+    setActiveBubble(1);
+    
+    // FAB functionality
+    const fab = document.querySelector('.fab');
+    const actionSheet = document.getElementById('action-sheet');
+    
+    fab.addEventListener('click', function() {
+      actionSheet.classList.add('open');
+    });
+    
+    // Close bottom sheet when clicking outside
+    actionSheet.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('open');
+      }
+    });
+    
+    // Swipe section progress dots
+    const swipeContainers = document.querySelectorAll('.swipe-container');
+    
+    swipeContainers.forEach(container => {
+      const dots = container.nextElementSibling.querySelectorAll('.progress-dot');
+      
+      container.addEventListener('scroll', function() {
+        const scrollPercentage = this.scrollLeft / (this.scrollWidth - this.clientWidth);
+        const activeIndex = Math.round(scrollPercentage * (dots.length - 1));
+        
+        dots.forEach((dot, index) => {
+          if (index === activeIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      });
+    });
+    
+    // Add scroll effect to navigation
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('.nav-container');
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          window.scrollTo({
+            top: targetElement.offsetTop - 100,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Add floating animation to some elements
+    const floatingElements = document.querySelectorAll('.floating-element');
+    floatingElements.forEach((element, index) => {
+      element.style.animationDelay = `${index * 0.5}s`;
     });
   });
 </script>
