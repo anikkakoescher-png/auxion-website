@@ -1087,7 +1087,7 @@
       transition: width 0.3s ease;
     }
 
-   /* NEW: Two-column layout for Why Auxion */
+/* NEW: Two-column layout for Why Auxion */
 .why-auxion-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -1097,6 +1097,7 @@
 
 .lighthouse-content {
   padding-right: 2rem;
+  padding-left: 1rem; /* ADDED - pushes content away from left edge */
 }
 
 @media (min-width: 1024px) {
@@ -1104,39 +1105,43 @@
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
   }
+  
+  .lighthouse-content {
+    padding-left: 2rem; /* MORE padding on desktop */
+  }
 }
 
 @media (max-width: 1023px) {
   .lighthouse-content {
     padding-right: 0;
+    padding-left: 0; /* Reset padding on mobile */
   }
 }
     
-    .lighthouse-container {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 280px; /* Reduced from 300px */
-    }
-    
-    .lighthouse-svg {
-      width: 160px; /* Reduced from 200px */
-      height: 160px; /* Reduced from 200px */
-      filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.5));
-    }
-    
-    .lighthouse-beam {
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform-origin: bottom center;
-      width: 2px;
-      height: 120px; /* Reduced from 150px */
-      background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
-      opacity: 0.3;
-    }
-    
+.lighthouse-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 280px; /* Reduced from 300px */
+}
+
+.lighthouse-svg {
+  width: 160px; /* Reduced from 200px */
+  height: 160px; /* Reduced from 200px */
+  filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.5));
+}
+
+.lighthouse-beam {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform-origin: bottom center;
+  width: 2px;
+  height: 120px; /* Reduced from 150px */
+  background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
+  opacity: 0.3;
+}
     /* NEW: Lighthouse supporting elements */
     .wave-pattern {
       position: absolute;
@@ -2272,7 +2277,7 @@
   </section>
 
   <!-- Join Ecosystem Section -->
-  <section id="join" class="section-padding bg-brand-blue text-white mobile-section join-section">
+  <section id="join" class="section-padding bg-brand-blue text-white mobile-section" style="padding-bottom: 3rem !important;">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
       <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
@@ -2655,4 +2660,5 @@
 </script>
 </body>
 </html>
+
 
