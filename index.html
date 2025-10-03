@@ -795,63 +795,26 @@
       background: var(--brand-blue);
     }
     
-    /* Mobile Testimonial Stack */
-    .testimonial-stack {
-      position: relative;
-      height: 320px;
-      margin: 0 auto;
+    /* Mobile Testimonial Stack - FIXED */
+    .testimonial-stack-simple {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
     
-    .testimonial-card-stack {
-      position: absolute;
-      width: 100%;
-      height: 280px;
+    .testimonial-card-mobile {
       background: white;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
       padding: 1.5rem;
-      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid var(--brand-coral);
     }
     
-    .testimonial-card-stack:nth-child(1) {
-      transform: translateY(0) scale(1);
-      z-index: 3;
+    .testimonial-card-mobile.active {
+      border-left-color: var(--brand-blue);
     }
     
-    .testimonial-card-stack:nth-child(2) {
-      transform: translateY(20px) scale(0.95);
-      z-index: 2;
-      opacity: 0.8;
-    }
-    
-    .testimonial-card-stack:nth-child(3) {
-      transform: translateY(40px) scale(0.9);
-      z-index: 1;
-      opacity: 0.6;
-    }
-    
-    .testimonial-nav {
-      display: flex;
-      justify-content: center;
-      gap: 0.5rem;
-      margin-top: 2rem;
-    }
-    
-    .testimonial-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #e2e8f0;
-      transition: all 0.3s ease;
-      cursor: pointer;
-    }
-    
-    .testimonial-dot.active {
-      background: var(--brand-coral);
-      transform: scale(1.3);
-    }
-    
-    /* Desktop Progress Journey */
+    /* Desktop Progress Journey - FIXED */
     .progress-journey {
       display: flex;
       justify-content: space-between;
@@ -1000,34 +963,31 @@
     @media (min-width: 768px) {
       /* Hide mobile solutions on desktop */
       .journey-cards-container,
-      .testimonial-stack {
+      .testimonial-stack-simple {
         display: none;
       }
       
-      /* Progress journey mobile */
+      /* FIX: Desktop Progress Journey */
       .progress-journey {
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: flex-start;
+        flex-direction: row !important;
       }
       
       .progress-journey::before {
-        display: none;
+        display: block !important;
       }
       
       .progress-step {
-        flex-direction: row;
-        gap: 1rem;
-        width: 100%;
+        flex-direction: column !important;
+        width: auto !important;
       }
       
       .step-content {
-        text-align: left;
+        text-align: center !important;
       }
       
       .step-description {
-        max-width: none;
-        text-align: left;
+        text-align: center !important;
+        max-width: 120px !important;
       }
     }
     
@@ -1425,7 +1385,7 @@
     </div>
   </section>
 
-  <!-- ENHANCED: Why Auxion Section - Two Column Layout with Improved Lighthouse -->
+  <!-- UPDATED: Why Auxion Section with New Content Structure -->
   <section id="value" class="section-padding bg-white mobile-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8 md:mb-12">
@@ -1438,9 +1398,37 @@
       
       <!-- Two Column Grid -->
       <div class="why-auxion-grid stagger-animate">
-        <!-- Left Column: Lighthouse & Mission -->
+        <!-- Left Column: Austria Context & Lighthouse -->
         <div class="lighthouse-content">
-          <div class="lighthouse-container animate-float">
+          <!-- Austria Context Section -->
+          <div class="mb-8 text-center md:text-left">
+            <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">Austria's AI Landscape</h3>
+            <p class="text-gray-600 mb-4 leading-relaxed">
+              Austria stands at a pivotal moment. While global AI adoption accelerates, a significant knowledge gap and cautious sentiment define the national landscape.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+              <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                <h4 class="font-semibold text-red-700 mb-2">Pronounced Knowledge Gap</h4>
+                <p class="text-sm text-gray-600">73% of Austrians report little to no knowledge about AI</p>
+              </div>
+              <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                <h4 class="font-semibold text-blue-700 mb-2">Guarded Optimism</h4>
+                <p class="text-sm text-gray-600">Only 35% hold a positive view of AI's role in society</p>
+              </div>
+              <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                <h4 class="font-semibold text-green-700 mb-2">Measured Outlook</h4>
+                <p class="text-sm text-gray-600">43% see work potential, but only 32% seek to learn more</p>
+              </div>
+            </div>
+            
+            <p class="text-gray-600 leading-relaxed">
+              This data reveals a critical need to build not just technological infrastructure, but also public understanding and trust.
+            </p>
+          </div>
+
+          <!-- Lighthouse Section -->
+          <div class="lighthouse-container animate-float mb-6">
             <!-- Animated Lighthouse SVG -->
             <svg class="lighthouse-svg animate-lighthouse-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
               <!-- Lighthouse Base -->
@@ -1466,33 +1454,34 @@
             
             <!-- Floating Data Points -->
             <div class="data-point data-point-1 animate-data-point" style="animation-delay: 0s">
-              <div class="text-brand-coral font-bold">250+</div>
-              <div class="text-xs">Members</div>
+              <div class="text-brand-coral font-bold">73%</div>
+              <div class="text-xs">Knowledge Gap</div>
             </div>
             
             <div class="data-point data-point-2 animate-data-point" style="animation-delay: 1s">
-              <div class="text-brand-blue font-bold">15</div>
-              <div class="text-xs">Events/Month</div>
+              <div class="text-brand-blue font-bold">35%</div>
+              <div class="text-xs">Positive View</div>
             </div>
             
             <div class="data-point data-point-3 animate-data-point" style="animation-delay: 2s">
-              <div class="text-brand-coral font-bold">100%</div>
-              <div class="text-xs">Vienna-Based</div>
+              <div class="text-brand-coral font-bold">43%</div>
+              <div class="text-xs">Work Potential</div>
             </div>
             
             <div class="data-point data-point-4 animate-data-point" style="animation-delay: 3s">
-              <div class="text-brand-blue font-bold">2024</div>
-              <div class="text-xs">Founded</div>
+              <div class="text-brand-blue font-bold">32%</div>
+              <div class="text-xs">Want to Learn</div>
             </div>
           </div>
           
-          <div class="mt-6 text-center md:text-left">
+          <!-- Mission Text -->
+          <div class="text-center md:text-left">
             <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">A Beacon in the AI Landscape</h3>
             <p class="text-gray-600 mb-4 leading-relaxed">
-              In the rapidly evolving world of artificial intelligence, Auxion stands as a lighthouse—guiding Vienna's brightest minds through the complexities of responsible AI development.
+              Auxion stands as a lighthouse—guiding Vienna's brightest minds to bridge this very gap.
             </p>
             <p class="text-gray-600 mb-6 leading-relaxed">
-              We illuminate the path from awareness to agency, creating a safe harbor where diverse perspectives converge to shape technology that serves humanity first. Our mission is to ensure that as AI transforms our world, it does so with wisdom, ethics, and collective responsibility at its core.
+              We illuminate the path from awareness to agency, transforming cautious optimism into confident participation. Our mission is to ensure that as AI transforms Austria, it does so by empowering its people—building understanding and trust as the foundational infrastructure of our shared future.
             </p>
             <div class="bg-gradient-to-r from-brand-blue/10 to-brand-coral/10 p-4 rounded-xl border-l-4 border-brand-coral">
               <p class="text-brand-blue font-medium italic">
@@ -1758,7 +1747,7 @@
     </div>
   </section>
 
-  <!-- UPDATED: Awareness to Agency Section with 2026 Mobile Solution -->
+  <!-- FIXED: Awareness to Agency Section -->
   <section id="awareness" class="awareness-agency mobile-section">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
@@ -1768,7 +1757,7 @@
         Your journey to responsible AI mastery through Vienna's premier collaborative hub
       </p>
 
-      <!-- Desktop Progress Journey -->
+      <!-- Desktop Progress Journey - FIXED -->
       <div class="progress-journey desktop-only stagger-animate mb-8">
         <!-- Step 1: Awareness -->
         <div class="progress-step active">
@@ -2023,7 +2012,7 @@
     </div>
   </section>
   
-  <!-- UPDATED: Testimonials Section with 2026 Mobile Solution -->
+  <!-- FIXED: Testimonials Section with Simple Mobile Solution -->
   <section id="testimonials" class="section-padding trust-signals mobile-section">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-8">
@@ -2082,25 +2071,25 @@
         </div>
       </div>
 
-      <!-- 2026 Mobile Solution: Testimonial Stack -->
+      <!-- FIXED: Simple Mobile Testimonials -->
       <div class="mobile-only">
-        <div class="testimonial-stack">
-          <div class="testimonial-card-stack" data-index="0">
+        <div class="testimonial-stack-simple">
+          <div class="testimonial-card-mobile active">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 MS
               </div>
               <div>
                 <h4 class="font-semibold text-brand-blue">Maria S.</h4>
-                <p class="text-xs text-gray-500">AI Researcher, TU Vienna</p>
+                <p class="text-xs text-gray-500">AI Researcher</p>
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "Technology evolves faster than our understanding of its consequences. Reflecting on who benefits, who is left behind, and how ethical principles can guide design is essential if we want AI to serve society responsibly."
+              "Essential to reflect on who benefits and who is left behind in AI development."
             </p>
           </div>
           
-          <div class="testimonial-card-stack" data-index="1">
+          <div class="testimonial-card-mobile">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 TK
@@ -2111,30 +2100,24 @@
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "As we integrate AI into daily life, the most important questions are not technical but societal: how do we ensure fairness, transparency and accountability?"
+              "The most important AI questions are societal, not technical."
             </p>
           </div>
           
-          <div class="testimonial-card-stack" data-index="2">
+          <div class="testimonial-card-mobile">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 LS
               </div>
               <div>
                 <h4 class="font-semibold text-brand-blue">Lena R.</h4>
-                <p class="text-xs text-gray-500">Graduate Student, Digital Ethics</p>
+                <p class="text-xs text-gray-500">Digital Ethics</p>
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
+              "How do we balance efficiency with empathy in AI systems?"
             </p>
           </div>
-        </div>
-        
-        <div class="testimonial-nav">
-          <div class="testimonial-dot active" data-index="0"></div>
-          <div class="testimonial-dot" data-index="1"></div>
-          <div class="testimonial-dot" data-index="2"></div>
         </div>
       </div>
     </div>
@@ -2431,52 +2414,6 @@
         // Re-initialize Feather Icons for new content
         feather.replace();
       });
-    }
-    
-    // 2026 Mobile Testimonial Stack Navigation
-    const testimonialDots = document.querySelectorAll('.testimonial-dot');
-    const testimonialCards = document.querySelectorAll('.testimonial-card-stack');
-    
-    testimonialDots.forEach(dot => {
-      dot.addEventListener('click', function() {
-        const index = parseInt(this.getAttribute('data-index'));
-        
-        // Update active dot
-        testimonialDots.forEach(d => d.classList.remove('active'));
-        this.classList.add('active');
-        
-        // Update card positions
-        testimonialCards.forEach((card, i) => {
-          const cardIndex = parseInt(card.getAttribute('data-index'));
-          if (cardIndex === index) {
-            card.style.transform = 'translateY(0) scale(1)';
-            card.style.zIndex = '3';
-            card.style.opacity = '1';
-          } else if (cardIndex === (index + 1) % 3 || (index === 2 && cardIndex === 0)) {
-            card.style.transform = 'translateY(20px) scale(0.95)';
-            card.style.zIndex = '2';
-            card.style.opacity = '0.8';
-          } else {
-            card.style.transform = 'translateY(40px) scale(0.9)';
-            card.style.zIndex = '1';
-            card.style.opacity = '0.6';
-          }
-        });
-      });
-    });
-    
-    // Auto-rotate testimonials on mobile
-    let currentTestimonial = 0;
-    function rotateTestimonials() {
-      if (window.innerWidth < 768) {
-        currentTestimonial = (currentTestimonial + 1) % 3;
-        testimonialDots[currentTestimonial].click();
-      }
-    }
-    
-    // Start auto-rotation only on mobile
-    if (window.innerWidth < 768) {
-      setInterval(rotateTestimonials, 5000);
     }
     
     // Expandable Cards
