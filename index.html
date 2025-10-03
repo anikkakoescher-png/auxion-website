@@ -273,7 +273,7 @@
     
     @media (min-width: 768px) {
       .hero-gradient {
-        padding: 8rem 0; /* Reduced from 10rem to 8rem */
+        padding: 8rem 0;
       }
     }
     
@@ -1087,1160 +1087,974 @@
       transition: width 0.3s ease;
     }
 
-/* NEW: Two-column layout for Why Auxion */
-.why-auxion-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 3rem;
-  align-items: center;
-}
+    /* NEW: Two-column layout for Why Auxion */
+    .why-auxion-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
 
-.lighthouse-content {
-  padding-right: 2rem;
-  padding-left: 3rem; /* INCREASED - better balance from left edge */
-}
+    .lighthouse-content {
+      padding-right: 2rem;
+      padding-left: 3rem;
+    }
 
-@media (min-width: 1024px) {
-  .why-auxion-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-  }
-  
-  .lighthouse-content {
-    padding-left: 4rem; /* MAXIMUM padding on desktop for perfect balance */
-  }
-}
+    @media (min-width: 1024px) {
+      .why-auxion-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+      
+      .lighthouse-content {
+        padding-left: 4rem;
+      }
+    }
 
-@media (max-width: 1023px) {
-  .lighthouse-content {
-    padding-right: 0;
-    padding-left: 0; /* Reset padding on mobile */
-  }
-}
+    @media (max-width: 1023px) {
+      .lighthouse-content {
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
     
-.lighthouse-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 280px; /* Reduced from 300px */
-}
+    .lighthouse-container {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
+    }
 
-.lighthouse-svg {
-  width: 160px; /* Reduced from 200px */
-  height: 160px; /* Reduced from 200px */
-  filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.5));
-}
+    .lighthouse-svg {
+      width: 160px;
+      height: 160px;
+      filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.5));
+    }
 
-.lighthouse-beam {
-  position: absolute;
-  top: 0;
-  left: 50%;
-  transform-origin: bottom center;
-  width: 2px;
-  height: 120px; /* Reduced from 150px */
-  background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
-  opacity: 0.3;
-}
+    .lighthouse-beam {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform-origin: bottom center;
+      width: 2px;
+      height: 120px;
+      background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
+      opacity: 0.3;
+    }
 
-/* NEW: Lighthouse supporting elements */
-.wave-pattern {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 40px;
-  background: 
-    radial-gradient(circle at 20% 50%, rgba(17, 29, 64, 0.1) 15px, transparent 16px),
-    radial-gradient(circle at 50% 50%, rgba(216, 69, 69, 0.1) 20px, transparent 21px),
-    radial-gradient(circle at 80% 50%, rgba(17, 29, 64, 0.1) 12px, transparent 13px);
-  opacity: 0.6;
-}
+    /* NEW: Lighthouse supporting elements */
+    .wave-pattern {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(17, 29, 64, 0.1) 15px, transparent 16px),
+        radial-gradient(circle at 50% 50%, rgba(216, 69, 69, 0.1) 20px, transparent 21px),
+        radial-gradient(circle at 80% 50%, rgba(17, 29, 64, 0.1) 12px, transparent 13px);
+      opacity: 0.6;
+    }
 
-.data-point {
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background: white;
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  font-size: 0.7rem;
-  text-align: center;
-  padding: 0.5rem;
-}
+    .data-point {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
 
-.data-point-1 {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-}
+    .data-point-1 {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
 
-.data-point-2 {
-  top: 10%;
-  right: 15%;
-  animation-delay: 1s;
-}
+    .data-point-2 {
+      top: 10%;
+      right: 15%;
+      animation-delay: 1s;
+    }
 
-.data-point-3 {
-  bottom: 30%;
-  left: 5%;
-  animation-delay: 2s;
-}
+    .data-point-3 {
+      bottom: 30%;
+      left: 5%;
+      animation-delay: 2s;
+    }
 
-.data-point-4 {
-  bottom: 20%;
-  right: 10%;
-  animation-delay: 3s;
-}
+    .data-point-4 {
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 3s;
+    }
 
-.value-points {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
+    .value-points {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
 
-.value-point {
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s ease;
-}
+    .value-point {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.5rem;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      transition: all 0.3s ease;
+    }
 
-.value-point:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-}
+    .value-point:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
 
-.value-point-icon {
-  flex-shrink: 0;
-  width: 48px;
-  height: 48px;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: bold;
-}
+    .value-point-icon {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+    }
 
-.value-point-content h3 {
-  font-weight: 600;
-  color: var(--brand-blue);
-  margin-bottom: 0.5rem;
-}
+    .value-point-content h3 {
+      font-weight: 600;
+      color: var(--brand-blue);
+      margin-bottom: 0.5rem;
+    }
 
-.value-point-content p {
-  color: #64748b;
-  line-height: 1.5;
-}
+    .value-point-content p {
+      color: #64748b;
+      line-height: 1.5;
+    }
 
-/* Blog Articles */
-.blog-article {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
-  height: 100%;
-}
+    /* Blog Articles */
+    .blog-article {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
 
-.blog-article:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-}
+    .blog-article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
 
-.blog-article-image {
-  height: 200px;
-  overflow: hidden;
-}
+    .blog-article-image {
+      height: 200px;
+      overflow: hidden;
+    }
 
-.blog-article-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
+    .blog-article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
 
-.blog-article:hover .blog-article-image img {
-  transform: scale(1.05);
-}
+    .blog-article:hover .blog-article-image img {
+      transform: scale(1.05);
+    }
 
-.blog-article-content {
-  padding: 1.5rem;
-}
+    .blog-article-content {
+      padding: 1.5rem;
+    }
 
-.hidden-articles {
-  display: none;
-}
+    .hidden-articles {
+      display: none;
+    }
 
-.hidden-articles.show {
-  display: grid;
-  animation: fadeInUp 0.6s ease-out;
-}
+    .hidden-articles.show {
+      display: grid;
+      animation: fadeInUp 0.6s ease-out;
+    }
+  </style>
+</head>
+<body>
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress"></div>
 
-<!-- Scroll Progress Indicator -->
-<div class="scroll-progress"></div>
-
-<!-- Desktop Navigation -->
-<nav class="nav-container desktop-only">
-  <div class="max-w-7xl mx-auto px-6 py-3">
-    <div class="flex justify-between items-center">
-      <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow animate-fade-in-left">AUXION</div>
-      <div class="hidden md:flex space-x-8">
-        <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.1s">Awareness</a>
-        <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.2s">Ecosystem</a>
-        <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.3s">Insights</a>
-        <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.4s">Community</a>
-        <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.5s">Join</a>
+  <!-- Desktop Navigation -->
+  <nav class="nav-container desktop-only">
+    <div class="max-w-7xl mx-auto px-6 py-3">
+      <div class="flex justify-between items-center">
+        <div class="text-2xl font-bold text-brand-blue font-orbitron brand-glow animate-fade-in-left">AUXION</div>
+        <div class="hidden md:flex space-x-8">
+          <a href="#awareness" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.1s">Awareness</a>
+          <a href="#ecosystem" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.2s">Ecosystem</a>
+          <a href="#insights" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.3s">Insights</a>
+          <a href="#testimonials" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.4s">Community</a>
+          <a href="#join" class="text-gray-700 hover:text-brand-coral transition-colors duration-300 font-medium micro-interaction animate-fade-in-right" style="animation-delay: 0.5s">Join</a>
+        </div>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!-- FIXED: Mobile App Navigation - Now properly hidden on desktop -->
-<nav class="app-tab-bar mobile-only">
-  <div class="tab-item active" data-tab="home">
-    <i data-feather="home" class="tab-icon"></i>
-    <span class="tab-label">Home</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item" data-tab="ecosystem">
-    <i data-feather="grid" class="tab-icon"></i>
-    <span class="tab-label">Ecosystem</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item" data-tab="insights">
-    <i data-feather="compass" class="tab-icon"></i>
-    <span class="tab-label">Insights</span>
-    <div class="active-indicator"></div>
-  </div>
-  
-  <div class="tab-item" data-tab="join">
-    <i data-feather="user" class="tab-icon"></i>
-    <span class="tab-label">Join</span>
-    <div class="active-indicator"></div>
-  </div>
-</nav>
-
-<!-- App Content Area -->
-<main class="app-content">
-  <!-- UPDATED: Hero Section with Reduced Padding -->
-  <section class="hero-gradient text-white overflow-hidden" id="home">
-    <div class="hero-pattern"></div>
-    
-    <!-- Floating Particles -->
-    <div class="particles-container absolute inset-0 overflow-hidden">
-      <!-- Particles will be generated by JavaScript -->
+  <!-- FIXED: Mobile App Navigation -->
+  <nav class="app-tab-bar mobile-only">
+    <div class="tab-item active" data-tab="home">
+      <i data-feather="home" class="tab-icon"></i>
+      <span class="tab-label">Home</span>
+      <div class="active-indicator"></div>
     </div>
     
-    <div class="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
-      <!-- Vienna Positioning -->
-      <div class="mb-8 animate-fade-in-up">
-        <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction animate-hologram">
-          <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
-          Vienna's Home for Responsible AI
-        </span>
-      </div>
+    <div class="tab-item" data-tab="ecosystem">
+      <i data-feather="grid" class="tab-icon"></i>
+      <span class="tab-label">Ecosystem</span>
+      <div class="active-indicator"></div>
+    </div>
+    
+    <div class="tab-item" data-tab="insights">
+      <i data-feather="compass" class="tab-icon"></i>
+      <span class="tab-label">Insights</span>
+      <div class="active-indicator"></div>
+    </div>
+    
+    <div class="tab-item" data-tab="join">
+      <i data-feather="user" class="tab-icon"></i>
+      <span class="tab-label">Join</span>
+      <div class="active-indicator"></div>
+    </div>
+  </nav>
+
+  <!-- App Content Area -->
+  <main class="app-content">
+    <!-- Hero Section -->
+    <section class="hero-gradient text-white overflow-hidden" id="home">
+      <div class="hero-pattern"></div>
       
-      <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
-        <span class="text-white">People.</span>
-        <span class="text-white">Change.</span>
-        <span class="text-brand-coral brand-glow animate-text-glow">Technology.</span>
-        <span class="text-white">Together.</span>
-      </h1>
+      <!-- Floating Particles -->
+      <div class="particles-container absolute inset-0 overflow-hidden"></div>
       
-      <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
-        Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
-      </p>
-      
-      <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
-        <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
-          Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
-        </a>
-        <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
-          Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
-        </a>
-      </div>
-      
-      <!-- NEW: Dynamic Trust indicators -->
-      <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
-        <div class="flex items-center gap-2 text-gray-300">
-          <i data-feather="users" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
-          <span class="text-sm">
-            <span class="counter" data-target="250" data-duration="2000">200</span>+ Members
+      <div class="relative z-10 text-center px-4 max-w-6xl mx-auto w-full">
+        <!-- Vienna Positioning -->
+        <div class="mb-8 animate-fade-in-up">
+          <span class="inline-block bg-white/20 backdrop-blur-sm text-white px-4 py-2 rounded-full text-sm font-medium micro-interaction animate-hologram">
+            <i data-feather="map-pin" class="w-4 h-4 inline mr-1"></i>
+            Vienna's Home for Responsible AI
           </span>
         </div>
-        <div class="flex items-center gap-2 text-gray-300">
-          <i data-feather="calendar" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
-          <span class="text-sm">
-            <span class="counter" data-target="15" data-duration="1500">12</span> Monthly Events
-          </span>
-        </div>
-        <div class="flex items-center gap-2 text-gray-300">
-          <i data-feather="award" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
-          <span class="text-sm">Vienna-Based</span>
-        </div>
-      </div>
-      
-      <!-- Scroll Indicator -->
-      <div class="mt-12 animate-bounce">
-        <i data-feather="chevron-down" class="w-6 h-6 text-gray-300 mx-auto"></i>
-      </div>
-    </div>
-  </section>
-
-  <!-- UPDATED: Why Auxion Section with New Content Structure -->
-  <section id="value" class="section-padding bg-white mobile-section">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-          We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility.
+        
+        <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-6 font-orbitron mobile-heading stagger-animate">
+          <span class="text-white">People.</span>
+          <span class="text-white">Change.</span>
+          <span class="text-brand-coral brand-glow animate-text-glow">Technology.</span>
+          <span class="text-white">Together.</span>
+        </h1>
+        
+        <p class="text-lg md:text-2xl text-gray-200 mb-8 font-light max-w-3xl mx-auto mobile-subheading animate-fade-in-up" style="animation-delay: 0.3s">
+          Where Vienna's brightest minds unite to transform AI awareness into agency through collaboration, innovation, and action
         </p>
+        
+        <div class="flex flex-col md:flex-row gap-4 justify-center items-center animate-fade-in-up" style="animation-delay: 0.5s">
+          <a href="#join" class="cta-modern text-white font-semibold px-8 py-4 md:px-10 md:py-5 rounded-2xl shadow-2xl mobile-full-width md:w-auto focus-brand">
+            Join our Ecosystem <i data-feather="arrow-right" class="ml-2 inline-block"></i>
+          </a>
+          <a href="#value" class="cta-secondary px-6 py-4 md:px-8 md:py-5 rounded-2xl font-semibold mobile-full-width md:w-auto focus-brand">
+            Our Mission <i data-feather="play" class="ml-2 inline-block"></i>
+          </a>
+        </div>
+        
+        <!-- Dynamic Trust indicators -->
+        <div class="mt-12 flex flex-wrap justify-center gap-6 md:gap-10 animate-fade-in-up" style="animation-delay: 0.7s">
+          <div class="flex items-center gap-2 text-gray-300">
+            <i data-feather="users" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
+            <span class="text-sm">
+              <span class="counter" data-target="250" data-duration="2000">200</span>+ Members
+            </span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <i data-feather="calendar" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
+            <span class="text-sm">
+              <span class="counter" data-target="15" data-duration="1500">12</span> Monthly Events
+            </span>
+          </div>
+          <div class="flex items-center gap-2 text-gray-300">
+            <i data-feather="award" class="w-5 h-5 text-brand-coral animate-icon-pulse"></i>
+            <span class="text-sm">Vienna-Based</span>
+          </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="mt-12 animate-bounce">
+          <i data-feather="chevron-down" class="w-6 h-6 text-gray-300 mx-auto"></i>
+        </div>
       </div>
-      
-      <!-- Two Column Grid -->
-      <div class="why-auxion-grid stagger-animate">
-        <!-- Left Column: Austria Context & Lighthouse -->
-        <div class="lighthouse-content">
-          <!-- Austria Context Section -->
-          <div class="mb-8 text-center md:text-left">
-            <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">Austria's AI Landscape</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed">
-              Austria stands at a pivotal moment. While global AI adoption accelerates, a significant knowledge gap and cautious sentiment define the national landscape.
-            </p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-              <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
-                <h4 class="font-semibold text-red-700 mb-2">Pronounced Knowledge Gap</h4>
-                <p class="text-sm text-gray-600">73% of Austrians report little to no knowledge about AI</p>
-              </div>
-              <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
-                <h4 class="font-semibold text-blue-700 mb-2">Guarded Optimism</h4>
-                <p class="text-sm text-gray-600">Only 35% hold a positive view of AI's role in society</p>
-              </div>
-              <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
-                <h4 class="font-semibold text-green-700 mb-2">Measured Outlook</h4>
-                <p class="text-sm text-gray-600">43% see work potential, but only 32% seek to learn more</p>
-              </div>
-            </div>
-            
-            <p class="text-gray-600 leading-relaxed">
-              This data reveals a critical need to build not just technological infrastructure, but also public understanding and trust.
-            </p>
-          </div>
+    </section>
 
-          <!-- Lighthouse Section -->
-          <div class="lighthouse-container animate-float mb-6">
-            <!-- Animated Lighthouse SVG -->
-            <svg class="lighthouse-svg animate-lighthouse-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <!-- Lighthouse Base -->
-              <rect x="85" y="120" width="30" height="50" fill="#111d40" rx="2"/>
-              <!-- Lighthouse Tower -->
-              <rect x="90" y="50" width="20" height="70" fill="#d84545" rx="2"/>
-              <!-- Lighthouse Top -->
-              <rect x="85" y="40" width="30" height="10" fill="#111d40" rx="2"/>
-              <!-- Light Room -->
-              <rect x="87" y="45" width="26" height="8" fill="#f8fafc" rx="1"/>
-              <!-- Windows -->
-              <rect x="93" y="60" width="8" height="8" fill="#f8fafc" rx="1"/>
-              <rect x="93" y="75" width="8" height="8" fill="#f8fafc" rx="1"/>
-              <rect x="93" y="90" width="8" height="8" fill="#f8fafc" rx="1"/>
-              <!-- Door -->
-              <rect x="95" y="105" width="6" height="15" fill="#111d40" rx="1"/>
-            </svg>
-            <!-- Rotating Beam -->
-            <div class="lighthouse-beam animate-lighthouse-beam"></div>
-            
-            <!-- Supporting Elements -->
-            <div class="wave-pattern animate-wave-float"></div>
-            
-            <!-- Floating Data Points -->
-            <div class="data-point data-point-1 animate-data-point" style="animation-delay: 0s">
-              <div class="text-brand-coral font-bold">73%</div>
-              <div class="text-xs">Knowledge Gap</div>
-            </div>
-            
-            <div class="data-point data-point-2 animate-data-point" style="animation-delay: 1s">
-              <div class="text-brand-blue font-bold">35%</div>
-              <div class="text-xs">Positive View</div>
-            </div>
-            
-            <div class="data-point data-point-3 animate-data-point" style="animation-delay: 2s">
-              <div class="text-brand-coral font-bold">43%</div>
-              <div class="text-xs">Work Potential</div>
-            </div>
-            
-            <div class="data-point data-point-4 animate-data-point" style="animation-delay: 3s">
-              <div class="text-brand-blue font-bold">32%</div>
-              <div class="text-xs">Want to Learn</div>
-            </div>
-          </div>
-          
-          <!-- Mission Text -->
-          <div class="text-center md:text-left">
-            <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">A Beacon in the AI Landscape</h3>
-            <p class="text-gray-600 mb-4 leading-relaxed">
-              Auxion stands as a lighthouse—guiding Vienna's brightest minds to bridge this very gap.
-            </p>
-            <p class="text-gray-600 mb-6 leading-relaxed">
-              We illuminate the path from awareness to agency, transforming cautious optimism into confident participation. Our mission is to ensure that as AI transforms Austria, it does so by empowering its people—building understanding and trust as the foundational infrastructure of our shared future.
-            </p>
-            <div class="bg-gradient-to-r from-brand-blue/10 to-brand-coral/10 p-4 rounded-xl border-l-4 border-brand-coral">
-              <p class="text-brand-blue font-medium italic">
-                "Technology should amplify human potential, not replace human wisdom. At Auxion, we're building the compass for AI's moral navigation."
+    <!-- Why Auxion Section -->
+    <section id="value" class="section-padding bg-white mobile-section">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-8 md:mb-12">
+          <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Why Auxion</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+          <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+            We believe technology shapes society only as wisely as society shapes technology. That's why we make responsible AI a shared responsibility.
+          </p>
+        </div>
+        
+        <!-- Two Column Grid -->
+        <div class="why-auxion-grid stagger-animate">
+          <!-- Left Column: Austria Context & Lighthouse -->
+          <div class="lighthouse-content">
+            <!-- Austria Context Section -->
+            <div class="mb-8 text-center md:text-left">
+              <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">Austria's AI Landscape</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Austria stands at a pivotal moment. While global AI adoption accelerates, a significant knowledge gap and cautious sentiment define the national landscape.
+              </p>
+              
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+                <div class="bg-red-50 p-4 rounded-lg border-l-4 border-red-400">
+                  <h4 class="font-semibold text-red-700 mb-2">Pronounced Knowledge Gap</h4>
+                  <p class="text-sm text-gray-600">73% of Austrians report little to no knowledge about AI</p>
+                </div>
+                <div class="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-400">
+                  <h4 class="font-semibold text-blue-700 mb-2">Guarded Optimism</h4>
+                  <p class="text-sm text-gray-600">Only 35% hold a positive view of AI's role in society</p>
+                </div>
+                <div class="bg-green-50 p-4 rounded-lg border-l-4 border-green-400">
+                  <h4 class="font-semibold text-green-700 mb-2">Measured Outlook</h4>
+                  <p class="text-sm text-gray-600">43% see work potential, but only 32% seek to learn more</p>
+                </div>
+              </div>
+              
+              <p class="text-gray-600 leading-relaxed">
+                This data reveals a critical need to build not just technological infrastructure, but also public understanding and trust.
               </p>
             </div>
-          </div>
-        </div>
-        
-        <!-- Right Column: Value Points -->
-        <div class="value-points">
-          <div class="value-point animate-fade-in-up" style="animation-delay: 0.1s">
-            <div class="value-point-icon" style="background: linear-gradient(135deg, #d84545, #c44545);">
-              <i data-feather="users" class="w-6 h-6"></i>
-            </div>
-            <div class="value-point-content">
-              <h3>Diverse Perspectives Thrive</h3>
-              <p>We break down silos between academia, industry, and civil society, creating a melting pot of ideas where innovation flourishes through cross-disciplinary collaboration.</p>
-            </div>
-          </div>
-          
-          <div class="value-point animate-fade-in-up" style="animation-delay: 0.2s">
-            <div class="value-point-icon" style="background: linear-gradient(135deg, #111d40, #1a2a5a);">
-              <i data-feather="zap" class="w-6 h-6"></i>
-            </div>
-            <div class="value-point-content">
-              <h3>Agency is Democratized</h3>
-              <p>Everyone has the power to influence how AI is developed and deployed. We empower individuals and organizations to become active shapers of our technological future.</p>
-            </div>
-          </div>
-          
-          <div class="value-point animate-fade-in-up" style="animation-delay: 0.3s">
-            <div class="value-point-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
-              <i data-feather="target" class="w-6 h-6"></i>
-            </div>
-            <div class="value-point-content">
-              <h3>Ideas Transform into Action</h3>
-              <p>We move beyond theoretical discussions to create tangible change. Through workshops, projects, and collaborations, we turn visionary ideas into practical solutions.</p>
-            </div>
-          </div>
-          
-          <div class="value-point animate-fade-in-up" style="animation-delay: 0.4s">
-            <div class="value-point-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
-              <i data-feather="globe" class="w-6 h-6"></i>
-            </div>
-            <div class="value-point-content">
-              <h3>Global Challenges Meet Local Solutions</h3>
-              <p>Vienna's strategic position as an international hub fuels our global impact. We connect local expertise with worldwide challenges, creating solutions that matter.</p>
-            </div>
-          </div>
-          
-          <div class="value-point animate-fade-in-up" style="animation-delay: 0.5s">
-            <div class="value-point-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
-              <i data-feather="award" class="w-6 h-6"></i>
-            </div>
-            <div class="value-point-content">
-              <h3>Future Talent Finds Its Voice</h3>
-              <p>We amplify emerging leaders who will shape tomorrow's technological landscape. Through mentorship and opportunity, we ensure the next generation leads with wisdom.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- ENHANCED: Latest Insights Section with Load More -->
-  <section id="insights" class="section-padding bg-gray-50 mobile-section">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
-        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
-      </div>
-
-      <!-- Instagram Grid Feed - First 3 Articles -->
-      <div class="instagram-grid stagger-animate">
-        <!-- Feed Item 1 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar">AU</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">Auxion Team</h4>
-              <span class="text-xs text-gray-500">2 days ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
-            <p class="text-gray-600 mb-3 text-sm">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
-                   alt="AI Awareness" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">87</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">23</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Feed Item 2 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">AR</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">AI Research Vienna</h4>
-              <span class="text-xs text-gray-500">1 week ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
-            <p class="text-gray-600 mb-3 text-sm">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
-                   alt="AGI Discussion" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">124</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">42</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Feed Item 3 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DH</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">Digital Humanism Initiative</h4>
-              <span class="text-xs text-gray-500">2 weeks ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
-            <p class="text-gray-600 mb-3 text-sm">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
-                   alt="Digital Humanism" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">56</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">18</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-  <!-- ENHANCED: Latest Insights Section with Load More -->
-  <section id="insights" class="section-padding bg-gray-50 mobile-section">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
-        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
-      </div>
-
-      <!-- Instagram Grid Feed - First 3 Articles -->
-      <div class="instagram-grid stagger-animate">
-        <!-- Feed Item 1 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar">AU</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">Auxion Team</h4>
-              <span class="text-xs text-gray-500">2 days ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
-            <p class="text-gray-600 mb-3 text-sm">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
-                   alt="AI Awareness" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">87</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">23</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Feed Item 2 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">AR</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">AI Research Vienna</h4>
-              <span class="text-xs text-gray-500">1 week ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
-            <p class="text-gray-600 mb-3 text-sm">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
-                   alt="AGI Discussion" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">124</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">42</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Feed Item 3 -->
-        <div class="feed-item glass-card">
-          <div class="feed-header">
-            <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DH</div>
-            <div class="flex-1">
-              <h4 class="font-semibold text-brand-blue">Digital Humanism Initiative</h4>
-              <span class="text-xs text-gray-500">2 weeks ago</span>
-            </div>
-            <button class="text-gray-400 hover:text-brand-coral transition-colors">
-              <i data-feather="more-horizontal"></i>
-            </button>
-          </div>
-          
-          <div class="feed-content">
-            <h3 class="font-bold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
-            <p class="text-gray-600 mb-3 text-sm">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
-            
-            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
-              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
-                   alt="Digital Humanism" 
-                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
-            </div>
-          </div>
-          
-          <div class="feed-actions">
-            <button class="action-btn like-btn">
-              <i data-feather="heart"></i>
-              <span class="text-xs">56</span>
-            </button>
-            <button class="action-btn comment-btn">
-              <i data-feather="message-circle"></i>
-              <span class="text-xs">18</span>
-            </button>
-            <button class="action-btn share-btn">
-              <i data-feather="share-2"></i>
-            </button>
-            <button class="action-btn bookmark-btn ml-auto">
-              <i data-feather="bookmark"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Blog Articles Grid - Hidden Initially -->
-      <div class="hidden hidden-articles grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" id="hiddenArticles">
-        <!-- Article 4 -->
-        <div class="blog-article">
-          <div class="blog-article-image">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
-                 alt="The true AI challenge" 
-                 class="w-full h-full object-cover">
-          </div>
-          <div class="blog-article-content">
-            <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
-            <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
-            <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
-               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Article 5 -->
-        <div class="blog-article">
-          <div class="blog-article-image">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
-                 alt="Key Principles for Human-Centered AI" 
-                 class="w-full h-full object-cover">
-          </div>
-          <div class="blog-article-content">
-            <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
-            <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
-            <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
-               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-            </a>
-          </div>
-        </div>
-        
-        <!-- Article 6 -->
-        <div class="blog-article">
-          <div class="blog-article-image">
-            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
-                 alt="How can people and AI work together" 
-                 class="w-full h-full object-cover">
-          </div>
-          <div class="blog-article-content">
-            <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
-            <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
-            <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
-               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
-              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Load More Button -->
-      <div class="text-center mt-8 animate-fade-in-up" style="animation-delay: 0.4s">
-        <button id="loadMoreBtn" class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
-          Load More Insights
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- FIXED: Awareness to Agency Section -->
-  <section id="awareness" class="awareness-agency mobile-section">
-    <div class="max-w-6xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-      
-      <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-        Your journey to responsible AI mastery through Vienna's premier collaborative hub
-      </p>
-
-      <!-- Desktop Progress Journey - FIXED -->
-      <div class="progress-journey desktop-only stagger-animate mb-8">
-        <!-- Step 1: Awareness -->
-        <div class="progress-step active">
-          <div class="step-icon">
-            <i data-feather="eye" class="w-5 h-5"></i>
-          </div>
-          <div class="step-content">
-            <div class="step-label">Awareness</div>
-            <div class="step-description">Understand AI landscape</div>
-          </div>
-        </div>
-        
-        <!-- Step 2: Understanding -->
-        <div class="progress-step completed">
-          <div class="step-icon">
-            <i data-feather="book-open" class="w-5 h-5"></i>
-          </div>
-          <div class="step-content">
-            <div class="step-label">Understanding</div>
-            <div class="step-description">Deepen knowledge</div>
-          </div>
-        </div>
-        
-        <!-- Step 3: Engagement -->
-        <div class="progress-step">
-          <div class="step-icon">
-            <i data-feather="users" class="w-5 h-5"></i>
-          </div>
-          <div class="step-content">
-            <div class="step-label">Engagement</div>
-            <div class="step-description">Join discussions</div>
-          </div>
-        </div>
-        
-        <!-- Step 4: Application -->
-        <div class="progress-step">
-          <div class="step-icon">
-            <i data-feather="zap" class="w-5 h-5"></i>
-          </div>
-          <div class="step-content">
-            <div class="step-label">Application</div>
-            <div class="step-description">Implement solutions</div>
-          </div>
-        </div>
-        
-        <!-- Step 5: Agency -->
-        <div class="progress-step">
-          <div class="step-icon">
-            <i data-feather="award" class="w-5 h-5"></i>
-          </div>
-          <div class="step-content">
-            <div class="step-label">Agency</div>
-            <div class="step-description">Drive change</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 2026 Mobile Solution: Swipeable Journey Cards -->
-      <div class="mobile-only">
-        <div class="journey-cards-container">
-          <!-- Card 1: Awareness -->
-          <div class="journey-card">
-            <div class="journey-progress">
-              <div class="progress-dot active"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-brand-coral rounded-full flex items-center justify-center text-white">
-                <i data-feather="eye" class="w-5 h-5"></i>
+            <!-- Lighthouse Section -->
+            <div class="lighthouse-container animate-float mb-6">
+              <!-- Animated Lighthouse SVG -->
+              <svg class="lighthouse-svg animate-lighthouse-glow" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Lighthouse Base -->
+                <rect x="85" y="120" width="30" height="50" fill="#111d40" rx="2"/>
+                <!-- Lighthouse Tower -->
+                <rect x="90" y="50" width="20" height="70" fill="#d84545" rx="2"/>
+                <!-- Lighthouse Top -->
+                <rect x="85" y="40" width="30" height="10" fill="#111d40" rx="2"/>
+                <!-- Light Room -->
+                <rect x="87" y="45" width="26" height="8" fill="#f8fafc" rx="1"/>
+                <!-- Windows -->
+                <rect x="93" y="60" width="8" height="8" fill="#f8fafc" rx="1"/>
+                <rect x="93" y="75" width="8" height="8" fill="#f8fafc" rx="1"/>
+                <rect x="93" y="90" width="8" height="8" fill="#f8fafc" rx="1"/>
+                <!-- Door -->
+                <rect x="95" y="105" width="6" height="15" fill="#111d40" rx="1"/>
+              </svg>
+              <!-- Rotating Beam -->
+              <div class="lighthouse-beam animate-lighthouse-beam"></div>
+              
+              <!-- Supporting Elements -->
+              <div class="wave-pattern animate-wave-float"></div>
+              
+              <!-- Floating Data Points -->
+              <div class="data-point data-point-1 animate-data-point" style="animation-delay: 0s">
+                <div class="text-brand-coral font-bold">73%</div>
+                <div class="text-xs">Knowledge Gap</div>
               </div>
-              <h3 class="text-lg font-semibold text-brand-blue">Awareness</h3>
+              
+              <div class="data-point data-point-2 animate-data-point" style="animation-delay: 1s">
+                <div class="text-brand-blue font-bold">35%</div>
+                <div class="text-xs">Positive View</div>
+              </div>
+              
+              <div class="data-point data-point-3 animate-data-point" style="animation-delay: 2s">
+                <div class="text-brand-coral font-bold">43%</div>
+                <div class="text-xs">Work Potential</div>
+              </div>
+              
+              <div class="data-point data-point-4 animate-data-point" style="animation-delay: 3s">
+                <div class="text-brand-blue font-bold">32%</div>
+                <div class="text-xs">Want to Learn</div>
+              </div>
             </div>
-            <p class="text-gray-600 text-sm">Understand the AI landscape and its implications for society, business, and individual lives.</p>
+            
+            <!-- Mission Text -->
+            <div class="text-center md:text-left">
+              <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">A Beacon in the AI Landscape</h3>
+              <p class="text-gray-600 mb-4 leading-relaxed">
+                Auxion stands as a lighthouse—guiding Vienna's brightest minds to bridge this very gap.
+              </p>
+              <p class="text-gray-600 mb-6 leading-relaxed">
+                We illuminate the path from awareness to agency, transforming cautious optimism into confident participation. Our mission is to ensure that as AI transforms Austria, it does so by empowering its people—building understanding and trust as the foundational infrastructure of our shared future.
+              </p>
+              <div class="bg-gradient-to-r from-brand-blue/10 to-brand-coral/10 p-4 rounded-xl border-l-4 border-brand-coral">
+                <p class="text-brand-blue font-medium italic">
+                  "Technology should amplify human potential, not replace human wisdom. At Auxion, we're building the compass for AI's moral navigation."
+                </p>
+              </div>
+            </div>
           </div>
           
-          <!-- Card 2: Understanding -->
-          <div class="journey-card">
-            <div class="journey-progress">
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot active"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white">
-                <i data-feather="book-open" class="w-5 h-5"></i>
+          <!-- Right Column: Value Points -->
+          <div class="value-points">
+            <div class="value-point animate-fade-in-up" style="animation-delay: 0.1s">
+              <div class="value-point-icon" style="background: linear-gradient(135deg, #d84545, #c44545);">
+                <i data-feather="users" class="w-6 h-6"></i>
               </div>
-              <h3 class="text-lg font-semibold text-brand-blue">Understanding</h3>
-            </div>
-            <p class="text-gray-600 text-sm">Deepen your knowledge through workshops, discussions, and expert-led sessions.</p>
-          </div>
-          
-          <!-- Card 3: Engagement -->
-          <div class="journey-card">
-            <div class="journey-progress">
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot active"></div>
-              <div class="progress-dot"></div>
-              <div class="progress-dot"></div>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
-                <i data-feather="users" class="w-5 h-5"></i>
+              <div class="value-point-content">
+                <h3>Diverse Perspectives Thrive</h3>
+                <p>We break down silos between academia, industry, and civil society, creating a melting pot of ideas where innovation flourishes through cross-disciplinary collaboration.</p>
               </div>
-              <h3 class="text-lg font-semibold text-brand-blue">Engagement</h3>
             </div>
-            <p class="text-gray-600 text-sm">Join Vienna's AI community through events, networking, and collaborative projects.</p>
-          </div>
-          
-          <!-- Card 4: Application -->
-          <div class="journey-card">
-            <div class="journey-progress">
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot active"></div>
-              <div class="progress-dot"></div>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
-                <i data-feather="zap" class="w-5 h-5"></i>
+            
+            <div class="value-point animate-fade-in-up" style="animation-delay: 0.2s">
+              <div class="value-point-icon" style="background: linear-gradient(135deg, #111d40, #1a2a5a);">
+                <i data-feather="zap" class="w-6 h-6"></i>
               </div>
-              <h3 class="text-lg font-semibold text-brand-blue">Application</h3>
-            </div>
-            <p class="text-gray-600 text-sm">Implement responsible AI solutions in real-world contexts through guided projects.</p>
-          </div>
-          
-          <!-- Card 5: Agency -->
-          <div class="journey-card">
-            <div class="journey-progress">
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot completed"></div>
-              <div class="progress-dot active"></div>
-            </div>
-            <div class="flex items-center gap-3 mb-3">
-              <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white">
-                <i data-feather="award" class="w-5 h-5"></i>
+              <div class="value-point-content">
+                <h3>Agency is Democratized</h3>
+                <p>Everyone has the power to influence how AI is developed and deployed. We empower individuals and organizations to become active shapers of our technological future.</p>
               </div>
-              <h3 class="text-lg font-semibold text-brand-blue">Agency</h3>
             </div>
-            <p class="text-gray-600 text-sm">Become a leader who drives meaningful change in the AI ecosystem.</p>
+            
+            <div class="value-point animate-fade-in-up" style="animation-delay: 0.3s">
+              <div class="value-point-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                <i data-feather="target" class="w-6 h-6"></i>
+              </div>
+              <div class="value-point-content">
+                <h3>Ideas Transform into Action</h3>
+                <p>We move beyond theoretical discussions to create tangible change. Through workshops, projects, and collaborations, we turn visionary ideas into practical solutions.</p>
+              </div>
+            </div>
+            
+            <div class="value-point animate-fade-in-up" style="animation-delay: 0.4s">
+              <div class="value-point-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                <i data-feather="globe" class="w-6 h-6"></i>
+              </div>
+              <div class="value-point-content">
+                <h3>Global Challenges Meet Local Solutions</h3>
+                <p>Vienna's strategic position as an international hub fuels our global impact. We connect local expertise with worldwide challenges, creating solutions that matter.</p>
+              </div>
+            </div>
+            
+            <div class="value-point animate-fade-in-up" style="animation-delay: 0.5s">
+              <div class="value-point-icon" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                <i data-feather="award" class="w-6 h-6"></i>
+              </div>
+              <div class="value-point-content">
+                <h3>Future Talent Finds Its Voice</h3>
+                <p>We amplify emerging leaders who will shape tomorrow's technological landscape. Through mentorship and opportunity, we ensure the next generation leads with wisdom.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Call to Action -->
-      <div class="animate-fade-in-up" style="animation-delay: 0.5s">
-        <a href="#join" class="cta-modern text-white font-semibold px-6 py-3 rounded-xl inline-flex items-center">
-          Start Your Journey <i data-feather="arrow-right" class="ml-2"></i>
-        </a>
+    <!-- Insights Section -->
+    <section id="insights" class="section-padding bg-gray-50 mobile-section">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
+          <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
+        </div>
+
+        <!-- Instagram Grid Feed - First 3 Articles -->
+        <div class="instagram-grid stagger-animate">
+          <!-- Feed Item 1 -->
+          <div class="feed-item glass-card">
+            <div class="feed-header">
+              <div class="feed-avatar">AU</div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-brand-blue">Auxion Team</h4>
+                <span class="text-xs text-gray-500">2 days ago</span>
+              </div>
+              <button class="text-gray-400 hover:text-brand-coral transition-colors">
+                <i data-feather="more-horizontal"></i>
+              </button>
+            </div>
+            
+            <div class="feed-content">
+              <h3 class="font-bold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
+              <p class="text-gray-600 mb-3 text-sm">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+              
+              <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                     alt="AI Awareness" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+            
+            <div class="feed-actions">
+              <button class="action-btn like-btn">
+                <i data-feather="heart"></i>
+                <span class="text-xs">87</span>
+              </button>
+              <button class="action-btn comment-btn">
+                <i data-feather="message-circle"></i>
+                <span class="text-xs">23</span>
+              </button>
+              <button class="action-btn share-btn">
+                <i data-feather="share-2"></i>
+              </button>
+              <button class="action-btn bookmark-btn ml-auto">
+                <i data-feather="bookmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Feed Item 2 -->
+          <div class="feed-item glass-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">AR</div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-brand-blue">AI Research Vienna</h4>
+                <span class="text-xs text-gray-500">1 week ago</span>
+              </div>
+              <button class="text-gray-400 hover:text-brand-coral transition-colors">
+                <i data-feather="more-horizontal"></i>
+              </button>
+            </div>
+            
+            <div class="feed-content">
+              <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
+              <p class="text-gray-600 mb-3 text-sm">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+              
+              <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                     alt="AGI Discussion" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+            
+            <div class="feed-actions">
+              <button class="action-btn like-btn">
+                <i data-feather="heart"></i>
+                <span class="text-xs">124</span>
+              </button>
+              <button class="action-btn comment-btn">
+                <i data-feather="message-circle"></i>
+                <span class="text-xs">42</span>
+              </button>
+              <button class="action-btn share-btn">
+                <i data-feather="share-2"></i>
+              </button>
+              <button class="action-btn bookmark-btn ml-auto">
+                <i data-feather="bookmark"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Feed Item 3 -->
+          <div class="feed-item glass-card">
+            <div class="feed-header">
+              <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DH</div>
+              <div class="flex-1">
+                <h4 class="font-semibold text-brand-blue">Digital Humanism Initiative</h4>
+                <span class="text-xs text-gray-500">2 weeks ago</span>
+              </div>
+              <button class="text-gray-400 hover:text-brand-coral transition-colors">
+                <i data-feather="more-horizontal"></i>
+              </button>
+            </div>
+            
+            <div class="feed-content">
+              <h3 class="font-bold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
+              <p class="text-gray-600 mb-3 text-sm">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+              
+              <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+                <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                     alt="Digital Humanism" 
+                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+              </div>
+            </div>
+            
+            <div class="feed-actions">
+              <button class="action-btn like-btn">
+                <i data-feather="heart"></i>
+                <span class="text-xs">56</span>
+              </button>
+              <button class="action-btn comment-btn">
+                <i data-feather="message-circle"></i>
+                <span class="text-xs">18</span>
+              </button>
+              <button class="action-btn share-btn">
+                <i data-feather="share-2"></i>
+              </button>
+              <button class="action-btn bookmark-btn ml-auto">
+                <i data-feather="bookmark"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Blog Articles Grid - Hidden Initially -->
+        <div class="hidden hidden-articles grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" id="hiddenArticles">
+          <!-- Article 4 -->
+          <div class="blog-article">
+            <div class="blog-article-image">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
+                   alt="The true AI challenge" 
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="blog-article-content">
+              <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
+              <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
+              <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
+                 target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+                Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Article 5 -->
+          <div class="blog-article">
+            <div class="blog-article-image">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
+                   alt="Key Principles for Human-Centered AI" 
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="blog-article-content">
+              <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
+              <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
+              <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
+                 target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+                Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+              </a>
+            </div>
+          </div>
+          
+          <!-- Article 6 -->
+          <div class="blog-article">
+            <div class="blog-article-image">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
+                   alt="How can people and AI work together" 
+                   class="w-full h-full object-cover">
+            </div>
+            <div class="blog-article-content">
+              <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
+              <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
+              <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
+                 target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+                Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Load More Button -->
+        <div class="text-center mt-8 animate-fade-in-up" style="animation-delay: 0.4s">
+          <button id="loadMoreBtn" class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+            Load More Insights
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Ecosystem Visualization Section -->
-  <section id="ecosystem" class="section-padding bg-white mobile-section">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8 md:mb-12">
-        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Auxion Ecosystem</h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-          Creating meaningful impact by bringing together Vienna's diverse AI voices
+    <!-- Awareness to Agency Section -->
+    <section id="awareness" class="awareness-agency mobile-section">
+      <div class="max-w-6xl mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        
+        <p class="text-lg md:text-xl text-gray-600 mb-8 max-w-3xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          Your journey to responsible AI mastery through Vienna's premier collaborative hub
         </p>
-      </div>
-      
-      <!-- Desktop Ecosystem Grid -->
-      <div class="desktop-only grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto stagger-animate">
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float">
-            <i data-feather="users" class="text-white w-7 h-7"></i>
-          </div>
-          <h3 class="text-base font-semibold text-brand-blue mb-1">Students</h3>
-          <p class="text-gray-600 text-xs">Emerging voices shaping tomorrow's AI landscape</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 0.5s">
-            <i data-feather="book" class="text-white w-7 h-7"></i>
-          </div>
-          <h3 class="text-base font-semibold text-brand-blue mb-1">Researchers</h3>
-          <p class="text-gray-600 text-xs">Pioneering ethical AI research and innovation</p>
-        </div>
-        
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 1s">
-            <i data-feather="briefcase" class="text-white w-7 h-7"></i>
-          </div>
-          <h3 class="text-base font-semibold text-brand-blue mb-1">Industry</h3>
-          <p class="text-gray-600 text-xs">Leading people-first AI adoption</p>
-        </div>
 
-        <div class="text-center">
-          <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 1.5s">
-            <i data-feather="heart" class="text-white w-7 h-7"></i>
-          </div>
-          <h3 class="text-base font-semibold text-brand-blue mb-1">Activists</h3>
-          <p class="text-gray-600 text-xs">Advocating for ethical AI practices</p>
-        </div>
-      </div>
-
-      <!-- Mobile Swipeable Ecosystem -->
-      <div class="mobile-only">
-        <div class="swipe-container flex overflow-x-auto pb-3 -mx-4 px-4">
-          <div class="swipe-section pr-3">
-            <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.1s">
-              <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <i data-feather="users" class="text-white"></i>
-              </div>
-              <h3 class="font-semibold text-brand-blue mb-1 text-sm">Students</h3>
-              <p class="text-gray-600 text-xs">Emerging voices shaping tomorrow's AI landscape</p>
+        <!-- Desktop Progress Journey -->
+        <div class="progress-journey desktop-only stagger-animate mb-8">
+          <!-- Step 1: Awareness -->
+          <div class="progress-step active">
+            <div class="step-icon">
+              <i data-feather="eye" class="w-5 h-5"></i>
+            </div>
+            <div class="step-content">
+              <div class="step-label">Awareness</div>
+              <div class="step-description">Understand AI landscape</div>
             </div>
           </div>
           
-          <div class="swipe-section pr-3">
-            <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.2s">
-              <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <i data-feather="book" class="text-white"></i>
-              </div>
-              <h3 class="font-semibold text-brand-blue mb-1 text-sm">Researchers</h3>
-              <p class="text-gray-600 text-xs">Pioneering ethical AI research</p>
+          <!-- Step 2: Understanding -->
+          <div class="progress-step completed">
+            <div class="step-icon">
+              <i data-feather="book-open" class="w-5 h-5"></i>
+            </div>
+            <div class="step-content">
+              <div class="step-label">Understanding</div>
+              <div class="step-description">Deepen knowledge</div>
             </div>
           </div>
           
-          <div class="swipe-section pr-3">
-            <div class="glass-card p-4 text-center animate-slide-in-bottom">
-              <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <i data-feather="briefcase" class="text-white"></i>
-              </div>
-              <h3 class="font-semibold text-brand-blue mb-1 text-sm">Industry</h3>
-              <p class="text-gray-600 text-xs">Leading people-first AI adoption</p>
+          <!-- Step 3: Engagement -->
+          <div class="progress-step">
+            <div class="step-icon">
+              <i data-feather="users" class="w-5 h-5"></i>
+            </div>
+            <div class="step-content">
+              <div class="step-label">Engagement</div>
+              <div class="step-description">Join discussions</div>
             </div>
           </div>
-
-          <div class="swipe-section">
-            <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.3s">
-              <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-2">
-                <i data-feather="heart" class="text-white"></i>
-              </div>
-              <h3 class="font-semibold text-brand-blue mb-1 text-sm">Activists</h3>
-              <p class="text-gray-600 text-xs">Advocating for ethical AI practices</p>
+          
+          <!-- Step 4: Application -->
+          <div class="progress-step">
+            <div class="step-icon">
+              <i data-feather="zap" class="w-5 h-5"></i>
+            </div>
+            <div class="step-content">
+              <div class="step-label">Application</div>
+              <div class="step-description">Implement solutions</div>
+            </div>
+          </div>
+          
+          <!-- Step 5: Agency -->
+          <div class="progress-step">
+            <div class="step-icon">
+              <i data-feather="award" class="w-5 h-5"></i>
+            </div>
+            <div class="step-content">
+              <div class="step-label">Agency</div>
+              <div class="step-description">Drive change</div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-  
-  <!-- FIXED: Testimonials Section with Simple Mobile Solution -->
-  <section id="testimonials" class="section-padding trust-signals mobile-section">
-    <div class="max-w-6xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-        <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-          Hear from Vienna's AI community about their experiences with Auxion
-        </p>
-      </div>
-      
-      <!-- Desktop Testimonials Grid -->
-      <div class="desktop-only grid grid-cols-1 md:grid-cols-3 gap-6 stagger-animate">
-        <div class="testimonial-card">
-          <div class="flex items-center mb-3">
-            <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
-              MS
+
+        <!-- Mobile Swipeable Journey Cards -->
+        <div class="mobile-only">
+          <div class="journey-cards-container">
+            <!-- Card 1: Awareness -->
+            <div class="journey-card">
+              <div class="journey-progress">
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+              </div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-brand-coral rounded-full flex items-center justify-center text-white">
+                  <i data-feather="eye" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-brand-blue">Awareness</h3>
+              </div>
+              <p class="text-gray-600 text-sm">Understand the AI landscape and its implications for society, business, and individual lives.</p>
             </div>
-            <div>
-              <h4 class="font-semibold text-brand-blue">Maria S.</h4>
-              <p class="text-xs text-gray-500">AI Researcher, TU Vienna</p>
+            
+            <!-- Card 2: Understanding -->
+            <div class="journey-card">
+              <div class="journey-progress">
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+              </div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white">
+                  <i data-feather="book-open" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-brand-blue">Understanding</h3>
+              </div>
+              <p class="text-gray-600 text-sm">Deepen your knowledge through workshops, discussions, and expert-led sessions.</p>
+            </div>
+            
+            <!-- Card 3: Engagement -->
+            <div class="journey-card">
+              <div class="journey-progress">
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+                <div class="progress-dot"></div>
+              </div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                  <i data-feather="users" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-brand-blue">Engagement</h3>
+              </div>
+              <p class="text-gray-600 text-sm">Join Vienna's AI community through events, networking, and collaborative projects.</p>
+            </div>
+            
+            <!-- Card 4: Application -->
+            <div class="journey-card">
+              <div class="journey-progress">
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot active"></div>
+                <div class="progress-dot"></div>
+              </div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                  <i data-feather="zap" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-brand-blue">Application</h3>
+              </div>
+              <p class="text-gray-600 text-sm">Implement responsible AI solutions in real-world contexts through guided projects.</p>
+            </div>
+            
+            <!-- Card 5: Agency -->
+            <div class="journey-card">
+              <div class="journey-progress">
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot completed"></div>
+                <div class="progress-dot active"></div>
+              </div>
+              <div class="flex items-center gap-3 mb-3">
+                <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white">
+                  <i data-feather="award" class="w-5 h-5"></i>
+                </div>
+                <h3 class="text-lg font-semibold text-brand-blue">Agency</h3>
+              </div>
+              <p class="text-gray-600 text-sm">Become a leader who drives meaningful change in the AI ecosystem.</p>
             </div>
           </div>
-          <p class="text-gray-600 italic text-sm">
-            "Technology evolves faster than our understanding of its consequences. Reflecting on who benefits, who is left behind, and how ethical principles can guide design is essential if we want AI to serve society responsibly."
+        </div>
+
+        <!-- Call to Action -->
+        <div class="animate-fade-in-up" style="animation-delay: 0.5s">
+          <a href="#join" class="cta-modern text-white font-semibold px-6 py-3 rounded-xl inline-flex items-center">
+            Start Your Journey <i data-feather="arrow-right" class="ml-2"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ecosystem Visualization Section -->
+    <section id="ecosystem" class="section-padding bg-white mobile-section">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-8 md:mb-12">
+          <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Auxion Ecosystem</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+            Creating meaningful impact by bringing together Vienna's diverse AI voices
           </p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="flex items-center mb-3">
-            <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
-              TK
+        <!-- Desktop Ecosystem Grid -->
+        <div class="desktop-only grid grid-cols-1 md:grid-cols-4 gap-6 max-w-4xl mx-auto stagger-animate">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float">
+              <i data-feather="users" class="text-white w-7 h-7"></i>
             </div>
-            <div>
-              <h4 class="font-semibold text-brand-blue">Thomas K.</h4>
-              <p class="text-xs text-gray-500">Tech Entrepreneur</p>
+            <h3 class="text-base font-semibold text-brand-blue mb-1">Students</h3>
+            <p class="text-gray-600 text-xs">Emerging voices shaping tomorrow's AI landscape</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-green-500 to-green-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 0.5s">
+              <i data-feather="book" class="text-white w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-semibold text-brand-blue mb-1">Researchers</h3>
+            <p class="text-gray-600 text-xs">Pioneering ethical AI research and innovation</p>
+          </div>
+          
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 1s">
+              <i data-feather="briefcase" class="text-white w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-semibold text-brand-blue mb-1">Industry</h3>
+            <p class="text-gray-600 text-xs">Leading people-first AI adoption</p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center mx-auto mb-3 animate-float" style="animation-delay: 1.5s">
+              <i data-feather="heart" class="text-white w-7 h-7"></i>
+            </div>
+            <h3 class="text-base font-semibold text-brand-blue mb-1">Activists</h3>
+            <p class="text-gray-600 text-xs">Advocating for ethical AI practices</p>
+          </div>
+        </div>
+
+        <!-- Mobile Swipeable Ecosystem -->
+        <div class="mobile-only">
+          <div class="swipe-container flex overflow-x-auto pb-3 -mx-4 px-4">
+            <div class="swipe-section pr-3">
+              <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.1s">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <i data-feather="users" class="text-white"></i>
+                </div>
+                <h3 class="font-semibold text-brand-blue mb-1 text-sm">Students</h3>
+                <p class="text-gray-600 text-xs">Emerging voices shaping tomorrow's AI landscape</p>
+              </div>
+            </div>
+            
+            <div class="swipe-section pr-3">
+              <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.2s">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <i data-feather="book" class="text-white"></i>
+                </div>
+                <h3 class="font-semibold text-brand-blue mb-1 text-sm">Researchers</h3>
+                <p class="text-gray-600 text-xs">Pioneering ethical AI research</p>
+              </div>
+            </div>
+            
+            <div class="swipe-section pr-3">
+              <div class="glass-card p-4 text-center animate-slide-in-bottom">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <i data-feather="briefcase" class="text-white"></i>
+                </div>
+                <h3 class="font-semibold text-brand-blue mb-1 text-sm">Industry</h3>
+                <p class="text-gray-600 text-xs">Leading people-first AI adoption</p>
+              </div>
+            </div>
+
+            <div class="swipe-section">
+              <div class="glass-card p-4 text-center animate-slide-in-bottom" style="animation-delay: 0.3s">
+                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center mx-auto mb-2">
+                  <i data-feather="heart" class="text-white"></i>
+                </div>
+                <h3 class="font-semibold text-brand-blue mb-1 text-sm">Activists</h3>
+                <p class="text-gray-600 text-xs">Advocating for ethical AI practices</p>
+              </div>
             </div>
           </div>
-          <p class="text-gray-600 italic text-sm">
-            "As we integrate AI into daily life, the most important questions are not technical but societal: how do we ensure fairness, transparency and accountability?"
+        </div>
+      </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding trust-signals mobile-section">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Community Voices</h2>
+          <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-brand-blue mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+          <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+            Hear from Vienna's AI community about their experiences with Auxion
           </p>
         </div>
         
-        <div class="testimonial-card">
-          <div class="flex items-center mb-3">
-            <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
-              LS
-            </div>
-            <div>
-              <h4 class="font-semibold text-brand-blue">Lena R.</h4>
-              <p class="text-xs text-gray-500">Graduate Student, Digital Ethics</p>
-            </div>
-          </div>
-          <p class="text-gray-600 italic text-sm">
-            "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
-          </p>
-        </div>
-      </div>
-
-      <!-- FIXED: Simple Mobile Testimonials -->
-      <div class="mobile-only">
-        <div class="testimonial-stack-simple">
-          <div class="testimonial-card-mobile active">
+        <!-- Desktop Testimonials Grid -->
+        <div class="desktop-only grid grid-cols-1 md:grid-cols-3 gap-6 stagger-animate">
+          <div class="testimonial-card">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 MS
               </div>
               <div>
                 <h4 class="font-semibold text-brand-blue">Maria S.</h4>
-                <p class="text-xs text-gray-500">AI Researcher</p>
+                <p class="text-xs text-gray-500">AI Researcher, TU Vienna</p>
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "Essential to reflect on who benefits and who is left behind in AI development."
+              "Technology evolves faster than our understanding of its consequences. Reflecting on who benefits, who is left behind, and how ethical principles can guide design is essential if we want AI to serve society responsibly."
             </p>
           </div>
           
-          <div class="testimonial-card-mobile">
+          <div class="testimonial-card">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 TK
@@ -2251,414 +2065,459 @@
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "The most important AI questions are societal, not technical."
+              "As we integrate AI into daily life, the most important questions are not technical but societal: how do we ensure fairness, transparency and accountability?"
             </p>
           </div>
           
-          <div class="testimonial-card-mobile">
+          <div class="testimonial-card">
             <div class="flex items-center mb-3">
               <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
                 LS
               </div>
               <div>
                 <h4 class="font-semibold text-brand-blue">Lena R.</h4>
-                <p class="text-xs text-gray-500">Digital Ethics</p>
+                <p class="text-xs text-gray-500">Graduate Student, Digital Ethics</p>
               </div>
             </div>
             <p class="text-gray-600 italic text-sm">
-              "How do we balance efficiency with empathy in AI systems?"
+              "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
             </p>
           </div>
         </div>
+
+        <!-- Mobile Testimonials -->
+        <div class="mobile-only">
+          <div class="testimonial-stack-simple">
+            <div class="testimonial-card-mobile active">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  MS
+                </div>
+                <div>
+                  <h4 class="font-semibold text-brand-blue">Maria S.</h4>
+                  <p class="text-xs text-gray-500">AI Researcher</p>
+                </div>
+              </div>
+              <p class="text-gray-600 italic text-sm">
+                "Essential to reflect on who benefits and who is left behind in AI development."
+              </p>
+            </div>
+            
+            <div class="testimonial-card-mobile">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  TK
+                </div>
+                <div>
+                  <h4 class="font-semibold text-brand-blue">Thomas K.</h4>
+                  <p class="text-xs text-gray-500">Tech Entrepreneur</p>
+                </div>
+              </div>
+              <p class="text-gray-600 italic text-sm">
+                "The most important AI questions are societal, not technical."
+              </p>
+            </div>
+            
+            <div class="testimonial-card-mobile">
+              <div class="flex items-center mb-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                  LS
+                </div>
+                <div>
+                  <h4 class="font-semibold text-brand-blue">Lena R.</h4>
+                  <p class="text-xs text-gray-500">Digital Ethics</p>
+                </div>
+              </div>
+              <p class="text-gray-600 italic text-sm">
+                "How do we balance efficiency with empathy in AI systems?"
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Join Ecosystem Section -->
-  <section id="join" class="section-padding bg-brand-blue text-white mobile-section" style="padding-bottom: 3rem !important;">
-    <div class="max-w-4xl mx-auto px-4 text-center">
-      <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
-      <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
-      
-      <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
-        Become part of Vienna's premier collaborative hub for responsible AI innovation
-      </p>
+    <!-- Join Ecosystem Section -->
+    <section id="join" class="section-padding bg-brand-blue text-white mobile-section" style="padding-bottom: 3rem !important;">
+      <div class="max-w-4xl mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-5xl font-bold mb-6 font-orbitron mobile-heading animate-fade-in-up">Ready to Join?</h2>
+        <div class="w-20 h-1 bg-gradient-to-r from-brand-coral to-white mx-auto mb-6 md:mb-8 animate-fade-in-up" style="animation-delay: 0.2s"></div>
+        
+        <p class="text-lg md:text-xl text-gray-200 mb-8 md:mb-10 max-w-2xl mx-auto mobile-body animate-fade-in-up" style="animation-delay: 0.3s">
+          Become part of Vienna's premier collaborative hub for responsible AI innovation
+        </p>
 
-      <div class="glass-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
-        <form class="space-y-6">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-            <div>
-              <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
-              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
-                <option value="">Select your role</option>
-                <option value="student">Student / Learner</option>
-                <option value="researcher">Researcher / Academic</option>
-                <option value="industry">Industry Professional</option>
-                <option value="activist">Activist / Advocate</option>
-                <option value="other">Other</option>
-              </select>
+        <div class="glass-card bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 max-w-2xl mx-auto animate-fade-in-up" style="animation-delay: 0.4s">
+          <form class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+              <div>
+                <label class="block text-left text-gray-200 mb-2 font-medium">Your Role</label>
+                <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
+                  <option value="">Select your role</option>
+                  <option value="student">Student / Learner</option>
+                  <option value="researcher">Researcher / Academic</option>
+                  <option value="industry">Industry Professional</option>
+                  <option value="activist">Activist / Advocate</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
+                <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
+                  <option value="">Select interest area</option>
+                  <option value="ethics">AI Ethics & Governance</option>
+                  <option value="technical">Technical Development</option>
+                  <option value="policy">Policy & Regulation</option>
+                  <option value="education">Education & Awareness</option>
+                  <option value="research">Research Collaboration</option>
+                </select>
+              </div>
             </div>
             
             <div>
-              <label class="block text-left text-gray-200 mb-2 font-medium">Primary Interest</label>
-              <select class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
-                <option value="">Select interest area</option>
-                <option value="ethics">AI Ethics & Governance</option>
-                <option value="technical">Technical Development</option>
-                <option value="policy">Policy & Regulation</option>
-                <option value="education">Education & Awareness</option>
-                <option value="research">Research Collaboration</option>
-              </select>
+              <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
+              <input type="email" placeholder="Enter your email" required
+                  class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
             </div>
-          </div>
+            
+            <button type="submit"
+                class="w-full cta-modern text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold focus-brand">
+                Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
+            </button>
+          </form>
           
-          <div>
-            <label class="block text-left text-gray-200 mb-2 font-medium">Email Address</label>
-            <input type="email" placeholder="Enter your email" required
-                class="w-full px-4 py-3 rounded-xl text-gray-900 border-2 border-transparent focus:border-brand-coral outline-none transition-all duration-300 focus-brand">
-          </div>
-          
-          <button type="submit"
-              class="w-full cta-modern text-white px-6 py-4 md:px-8 md:py-4 rounded-xl font-semibold focus-brand">
-              Join Vienna's AI Ecosystem <i data-feather="send" class="ml-2 inline-block"></i>
-          </button>
-        </form>
+          <p class="text-gray-300 text-sm mt-6 mobile-body">
+            By joining, you become part of Vienna's collaborative network working towards responsible AI innovation
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="section-padding trust-signals mobile-section">
+      <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-8">
+          <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Trusted by Vienna's AI Community</h2>
+          <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Partners and supporters of our mission</p>
+        </div>
         
-        <p class="text-gray-300 text-sm mt-6 mobile-body">
-          By joining, you become part of Vienna's collaborative network working towards responsible AI innovation
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center opacity-70 stagger-animate">
+          <div class="flex justify-center">
+            <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
+          </div>
+          <div class="flex justify-center">
+            <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
+          </div>
+          <div class="flex justify-center">
+            <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
+          </div>
+          <div class="flex justify-center">
+            <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 md:py-12 bg-gray-900 text-gray-400">
+    <div class="max-w-7xl mx-auto px-4 text-center">
+      <div class="mb-6">
+        <h3 class="text-xl font-bold text-white mb-3 font-orbitron brand-glow">AUXION</h3>
+        <p class="text-gray-400 max-w-md mx-auto mobile-body text-sm">
+          Vienna's collaborative hub where diverse voices shape the future of responsible AI
         </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Partners Section -->
-  <section class="section-padding trust-signals mobile-section">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="text-center mb-8">
-        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Trusted by Vienna's AI Community</h2>
-        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Partners and supporters of our mission</p>
+      
+      <div class="flex justify-center space-x-3 md:space-x-4 mb-6">
+        <a href="https://www.linkedin.com/company/auxion.io" target="_blank" rel="noopener noreferrer" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+          <i data-feather="linkedin" class="w-4 h-4 md:w-5 md:h-5"></i>
+        </a>
+        <a href="#" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+          <i data-feather="twitter" class="w-4 h-4 md:w-5 md:h-5"></i>
+        </a>
+        <a href="#" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
+          <i data-feather="mail" class="w-4 h-4 md:w-5 md:h-5"></i>
+        </a>
       </div>
       
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 items-center opacity-70 stagger-animate">
-        <div class="flex justify-center">
-          <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
-        </div>
-        <div class="flex justify-center">
-          <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
-        </div>
-        <div class="flex justify-center">
-          <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
-        </div>
-        <div class="flex justify-center">
-          <div class="h-10 bg-gray-200 rounded-md w-28 skeleton"></div>
-        </div>
+      <div class="max-w-md mx-auto mb-6">
+        <p class="mb-1 mobile-body text-sm">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-coral transition-colors duration-300">info@auxion.io</a></p>
+        <p class="text-xs mobile-body">Vienna, Austria</p>
       </div>
-    </div>
-  </section>
-</main>
-
-<!-- Footer -->
-<footer class="py-8 md:py-12 bg-gray-900 text-gray-400">
-  <div class="max-w-7xl mx-auto px-4 text-center">
-    <div class="mb-6">
-      <h3 class="text-xl font-bold text-white mb-3 font-orbitron brand-glow">AUXION</h3>
-      <p class="text-gray-400 max-w-md mx-auto mobile-body text-sm">
-        Vienna's collaborative hub where diverse voices shape the future of responsible AI
-      </p>
-    </div>
-    
-    <div class="flex justify-center space-x-3 md:space-x-4 mb-6">
-      <a href="https://www.linkedin.com/company/auxion.io" target="_blank" rel="noopener noreferrer" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
-        <i data-feather="linkedin" class="w-4 h-4 md:w-5 md:h-5"></i>
-      </a>
-      <a href="#" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
-        <i data-feather="twitter" class="w-4 h-4 md:w-5 md:h-5"></i>
-      </a>
-      <a href="#" class="p-2 bg-gray-800 rounded-xl hover:bg-brand-coral hover:text-white transition-all duration-300 transform hover:scale-110 micro-interaction focus-brand">
-        <i data-feather="mail" class="w-4 h-4 md:w-5 md:h-5"></i>
-      </a>
-    </div>
-    
-    <div class="max-w-md mx-auto mb-6">
-      <p class="mb-1 mobile-body text-sm">Email: <a href="mailto:info@auxion.io" class="text-gray-300 hover:text-brand-coral transition-colors duration-300">info@auxion.io</a></p>
-      <p class="text-xs mobile-body">Vienna, Austria</p>
-    </div>
-    
-    <p class="text-xs mobile-body">&copy; 2025 Auxion. Vienna's Home for Responsible AI Innovation.</p>
-  </div>
-</footer>
-
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Feather Icons
-    feather.replace();
-    
-    // Create floating particles
-    function createParticles() {
-      const container = document.querySelector('.particles-container');
-      const particleCount = 15;
       
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle animate-particle';
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
-        particle.style.animationDelay = `${Math.random() * 5}s`;
-        particle.style.opacity = `${0.3 + Math.random() * 0.5}`;
-        container.appendChild(particle);
+      <p class="text-xs mobile-body">&copy; 2025 Auxion. Vienna's Home for Responsible AI Innovation.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize Feather Icons
+      feather.replace();
+      
+      // Create floating particles
+      function createParticles() {
+        const container = document.querySelector('.particles-container');
+        const particleCount = 15;
+        
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement('div');
+          particle.className = 'particle animate-particle';
+          particle.style.left = `${Math.random() * 100}%`;
+          particle.style.top = `${Math.random() * 100}%`;
+          particle.style.animationDelay = `${Math.random() * 5}s`;
+          particle.style.opacity = `${0.3 + Math.random() * 0.5}`;
+          container.appendChild(particle);
+        }
       }
-    }
-    
-    // Initialize animations on page load
-    function initAnimations() {
-      const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom');
       
-      animatedElements.forEach((el, index) => {
-        // Remove existing animation classes
-        el.classList.remove('animate-fade-in-up', 'animate-fade-in-left', 'animate-fade-in-right', 'animate-slide-in-bottom');
+      // Initialize animations on page load
+      function initAnimations() {
+        const animatedElements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom');
         
-        // Re-add after a small delay to trigger animation
-        setTimeout(() => {
-          const originalClasses = Array.from(el.classList).filter(cls => 
-            cls.startsWith('animate-') || cls === 'stagger-animate'
-          );
-          originalClasses.forEach(cls => el.classList.add(cls));
-        }, 100);
-      });
-    }
-
-    // Dynamic counter animation
-    function animateCounters() {
-      const counters = document.querySelectorAll('.counter');
-      
-      counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = parseInt(counter.getAttribute('data-duration'));
-        const start = parseInt(counter.textContent);
-        const increment = (target - start) / (duration / 16); // 60fps
-        
-        let current = start;
-        const timer = setInterval(() => {
-          current += increment;
-          counter.textContent = Math.floor(current);
+        animatedElements.forEach((el, index) => {
+          // Remove existing animation classes
+          el.classList.remove('animate-fade-in-up', 'animate-fade-in-left', 'animate-fade-in-right', 'animate-slide-in-bottom');
           
-          if (current >= target) {
-            counter.textContent = target;
-            clearInterval(timer);
-          }
-        }, 16);
-      });
-    }
-    
-    // Scroll progress indicator
-    function initScrollProgress() {
-      const progressBar = document.querySelector('.scroll-progress');
+          // Re-add after a small delay to trigger animation
+          setTimeout(() => {
+            const originalClasses = Array.from(el.classList).filter(cls => 
+              cls.startsWith('animate-') || cls === 'stagger-animate'
+            );
+            originalClasses.forEach(cls => el.classList.add(cls));
+          }, 100);
+        });
+      }
+
+      // Dynamic counter animation
+      function animateCounters() {
+        const counters = document.querySelectorAll('.counter');
+        
+        counters.forEach(counter => {
+          const target = parseInt(counter.getAttribute('data-target'));
+          const duration = parseInt(counter.getAttribute('data-duration'));
+          const start = parseInt(counter.textContent);
+          const increment = (target - start) / (duration / 16); // 60fps
+          
+          let current = start;
+          const timer = setInterval(() => {
+            current += increment;
+            counter.textContent = Math.floor(current);
+            
+            if (current >= target) {
+              counter.textContent = target;
+              clearInterval(timer);
+            }
+          }, 16);
+        });
+      }
       
-      window.addEventListener('scroll', () => {
-        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (window.scrollY / windowHeight) * 100;
-        progressBar.style.width = `${scrolled}%`;
-      });
-    }
-    
-    // Intersection Observer for scroll-triggered animations
-    function initScrollAnimations() {
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
+      // Scroll progress indicator
+      function initScrollProgress() {
+        const progressBar = document.querySelector('.scroll-progress');
+        
+        window.addEventListener('scroll', () => {
+          const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (window.scrollY / windowHeight) * 100;
+          progressBar.style.width = `${scrolled}%`;
+        });
+      }
       
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
+      // Intersection Observer for scroll-triggered animations
+      function initScrollAnimations() {
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.style.opacity = '1';
+              entry.target.style.transform = 'translateY(0)';
+            }
+          });
+        }, observerOptions);
+        
+        // Observe elements with animation classes
+        document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom').forEach(el => {
+          observer.observe(el);
+        });
+      }
+      
+      // Initialize everything
+      createParticles();
+      initAnimations();
+      initScrollProgress();
+      initScrollAnimations();
+      
+      // Run counter animation after page load
+      setTimeout(animateCounters, 1000);
+      
+      // Mobile Tab Navigation
+      const tabItems = document.querySelectorAll('.tab-item');
+      
+      tabItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const tabName = this.getAttribute('data-tab');
+          
+          // Remove active class from all tabs
+          tabItems.forEach(tab => tab.classList.remove('active'));
+          
+          // Add active class to clicked tab
+          this.classList.add('active');
+          
+          // Scroll to corresponding section
+          if (tabName === 'home') {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          } else {
+            const targetSection = document.getElementById(tabName);
+            if (targetSection) {
+              const offsetTop = targetSection.offsetTop - 20;
+              window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+            }
           }
         });
-      }, observerOptions);
-      
-      // Observe elements with animation classes
-      document.querySelectorAll('.animate-fade-in-up, .animate-fade-in-left, .animate-fade-in-right, .animate-slide-in-bottom').forEach(el => {
-        observer.observe(el);
       });
-    }
-    
-    // Initialize everything
-    createParticles();
-    initAnimations();
-    initScrollProgress();
-    initScrollAnimations();
-    
-    // Run counter animation after page load
-    setTimeout(animateCounters, 1000);
-    
-    // Mobile Tab Navigation
-    const tabItems = document.querySelectorAll('.tab-item');
-    
-    tabItems.forEach(item => {
-      item.addEventListener('click', function() {
-        const tabName = this.getAttribute('data-tab');
-        
-        // Remove active class from all tabs
-        tabItems.forEach(tab => tab.classList.remove('active'));
-        
-        // Add active class to clicked tab
-        this.classList.add('active');
-        
-        // Scroll to corresponding section
-        if (tabName === 'home') {
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        } else {
-          const targetSection = document.getElementById(tabName);
-          if (targetSection) {
-            const offsetTop = targetSection.offsetTop - 20;
-            window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      
+      // Enhanced value card interactions
+      const valueCards = document.querySelectorAll('.value-card');
+      
+      valueCards.forEach(card => {
+        card.addEventListener('mouseenter', function() {
+          this.style.transform = 'translateY(-8px) rotateX(5deg) rotateY(5deg) scale(1.02)';
+          this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.12)';
+          
+          const icon = this.querySelector('.value-card-icon');
+          if (icon) {
+            icon.style.transform = 'scale(1.15) rotate(5deg)';
           }
-        }
+          
+          const content = this.querySelector('.value-card-content');
+          if (content) {
+            content.style.transform = 'translateY(-3px)';
+          }
+        });
+        
+        card.addEventListener('mouseleave', function() {
+          this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+          this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.08)';
+          
+          const icon = this.querySelector('.value-card-icon');
+          if (icon) {
+            icon.style.transform = 'scale(1) rotate(0)';
+          }
+          
+          const content = this.querySelector('.value-card-content');
+          if (content) {
+            content.style.transform = 'translateY(0)';
+          }
+        });
       });
-    });
-    
-    // Enhanced value card interactions
-    const valueCards = document.querySelectorAll('.value-card');
-    
-    valueCards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-8px) rotateX(5deg) rotateY(5deg) scale(1.02)';
-        this.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.12)';
-        
-        const icon = this.querySelector('.value-card-icon');
-        if (icon) {
-          icon.style.transform = 'scale(1.15) rotate(5deg)';
-        }
-        
-        const content = this.querySelector('.value-card-content');
-        if (content) {
-          content.style.transform = 'translateY(-3px)';
+      
+      // Load More Insights functionality
+      const loadMoreBtn = document.getElementById('loadMoreBtn');
+      const hiddenArticles = document.getElementById('hiddenArticles');
+      
+      if (loadMoreBtn && hiddenArticles) {
+        loadMoreBtn.addEventListener('click', function() {
+          hiddenArticles.classList.add('show');
+          this.style.display = 'none';
+          
+          // Re-initialize Feather Icons for new content
+          feather.replace();
+        });
+      }
+      
+      // Expandable Cards
+      const expandTriggers = document.querySelectorAll('.expand-trigger');
+      
+      expandTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function() {
+          const targetId = this.getAttribute('data-expand') + '-details';
+          const targetDetails = document.getElementById(targetId);
+          const icon = this.querySelector('.expand-icon');
+          
+          if (targetDetails.classList.contains('open')) {
+            targetDetails.classList.remove('open');
+            icon.style.transform = 'rotate(0deg)';
+          } else {
+            targetDetails.classList.add('open');
+            icon.style.transform = 'rotate(180deg)';
+          }
+          
+          // Re-initialize Feather Icons for the rotated icon
+          feather.replace();
+        });
+      });
+      
+      // Social Feed Interactions
+      const likeButtons = document.querySelectorAll('.like-btn');
+      
+      likeButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const icon = this.querySelector('i');
+          const count = this.querySelector('span');
+          
+          if (icon.getAttribute('data-feather') === 'heart') {
+            // Change to filled heart
+            icon.setAttribute('data-feather', 'heart');
+            // Update like count
+            count.textContent = parseInt(count.textContent) + 1;
+            // Add visual feedback
+            this.style.color = '#d84545';
+          } else {
+            // Change back to outline heart
+            icon.setAttribute('data-feather', 'heart');
+            // Update like count
+            count.textContent = parseInt(count.textContent) - 1;
+            // Remove visual feedback
+            this.style.color = '';
+          }
+          feather.replace();
+        });
+      });
+      
+      // Add scroll effect to desktop navigation
+      window.addEventListener('scroll', function() {
+        const nav = document.querySelector('.nav-container');
+        if (window.scrollY > 100) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
         }
       });
       
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
-        this.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.08)';
-        
-        const icon = this.querySelector('.value-card-icon');
-        if (icon) {
-          icon.style.transform = 'scale(1) rotate(0)';
-        }
-        
-        const content = this.querySelector('.value-card-content');
-        if (content) {
-          content.style.transform = 'translateY(0)';
-        }
+      // Smooth scrolling for desktop navigation
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+          }
+        });
       });
-    });
-    
-    // Load More Insights functionality
-    const loadMoreBtn = document.getElementById('loadMoreBtn');
-    const hiddenArticles = document.getElementById('hiddenArticles');
-    
-    if (loadMoreBtn && hiddenArticles) {
-      loadMoreBtn.addEventListener('click', function() {
-        hiddenArticles.classList.add('show');
-        this.style.display = 'none';
-        
-        // Re-initialize Feather Icons for new content
-        feather.replace();
-      });
-    }
-    
-    // Expandable Cards
-    const expandTriggers = document.querySelectorAll('.expand-trigger');
-    
-    expandTriggers.forEach(trigger => {
-      trigger.addEventListener('click', function() {
-        const targetId = this.getAttribute('data-expand') + '-details';
-        const targetDetails = document.getElementById(targetId);
-        const icon = this.querySelector('.expand-icon');
-        
-        if (targetDetails.classList.contains('open')) {
-          targetDetails.classList.remove('open');
-          icon.style.transform = 'rotate(0deg)';
-        } else {
-          targetDetails.classList.add('open');
-          icon.style.transform = 'rotate(180deg)';
-        }
-        
-        // Re-initialize Feather Icons for the rotated icon
-        feather.replace();
-      });
-    });
-    
-    // Social Feed Interactions
-    const likeButtons = document.querySelectorAll('.like-btn');
-    
-    likeButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const icon = this.querySelector('i');
-        const count = this.querySelector('span');
-        
-        if (icon.getAttribute('data-feather') === 'heart') {
-          // Change to filled heart
-          icon.setAttribute('data-feather', 'heart');
-          // Update like count
-          count.textContent = parseInt(count.textContent) + 1;
-          // Add visual feedback
-          this.style.color = '#d84545';
-        } else {
-          // Change back to outline heart
-          icon.setAttribute('data-feather', 'heart');
-          // Update like count
-          count.textContent = parseInt(count.textContent) - 1;
-          // Remove visual feedback
-          this.style.color = '';
-        }
-        feather.replace();
-      });
-    });
-    
-    // Add scroll effect to desktop navigation
-    window.addEventListener('scroll', function() {
-      const nav = document.querySelector('.nav-container');
-      if (window.scrollY > 100) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    });
-    
-    // Smooth scrolling for desktop navigation
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        if (targetId === '#') return;
-        
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          window.scrollTo({
-            top: targetElement.offsetTop - 80,
-            behavior: 'smooth'
-          });
-        }
-      });
-    });
 
-    // Image loading animation
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      img.addEventListener('load', function() {
-        this.classList.remove('image-loading');
+      // Image loading animation
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        img.addEventListener('load', function() {
+          this.classList.remove('image-loading');
+        });
+        
+        if (!img.complete) {
+          img.classList.add('image-loading');
+        }
       });
-      
-      if (!img.complete) {
-        img.classList.add('image-loading');
-      }
     });
-  });
-</script>
+  </script>
 </body>
 </html>
-
-
-
-
