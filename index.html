@@ -1087,19 +1087,30 @@
       transition: width 0.3s ease;
     }
 
-    /* NEW: Two-column layout for Why Auxion */
-    .why-auxion-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-    }
-    
-    @media (min-width: 1024px) {
-      .why-auxion-grid {
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-      }
-    }
+   /* NEW: Two-column layout for Why Auxion */
+.why-auxion-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.lighthouse-content {
+  padding-right: 2rem;
+}
+
+@media (min-width: 1024px) {
+  .why-auxion-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .lighthouse-content {
+    padding-right: 0;
+  }
+}
     
     .lighthouse-container {
       position: relative;
@@ -1684,8 +1695,145 @@
         </div>
       </div>
 
+  <!-- ENHANCED: Latest Insights Section with Load More -->
+  <section id="insights" class="section-padding bg-gray-50 mobile-section">
+    <div class="max-w-6xl mx-auto px-4">
+      <div class="text-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-bold text-brand-blue mb-4 font-orbitron mobile-heading animate-fade-in-up">Latest Insights</h2>
+        <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
+      </div>
+
+      <!-- Instagram Grid Feed - First 3 Articles -->
+      <div class="instagram-grid stagger-animate">
+        <!-- Feed Item 1 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar">AU</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">Auxion Team</h4>
+              <span class="text-xs text-gray-500">2 days ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">AI is not happening to us. It's happening through us.</h3>
+            <p class="text-gray-600 mb-3 text-sm">From awareness to agency. Today, responsibility cannot be outsourced. Every one of us is now a frontline AI decision-maker.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/174615745.jpg" 
+                   alt="AI Awareness" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-xs">87</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-xs">23</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Item 2 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #8b5cf6, #6366f1);">AR</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">AI Research Vienna</h4>
+              <span class="text-xs text-gray-500">1 week ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">AGI: Are you ready?</h3>
+            <p class="text-gray-600 mb-3 text-sm">On digital humanism and why the AGI conversation matters now. The technology is clearly accelerating, but the true story is about the foundation we're pouring today.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxionagii.jpg" 
+                   alt="AGI Discussion" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-xs">124</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-xs">42</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Feed Item 3 -->
+        <div class="feed-item glass-card">
+          <div class="feed-header">
+            <div class="feed-avatar" style="background: linear-gradient(135deg, #10b981, #059669);">DH</div>
+            <div class="flex-1">
+              <h4 class="font-semibold text-brand-blue">Digital Humanism Initiative</h4>
+              <span class="text-xs text-gray-500">2 weeks ago</span>
+            </div>
+            <button class="text-gray-400 hover:text-brand-coral transition-colors">
+              <i data-feather="more-horizontal"></i>
+            </button>
+          </div>
+          
+          <div class="feed-content">
+            <h3 class="font-bold text-brand-blue mb-2">Digital Humanism in Vienna</h3>
+            <p class="text-gray-600 mb-3 text-sm">Did you know the most important discussion about AI isn't happening in Silicon Valley? It's happening in Austria right now.</p>
+            
+            <div class="aspect-video bg-gray-200 rounded-lg mb-3 overflow-hidden">
+              <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/172077713.jpg" 
+                   alt="Digital Humanism" 
+                   class="w-full h-full object-cover transition-transform duration-500 hover:scale-105">
+            </div>
+          </div>
+          
+          <div class="feed-actions">
+            <button class="action-btn like-btn">
+              <i data-feather="heart"></i>
+              <span class="text-xs">56</span>
+            </button>
+            <button class="action-btn comment-btn">
+              <i data-feather="message-circle"></i>
+              <span class="text-xs">18</span>
+            </button>
+            <button class="action-btn share-btn">
+              <i data-feather="share-2"></i>
+            </button>
+            <button class="action-btn bookmark-btn ml-auto">
+              <i data-feather="bookmark"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
       <!-- Blog Articles Grid - Hidden Initially -->
-      <div class="hidden-articles grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" id="hiddenArticles">
+      <div class="hidden hidden-articles grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" id="hiddenArticles">
         <!-- Article 4 -->
         <div class="blog-article">
           <div class="blog-article-image">
@@ -2507,3 +2655,4 @@
 </script>
 </body>
 </html>
+
