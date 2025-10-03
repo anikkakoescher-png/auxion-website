@@ -1097,7 +1097,7 @@
 
 .lighthouse-content {
   padding-right: 2rem;
-  padding-left: 1rem; /* ADDED - pushes content away from left edge */
+  padding-left: 3rem; /* INCREASED - better balance from left edge */
 }
 
 @media (min-width: 1024px) {
@@ -1107,7 +1107,7 @@
   }
   
   .lighthouse-content {
-    padding-left: 2rem; /* MORE padding on desktop */
+    padding-left: 4rem; /* MAXIMUM padding on desktop for perfect balance */
   }
 }
 
@@ -1142,151 +1142,149 @@
   background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
   opacity: 0.3;
 }
-    /* NEW: Lighthouse supporting elements */
-    .wave-pattern {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 40px;
-      background: 
-        radial-gradient(circle at 20% 50%, rgba(17, 29, 64, 0.1) 15px, transparent 16px),
-        radial-gradient(circle at 50% 50%, rgba(216, 69, 69, 0.1) 20px, transparent 21px),
-        radial-gradient(circle at 80% 50%, rgba(17, 29, 64, 0.1) 12px, transparent 13px);
-      opacity: 0.6;
-    }
-    
-    .data-point {
-      position: absolute;
-      width: 60px;
-      height: 60px;
-      background: white;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      font-size: 0.7rem;
-      text-align: center;
-      padding: 0.5rem;
-    }
-    
-    .data-point-1 {
-      top: 20%;
-      left: 10%;
-      animation-delay: 0s;
-    }
-    
-    .data-point-2 {
-      top: 10%;
-      right: 15%;
-      animation-delay: 1s;
-    }
-    
-    .data-point-3 {
-      bottom: 30%;
-      left: 5%;
-      animation-delay: 2s;
-    }
-    
-    .data-point-4 {
-      bottom: 20%;
-      right: 10%;
-      animation-delay: 3s;
-    }
-    
-    .value-points {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-    }
-    
-    .value-point {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      padding: 1.5rem;
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-      transition: all 0.3s ease;
-    }
-    
-    .value-point:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-    }
-    
-    .value-point-icon {
-      flex-shrink: 0;
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: bold;
-    }
-    
-    .value-point-content h3 {
-      font-weight: 600;
-      color: var(--brand-blue);
-      margin-bottom: 0.5rem;
-    }
-    
-    .value-point-content p {
-      color: #64748b;
-      line-height: 1.5;
-    }
 
-    /* Blog Articles */
-    .blog-article {
-      background: white;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      height: 100%;
-    }
-    
-    .blog-article:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-    }
-    
-    .blog-article-image {
-      height: 200px;
-      overflow: hidden;
-    }
-    
-    .blog-article-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    
-    .blog-article:hover .blog-article-image img {
-      transform: scale(1.05);
-    }
-    
-    .blog-article-content {
-      padding: 1.5rem;
-    }
-    
-    .hidden-articles {
-      display: none;
-    }
-    
-    .hidden-articles.show {
-      display: grid;
-      animation: fadeInUp 0.6s ease-out;
-    }
-  </style>
-</head>
-<body class="bg-white">
+/* NEW: Lighthouse supporting elements */
+.wave-pattern {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background: 
+    radial-gradient(circle at 20% 50%, rgba(17, 29, 64, 0.1) 15px, transparent 16px),
+    radial-gradient(circle at 50% 50%, rgba(216, 69, 69, 0.1) 20px, transparent 21px),
+    radial-gradient(circle at 80% 50%, rgba(17, 29, 64, 0.1) 12px, transparent 13px);
+  opacity: 0.6;
+}
+
+.data-point {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: white;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.data-point-1 {
+  top: 20%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.data-point-2 {
+  top: 10%;
+  right: 15%;
+  animation-delay: 1s;
+}
+
+.data-point-3 {
+  bottom: 30%;
+  left: 5%;
+  animation-delay: 2s;
+}
+
+.data-point-4 {
+  bottom: 20%;
+  right: 10%;
+  animation-delay: 3s;
+}
+
+.value-points {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.value-point {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.value-point:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.value-point-icon {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+}
+
+.value-point-content h3 {
+  font-weight: 600;
+  color: var(--brand-blue);
+  margin-bottom: 0.5rem;
+}
+
+.value-point-content p {
+  color: #64748b;
+  line-height: 1.5;
+}
+
+/* Blog Articles */
+.blog-article {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  height: 100%;
+}
+
+.blog-article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.blog-article-image {
+  height: 200px;
+  overflow: hidden;
+}
+
+.blog-article-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.blog-article:hover .blog-article-image img {
+  transform: scale(1.05);
+}
+
+.blog-article-content {
+  padding: 1.5rem;
+}
+
+.hidden-articles {
+  display: none;
+}
+
+.hidden-articles.show {
+  display: grid;
+  animation: fadeInUp 0.6s ease-out;
+}
 
 <!-- Scroll Progress Indicator -->
 <div class="scroll-progress"></div>
@@ -2660,5 +2658,6 @@
 </script>
 </body>
 </html>
+
 
 
