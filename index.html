@@ -161,6 +161,17 @@
       50% { filter: drop-shadow(0 0 15px rgba(255, 255, 200, 0.8)); }
     }
 
+    @keyframes waveFloat {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+
+    @keyframes dataPointFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33% { transform: translate(5px, -8px) scale(1.05); }
+      66% { transform: translate(-3px, -12px) scale(1.02); }
+    }
+
     /* Animation classes */
     .animate-fade-in-up {
       animation: fadeInUp 0.6s ease-out forwards;
@@ -232,6 +243,14 @@
       animation: lighthouseGlow 3s ease-in-out infinite;
     }
 
+    .animate-wave-float {
+      animation: waveFloat 4s ease-in-out infinite;
+    }
+
+    .animate-data-point {
+      animation: dataPointFloat 6s ease-in-out infinite;
+    }
+
     /* Stagger animations for lists */
     .stagger-animate > * {
       opacity: 0;
@@ -244,7 +263,7 @@
     .stagger-animate > *:nth-child(4) { animation-delay: 0.4s; }
     .stagger-animate > *:nth-child(5) { animation-delay: 0.5s; }
 
-    /* RESTORED: Original Hero Section Height */
+    /* UPDATED: Hero Section Height - Reduced padding */
     .hero-gradient {
       background: linear-gradient(135deg, #111d40 0%, #1a2a5a 100%);
       position: relative;
@@ -254,7 +273,7 @@
     
     @media (min-width: 768px) {
       .hero-gradient {
-        padding: 10rem 0;
+        padding: 8rem 0; /* Reduced from 10rem to 8rem */
       }
     }
     
@@ -727,7 +746,112 @@
       padding: 2rem 0 !important;
     }
     
-    /* NEW: Progress Journey Styles */
+    /* NEW: 2026 Mobile Solutions */
+    /* Mobile Journey Cards */
+    .journey-cards-container {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      gap: 1rem;
+      padding: 1rem 0;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    
+    .journey-cards-container::-webkit-scrollbar {
+      display: none;
+    }
+    
+    .journey-card {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+      background: white;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      border-left: 4px solid var(--brand-coral);
+    }
+    
+    .journey-progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    
+    .progress-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    
+    .progress-dot.active {
+      background: var(--brand-coral);
+      transform: scale(1.3);
+    }
+    
+    .progress-dot.completed {
+      background: var(--brand-blue);
+    }
+    
+    /* Mobile Testimonial Stack */
+    .testimonial-stack {
+      position: relative;
+      height: 320px;
+      margin: 0 auto;
+    }
+    
+    .testimonial-card-stack {
+      position: absolute;
+      width: 100%;
+      height: 280px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      padding: 1.5rem;
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    
+    .testimonial-card-stack:nth-child(1) {
+      transform: translateY(0) scale(1);
+      z-index: 3;
+    }
+    
+    .testimonial-card-stack:nth-child(2) {
+      transform: translateY(20px) scale(0.95);
+      z-index: 2;
+      opacity: 0.8;
+    }
+    
+    .testimonial-card-stack:nth-child(3) {
+      transform: translateY(40px) scale(0.9);
+      z-index: 1;
+      opacity: 0.6;
+    }
+    
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 2rem;
+    }
+    
+    .testimonial-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #e2e8f0;
+      transition: all 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .testimonial-dot.active {
+      background: var(--brand-coral);
+      transform: scale(1.3);
+    }
+    
+    /* Desktop Progress Journey */
     .progress-journey {
       display: flex;
       justify-content: space-between;
@@ -865,6 +989,19 @@
         flex-direction: column !important;
         align-items: center !important;
         justify-content: center !important;
+      }
+      
+      /* Hide desktop progress journey on mobile */
+      .progress-journey {
+        display: none;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      /* Hide mobile solutions on desktop */
+      .journey-cards-container,
+      .testimonial-stack {
+        display: none;
       }
       
       /* Progress journey mobile */
@@ -1009,12 +1146,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      min-height: 300px;
+      min-height: 280px; /* Reduced from 300px */
     }
     
     .lighthouse-svg {
-      width: 200px;
-      height: 200px;
+      width: 160px; /* Reduced from 200px */
+      height: 160px; /* Reduced from 200px */
       filter: drop-shadow(0 0 10px rgba(255, 255, 200, 0.5));
     }
     
@@ -1024,9 +1161,63 @@
       left: 50%;
       transform-origin: bottom center;
       width: 2px;
-      height: 150px;
+      height: 120px; /* Reduced from 150px */
       background: linear-gradient(to top, rgba(255,255,200,0) 0%, rgba(255,255,200,0.8) 100%);
       opacity: 0.3;
+    }
+    
+    /* NEW: Lighthouse supporting elements */
+    .wave-pattern {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background: 
+        radial-gradient(circle at 20% 50%, rgba(17, 29, 64, 0.1) 15px, transparent 16px),
+        radial-gradient(circle at 50% 50%, rgba(216, 69, 69, 0.1) 20px, transparent 21px),
+        radial-gradient(circle at 80% 50%, rgba(17, 29, 64, 0.1) 12px, transparent 13px);
+      opacity: 0.6;
+    }
+    
+    .data-point {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: white;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-size: 0.7rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+    
+    .data-point-1 {
+      top: 20%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+    
+    .data-point-2 {
+      top: 10%;
+      right: 15%;
+      animation-delay: 1s;
+    }
+    
+    .data-point-3 {
+      bottom: 30%;
+      left: 5%;
+      animation-delay: 2s;
+    }
+    
+    .data-point-4 {
+      bottom: 20%;
+      right: 10%;
+      animation-delay: 3s;
     }
     
     .value-points {
@@ -1072,6 +1263,50 @@
     .value-point-content p {
       color: #64748b;
       line-height: 1.5;
+    }
+
+    /* Blog Articles */
+    .blog-article {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+      height: 100%;
+    }
+    
+    .blog-article:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+    }
+    
+    .blog-article-image {
+      height: 200px;
+      overflow: hidden;
+    }
+    
+    .blog-article-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .blog-article:hover .blog-article-image img {
+      transform: scale(1.05);
+    }
+    
+    .blog-article-content {
+      padding: 1.5rem;
+    }
+    
+    .hidden-articles {
+      display: none;
+    }
+    
+    .hidden-articles.show {
+      display: grid;
+      animation: fadeInUp 0.6s ease-out;
     }
   </style>
 </head>
@@ -1125,7 +1360,7 @@
 
 <!-- App Content Area -->
 <main class="app-content">
-  <!-- RESTORED: Original Hero Section Height -->
+  <!-- UPDATED: Hero Section with Reduced Padding -->
   <section class="hero-gradient text-white overflow-hidden" id="home">
     <div class="hero-pattern"></div>
     
@@ -1190,7 +1425,7 @@
     </div>
   </section>
 
-  <!-- ENHANCED: Why Auxion Section - Two Column Layout with Lighthouse -->
+  <!-- ENHANCED: Why Auxion Section - Two Column Layout with Improved Lighthouse -->
   <section id="value" class="section-padding bg-white mobile-section">
     <div class="max-w-7xl mx-auto px-4">
       <div class="text-center mb-8 md:mb-12">
@@ -1225,9 +1460,33 @@
             </svg>
             <!-- Rotating Beam -->
             <div class="lighthouse-beam animate-lighthouse-beam"></div>
+            
+            <!-- Supporting Elements -->
+            <div class="wave-pattern animate-wave-float"></div>
+            
+            <!-- Floating Data Points -->
+            <div class="data-point data-point-1 animate-data-point" style="animation-delay: 0s">
+              <div class="text-brand-coral font-bold">250+</div>
+              <div class="text-xs">Members</div>
+            </div>
+            
+            <div class="data-point data-point-2 animate-data-point" style="animation-delay: 1s">
+              <div class="text-brand-blue font-bold">15</div>
+              <div class="text-xs">Events/Month</div>
+            </div>
+            
+            <div class="data-point data-point-3 animate-data-point" style="animation-delay: 2s">
+              <div class="text-brand-coral font-bold">100%</div>
+              <div class="text-xs">Vienna-Based</div>
+            </div>
+            
+            <div class="data-point data-point-4 animate-data-point" style="animation-delay: 3s">
+              <div class="text-brand-blue font-bold">2024</div>
+              <div class="text-xs">Founded</div>
+            </div>
           </div>
           
-          <div class="mt-8 text-center md:text-left">
+          <div class="mt-6 text-center md:text-left">
             <h3 class="text-2xl font-bold text-brand-blue mb-4 font-orbitron">A Beacon in the AI Landscape</h3>
             <p class="text-gray-600 mb-4 leading-relaxed">
               In the rapidly evolving world of artificial intelligence, Auxion stands as a lighthouse—guiding Vienna's brightest minds through the complexities of responsible AI development.
@@ -1299,7 +1558,7 @@
     </div>
   </section>
 
-  <!-- ENHANCED: Instagram-Style Insights Feed -->
+  <!-- ENHANCED: Latest Insights Section with Load More -->
   <section id="insights" class="section-padding bg-gray-50 mobile-section">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-8">
@@ -1307,7 +1566,7 @@
         <p class="text-gray-600 mobile-body animate-fade-in-up" style="animation-delay: 0.2s">Join the conversation on responsible AI</p>
       </div>
 
-      <!-- Instagram Grid Feed -->
+      <!-- Instagram Grid Feed - First 3 Articles -->
       <div class="instagram-grid stagger-animate">
         <!-- Feed Item 1 -->
         <div class="feed-item glass-card">
@@ -1436,16 +1695,70 @@
         </div>
       </div>
 
+      <!-- Blog Articles Grid - Hidden Initially -->
+      <div class="hidden-articles grid grid-cols-1 md:grid-cols-3 gap-6 mt-8" id="hiddenArticles">
+        <!-- Article 4 -->
+        <div class="blog-article">
+          <div class="blog-article-image">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20human%20ai.png" 
+                 alt="The true AI challenge" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="blog-article-content">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">The true AI challenge? It's not technology. It's culture</h3>
+            <p class="text-gray-600 mb-4">As organizations navigate the rapid adoption of AI, human-centered leadership is critical. The challenge isn't technical, it's cultural.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_eu-activity-7364273920650207232-ke9D" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 5 -->
+        <div class="blog-article">
+          <div class="blog-article-image">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion%20ai.png" 
+                 alt="Key Principles for Human-Centered AI" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="blog-article-content">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">Key Principles for Human-Centered AI</h3>
+            <p class="text-gray-600 mb-4">Unlocking human potential in 2025 through strategic collaboration.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_ai-humancenteredai-ethicalai-activity-7363237496740032514-kPms" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- Article 6 -->
+        <div class="blog-article">
+          <div class="blog-article-image">
+            <img src="https://github.com/anikkakoescher-png/auxion-website/raw/main/public/images/auxion_ai_people%20fist%20digital%20change.png" 
+                 alt="How can people and AI work together" 
+                 class="w-full h-full object-cover">
+          </div>
+          <div class="blog-article-content">
+            <h3 class="text-xl font-semibold text-brand-blue mb-3">How can people and AI work together to create meaningful impact?</h3>
+            <p class="text-gray-600 mb-4">At Auxion we champion the idea that digital transformation isn't just about tool adoption, it's about amplifying human potential alongside technology.</p>
+            <a href="https://www.linkedin.com/posts/auxion%2Eio_technology-is-evolving-faster-than-ever-activity-7363195335046742016-Hgal" 
+               target="_blank" class="inline-flex items-center text-brand-coral hover:text-brand-coral-dark font-medium transition-colors duration-300 group">
+              Read More <i data-feather="arrow-right" class="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
       <!-- Load More Button -->
       <div class="text-center mt-8 animate-fade-in-up" style="animation-delay: 0.4s">
-        <button class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
+        <button id="loadMoreBtn" class="cta-secondary px-6 py-3 rounded-xl font-semibold transition-all duration-300">
           Load More Insights
         </button>
       </div>
     </div>
   </section>
 
-    <!-- OPTIMIZED: Awareness to Agency Section with Progress Journey -->
+  <!-- UPDATED: Awareness to Agency Section with 2026 Mobile Solution -->
   <section id="awareness" class="awareness-agency mobile-section">
     <div class="max-w-6xl mx-auto px-4 text-center">
       <h2 class="text-3xl md:text-5xl font-bold text-brand-blue mb-6 font-orbitron mobile-heading animate-fade-in-up">From Awareness to Agency</h2>
@@ -1455,8 +1768,8 @@
         Your journey to responsible AI mastery through Vienna's premier collaborative hub
       </p>
 
-      <!-- Progress Journey - 5 Steps -->
-      <div class="progress-journey stagger-animate mb-8">
+      <!-- Desktop Progress Journey -->
+      <div class="progress-journey desktop-only stagger-animate mb-8">
         <!-- Step 1: Awareness -->
         <div class="progress-step active">
           <div class="step-icon">
@@ -1509,6 +1822,101 @@
           <div class="step-content">
             <div class="step-label">Agency</div>
             <div class="step-description">Drive change</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2026 Mobile Solution: Swipeable Journey Cards -->
+      <div class="mobile-only">
+        <div class="journey-cards-container">
+          <!-- Card 1: Awareness -->
+          <div class="journey-card">
+            <div class="journey-progress">
+              <div class="progress-dot active"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-brand-coral rounded-full flex items-center justify-center text-white">
+                <i data-feather="eye" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-blue">Awareness</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Understand the AI landscape and its implications for society, business, and individual lives.</p>
+          </div>
+          
+          <!-- Card 2: Understanding -->
+          <div class="journey-card">
+            <div class="journey-progress">
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot active"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white">
+                <i data-feather="book-open" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-blue">Understanding</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Deepen your knowledge through workshops, discussions, and expert-led sessions.</p>
+          </div>
+          
+          <!-- Card 3: Engagement -->
+          <div class="journey-card">
+            <div class="journey-progress">
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot active"></div>
+              <div class="progress-dot"></div>
+              <div class="progress-dot"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center text-white">
+                <i data-feather="users" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-blue">Engagement</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Join Vienna's AI community through events, networking, and collaborative projects.</p>
+          </div>
+          
+          <!-- Card 4: Application -->
+          <div class="journey-card">
+            <div class="journey-progress">
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot active"></div>
+              <div class="progress-dot"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center text-white">
+                <i data-feather="zap" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-blue">Application</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Implement responsible AI solutions in real-world contexts through guided projects.</p>
+          </div>
+          
+          <!-- Card 5: Agency -->
+          <div class="journey-card">
+            <div class="journey-progress">
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot completed"></div>
+              <div class="progress-dot active"></div>
+            </div>
+            <div class="flex items-center gap-3 mb-3">
+              <div class="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center text-white">
+                <i data-feather="award" class="w-5 h-5"></i>
+              </div>
+              <h3 class="text-lg font-semibold text-brand-blue">Agency</h3>
+            </div>
+            <p class="text-gray-600 text-sm">Become a leader who drives meaningful change in the AI ecosystem.</p>
           </div>
         </div>
       </div>
@@ -1615,7 +2023,7 @@
     </div>
   </section>
   
-  <!-- Testimonials Section -->
+  <!-- UPDATED: Testimonials Section with 2026 Mobile Solution -->
   <section id="testimonials" class="section-padding trust-signals mobile-section">
     <div class="max-w-6xl mx-auto px-4">
       <div class="text-center mb-8">
@@ -1626,7 +2034,8 @@
         </p>
       </div>
       
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 stagger-animate">
+      <!-- Desktop Testimonials Grid -->
+      <div class="desktop-only grid grid-cols-1 md:grid-cols-3 gap-6 stagger-animate">
         <div class="testimonial-card">
           <div class="flex items-center mb-3">
             <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
@@ -1670,6 +2079,62 @@
           <p class="text-gray-600 italic text-sm">
             "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
           </p>
+        </div>
+      </div>
+
+      <!-- 2026 Mobile Solution: Testimonial Stack -->
+      <div class="mobile-only">
+        <div class="testimonial-stack">
+          <div class="testimonial-card-stack" data-index="0">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                MS
+              </div>
+              <div>
+                <h4 class="font-semibold text-brand-blue">Maria S.</h4>
+                <p class="text-xs text-gray-500">AI Researcher, TU Vienna</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic text-sm">
+              "Technology evolves faster than our understanding of its consequences. Reflecting on who benefits, who is left behind, and how ethical principles can guide design is essential if we want AI to serve society responsibly."
+            </p>
+          </div>
+          
+          <div class="testimonial-card-stack" data-index="1">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                TK
+              </div>
+              <div>
+                <h4 class="font-semibold text-brand-blue">Thomas K.</h4>
+                <p class="text-xs text-gray-500">Tech Entrepreneur</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic text-sm">
+              "As we integrate AI into daily life, the most important questions are not technical but societal: how do we ensure fairness, transparency and accountability?"
+            </p>
+          </div>
+          
+          <div class="testimonial-card-stack" data-index="2">
+            <div class="flex items-center mb-3">
+              <div class="w-10 h-10 bg-gradient-to-br from-yellow-500 to-yellow-600 rounded-full flex items-center justify-center text-white font-bold mr-3">
+                LS
+              </div>
+              <div>
+                <h4 class="font-semibold text-brand-blue">Lena R.</h4>
+                <p class="text-xs text-gray-500">Graduate Student, Digital Ethics</p>
+              </div>
+            </div>
+            <p class="text-gray-600 italic text-sm">
+              "Exploring AI through a human-centered lens raises fundamental questions: How do we balance efficiency with empathy? How can technology amplify human potential rather than diminish it?"
+            </p>
+          </div>
+        </div>
+        
+        <div class="testimonial-nav">
+          <div class="testimonial-dot active" data-index="0"></div>
+          <div class="testimonial-dot" data-index="1"></div>
+          <div class="testimonial-dot" data-index="2"></div>
         </div>
       </div>
     </div>
@@ -1953,6 +2418,66 @@
         }
       });
     });
+    
+    // Load More Insights functionality
+    const loadMoreBtn = document.getElementById('loadMoreBtn');
+    const hiddenArticles = document.getElementById('hiddenArticles');
+    
+    if (loadMoreBtn && hiddenArticles) {
+      loadMoreBtn.addEventListener('click', function() {
+        hiddenArticles.classList.add('show');
+        this.style.display = 'none';
+        
+        // Re-initialize Feather Icons for new content
+        feather.replace();
+      });
+    }
+    
+    // 2026 Mobile Testimonial Stack Navigation
+    const testimonialDots = document.querySelectorAll('.testimonial-dot');
+    const testimonialCards = document.querySelectorAll('.testimonial-card-stack');
+    
+    testimonialDots.forEach(dot => {
+      dot.addEventListener('click', function() {
+        const index = parseInt(this.getAttribute('data-index'));
+        
+        // Update active dot
+        testimonialDots.forEach(d => d.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Update card positions
+        testimonialCards.forEach((card, i) => {
+          const cardIndex = parseInt(card.getAttribute('data-index'));
+          if (cardIndex === index) {
+            card.style.transform = 'translateY(0) scale(1)';
+            card.style.zIndex = '3';
+            card.style.opacity = '1';
+          } else if (cardIndex === (index + 1) % 3 || (index === 2 && cardIndex === 0)) {
+            card.style.transform = 'translateY(20px) scale(0.95)';
+            card.style.zIndex = '2';
+            card.style.opacity = '0.8';
+          } else {
+            card.style.transform = 'translateY(40px) scale(0.9)';
+            card.style.zIndex = '1';
+            card.style.opacity = '0.6';
+          }
+        });
+      });
+    });
+    
+    // Auto-rotate testimonials on mobile
+    let currentTestimonial = 0;
+    function rotateTestimonials() {
+      if (window.innerWidth < 768) {
+        currentTestimonial = (currentTestimonial + 1) % 3;
+        testimonialDots[currentTestimonial].click();
+      }
+    }
+    
+    // Start auto-rotation only on mobile
+    if (window.innerWidth < 768) {
+      setInterval(rotateTestimonials, 5000);
+    }
     
     // Expandable Cards
     const expandTriggers = document.querySelectorAll('.expand-trigger');
